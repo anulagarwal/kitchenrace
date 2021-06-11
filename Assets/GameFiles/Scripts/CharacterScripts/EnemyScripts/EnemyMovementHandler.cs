@@ -25,18 +25,19 @@ public class EnemyMovementHandler : MonoBehaviour
     private Vector3 movementDirection = Vector3.zero;
     private Vector3 velocity = Vector3.zero;
     private bool isGrounded = false;
-    private SweetsHandler sweetsHandler = null;
+    private SweetsPacketHandler sweetsPacketHandler = null;
     private Transform targetLocationTransform = null;
+    private int stage = 0;
     #endregion
 
     #region MonoBehaviour Functions
     private void Start()
     {
-        foreach (SweetsHandler sh in SweetsManager.Instance.sweetsHandlers)
+        foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[0].sweetsPacketHandlers)
         {
             if (sh.GetCharacterCode == characterCode)
             {
-                sweetsHandler = sh;
+                sweetsPacketHandler = sh;
                 return;
             }
         }
@@ -47,24 +48,19 @@ public class EnemyMovementHandler : MonoBehaviour
         GravityMechanism();
         NewLocation();
 
-        if (Vector3.Distance(transform.position,targetLocationTransform.position) >= 0.1f)
+        if (targetLocationTransform)
         {
-            movementDirection = (targetLocationTransform.position - transform.position).normalized;
-            characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
-            transform.rotation = Quaternion.LookRotation(movementDirection);
+            if (Vector3.Distance(transform.position, targetLocationTransform.position) >= 0.2f)
+            {
+                movementDirection = (targetLocationTransform.position - transform.position).normalized;
+                characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
+                transform.rotation = Quaternion.LookRotation(movementDirection);
 
-            if (!characterAnimator.GetBool("b_Run"))
-            {
-                characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Run);
+                if (!characterAnimator.GetBool("b_Run"))
+                {
+                    characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Run);
+                }
             }
-        }
-        else
-        {
-            if (characterAnimator.GetBool("b_Run"))
-            {
-                characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
-            }
-            targetLocationTransform = null;
         }
     }
     #endregion
@@ -85,17 +81,34 @@ public class EnemyMovementHandler : MonoBehaviour
 
     private void NewLocation()
     {
-        foreach (GameObject obj in sweetsHandler.sweetObjs)
+        if (sweetsPacketHandler.sweetObjs.Count > 0)
         {
-            if (targetLocationTransform == null)
+            foreach (GameObject obj in sweetsPacketHandler.sweetObjs)
             {
-                targetLocationTransform = obj.transform;
-            }
-            else
-            {
-                return;
+                if (targetLocationTransform == null)
+                {
+                    targetLocationTransform = obj.transform;
+                    targetLocationTransform.GetComponent<BoxCollider>().enabled = true;
+                }
+                else
+                {
+                    return;
+                }
             }
         }
+    }
+    #endregion
+
+    #region Public Core Functions
+    public void ChangeDestination()
+    {
+        NewLocation();
+        if (characterAnimator.GetBool("b_Run"))
+        {
+            characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
+        }
+        sweetsPacketHandler.sweetObjs.Remove(targetLocationTransform.gameObject);
+        targetLocationTransform = null;
     }
     #endregion
 }

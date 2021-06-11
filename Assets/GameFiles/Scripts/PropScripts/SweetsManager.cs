@@ -8,7 +8,7 @@ public class SweetsManager : MonoBehaviour
     public static SweetsManager Instance = null;
 
     [Header("Components Reference")]
-    [SerializeField] internal List<SweetsHandler> sweetsHandlers = new List<SweetsHandler>();
+    [SerializeField] internal List<SweetsPacketManager> sweetsPacketManagers = new List<SweetsPacketManager>();
     #endregion
 
     #region MonoBehaviour Functions

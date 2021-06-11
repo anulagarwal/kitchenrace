@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SweetsPacketHandler : MonoBehaviour
+{
+    #region Properties
+    [Header("Attributes")]
+    [SerializeField] private CharacterCode ownerCode = CharacterCode.None;
+
+    [Header("Components Reference")]
+    [SerializeField] private GameObject sweetPrefab = null;
+    [SerializeField] internal List<GameObject> sweetObjs = new List<GameObject>();
+    [SerializeField] private SweetsPacketManager sweetsPacketManager = null;
+    #endregion
+
+    #region Public Core Functions
+    public void SpawnSweets()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            int index = Random.Range(0, sweetsPacketManager.spawnPoints.Count);
+            sweetObjs.Add(Instantiate(sweetPrefab, sweetsPacketManager.spawnPoints[index].position, Quaternion.identity));
+            sweetsPacketManager.spawnPoints.RemoveAt(index);
+            sweetObjs[sweetObjs.Count - 1].GetComponent<SweetsHandler>().SweetCode = ownerCode;
+            sweetObjs[sweetObjs.Count - 1].transform.parent = this.transform;
+        }
+    }
+    #endregion
+
+    #region Getter And Setter
+    public CharacterCode GetCharacterCode { get => ownerCode; }
+    #endregion
+}
