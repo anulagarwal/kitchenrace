@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sweet
+  - Stair
+  - Blocker
   layers:
   - Default
   - TransparentFX
