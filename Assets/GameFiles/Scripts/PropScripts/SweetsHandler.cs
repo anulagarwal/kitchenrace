@@ -6,5 +6,7 @@ public class SweetsHandler : MonoBehaviour
 {
     #region Getter And Setter
     public CharacterCode SweetCode { get; set; }
+    
+    public Transform LocationTransform { get; set; }
     #endregion
 }

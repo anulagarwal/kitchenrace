@@ -15,6 +15,7 @@ public class EnemyMovementHandler : MonoBehaviour
     [SerializeField] private Animator characterAnimator = null;
     [SerializeField] private CharacterController characterController = null;
     [SerializeField] private CharacterAnimationHandler characterAnimationHandler = null;
+    [SerializeField] private CharacterSweetStackHandler characterSweetStackHandler = null;
 
     [Header("Gravity Setup")]
     [SerializeField] private float groundDistance = 0f;
@@ -28,16 +29,21 @@ public class EnemyMovementHandler : MonoBehaviour
     private SweetsPacketHandler sweetsPacketHandler = null;
     private Transform targetLocationTransform = null;
     private int stage = 0;
+    private int sweetCollectionCount = 0;
+    private AIMovementType aIMovementType = AIMovementType.Stacking;
     #endregion
 
     #region MonoBehaviour Functions
     private void Start()
     {
+        sweetCollectionCount = Random.Range(2, 5);
+
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[0].sweetsPacketHandlers)
         {
             if (sh.GetCharacterCode == characterCode)
             {
                 sweetsPacketHandler = sh;
+                characterSweetStackHandler.C_SweetsPacketHandler = sh;
                 return;
             }
         }
@@ -48,7 +54,7 @@ public class EnemyMovementHandler : MonoBehaviour
         GravityMechanism();
         NewLocation();
 
-        if (targetLocationTransform)
+        if (targetLocationTransform && aIMovementType == AIMovementType.Stacking)
         {
             if (Vector3.Distance(transform.position, targetLocationTransform.position) >= 0.2f)
             {
@@ -60,6 +66,32 @@ public class EnemyMovementHandler : MonoBehaviour
                 {
                     characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Run);
                 }
+            }
+
+            if (characterSweetStackHandler.GetSweetStackSize >= sweetCollectionCount)
+            {
+                targetLocationTransform = LevelManager.Instance.GetTargetBridge(stage);
+                aIMovementType = AIMovementType.Building;
+            }
+        }
+        else if (targetLocationTransform && aIMovementType == AIMovementType.Building)
+        {
+            if (characterSweetStackHandler.GetSweetStackSize > 0)
+            {
+                movementDirection = (targetLocationTransform.position - transform.position).normalized;
+                characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
+                transform.rotation = Quaternion.LookRotation(movementDirection);
+
+                if (Vector3.Distance(transform.position, targetLocationTransform.position) <= 0.2f)
+                {
+                    targetLocationTransform = targetLocationTransform.GetComponent<BridgeHandler>().GetBridgeTopTransform;
+                }
+            }
+            else
+            {
+                targetLocationTransform = null;
+                NewLocation();
+                aIMovementType = AIMovementType.Stacking;
             }
         }
     }

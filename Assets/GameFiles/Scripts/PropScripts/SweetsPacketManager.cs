@@ -5,6 +5,9 @@ using UnityEngine;
 public class SweetsPacketManager : MonoBehaviour
 {
     #region Properties
+    [Header("Attributes")]
+    [SerializeField] private int sweetSpawnAmount = 0;
+
     [Header("Components Reference")]
     [SerializeField] internal List<SweetsPacketHandler> sweetsPacketHandlers = new List<SweetsPacketHandler>();
     [SerializeField] internal List<Transform> spawnPoints = new List<Transform>();
@@ -15,7 +18,7 @@ public class SweetsPacketManager : MonoBehaviour
     {
         foreach (SweetsPacketHandler sph in sweetsPacketHandlers)
         {
-            sph.SpawnSweets();
+            sph.SpawnSweets(sweetSpawnAmount);
         }
     }
     #endregion

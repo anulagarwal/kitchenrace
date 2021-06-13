@@ -6,16 +6,13 @@ public class BridgeHandler : MonoBehaviour
 {
     #region Properties
     [Header("Components Reference")]
-    [SerializeField] private List<MeshRenderer> bridgeMRPack = new List<MeshRenderer>();
+    [SerializeField] private Transform bridgeTopTransform = null;
     #endregion
 
     #region MonoBehaviour Functions    
     #endregion
 
-    #region Public Core Functions
-    public void EnableStairMR(Color color, GameObject stairObj)
-    {
-        stairObj.GetComponent<MeshRenderer>().material.color = color;
-    }
+    #region Getter And Setter
+    public Transform GetBridgeTopTransform { get => bridgeTopTransform; }
     #endregion
 }

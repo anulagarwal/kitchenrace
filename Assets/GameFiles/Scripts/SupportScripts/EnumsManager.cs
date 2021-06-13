@@ -16,3 +16,9 @@ public enum CharacterCode
     Enemy_5,
     None
 };
+
+public enum AIMovementType
+{
+    Stacking,
+    Building
+};

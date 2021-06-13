@@ -24,6 +24,8 @@ public class CharacterSweetStackHandler : MonoBehaviour
 
     #region Getter And Setter
     public int GetSweetStackSize { get => sweetStack.Count; }
+
+    public SweetsPacketHandler C_SweetsPacketHandler { get; set; }
     #endregion
 
     #region Public Core Functions
@@ -40,7 +42,10 @@ public class CharacterSweetStackHandler : MonoBehaviour
     {
         if (sweetStack.Count > 0)
         {
-            Destroy(sweetStack[sweetStack.Count - 1].gameObject);
+            sweetStack[sweetStack.Count - 1].transform.position = sweetStack[sweetStack.Count - 1].GetComponent<SweetsHandler>().LocationTransform.position;
+            sweetStack[sweetStack.Count - 1].transform.parent = C_SweetsPacketHandler.transform;
+            sweetStack[sweetStack.Count - 1].GetComponent<BoxCollider>().enabled = true;
+            //Destroy(sweetStack[sweetStack.Count - 1].gameObject);
             sweetStack.RemoveAt(sweetStack.Count - 1);  
         }
     }

@@ -11,8 +11,10 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private float moveSpeed = 0f;
 
     [Header("Components Reference")]
+    [SerializeField] private CharacterData characterData = null;
     [SerializeField] private Animator playerAnimator = null;
     [SerializeField] private CharacterController characterController = null;
+    [SerializeField] private CharacterSweetStackHandler characterSweetStackHandler = null;
 
     [Header("Gravity Setup")]
     [SerializeField] private float groundDistance = 0f;
@@ -32,6 +34,15 @@ public class PlayerMovementHandler : MonoBehaviour
     {
         movementJS = LevelUIManager.Instance.GetMovementJS;
         characterAnimationHandler = PlayerSingleton.Instance.GetCharacterAnimationHandler;
+
+        foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[0].sweetsPacketHandlers)
+        {
+            if (sh.GetCharacterCode == characterData.GetCharacterCode)
+            {
+                characterSweetStackHandler.C_SweetsPacketHandler = sh;
+                return;
+            }
+        }
     }
 
     private void Update()
