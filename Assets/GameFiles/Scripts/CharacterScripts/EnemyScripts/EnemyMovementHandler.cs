@@ -33,12 +33,14 @@ public class EnemyMovementHandler : MonoBehaviour
     private AIMovementType aIMovementType = AIMovementType.Stacking;
     #endregion
 
+
+
     #region MonoBehaviour Functions
     private void Start()
     {
         sweetCollectionCount = Random.Range(2, 5);
 
-        foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[0].sweetsPacketHandlers)
+        foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
         {
             if (sh.GetCharacterCode == characterCode)
             {
@@ -141,6 +143,20 @@ public class EnemyMovementHandler : MonoBehaviour
         }
         sweetsPacketHandler.sweetObjs.Remove(targetLocationTransform.gameObject);
         targetLocationTransform = null;
+    }
+
+    public void UpdateStage()
+    {
+        stage++;
+        foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
+        {
+            if (sh.GetCharacterCode == characterCode)
+            {
+                sweetsPacketHandler = sh;
+                characterSweetStackHandler.C_SweetsPacketHandler = sh;
+                return;
+            }
+        }
     }
     #endregion
 }

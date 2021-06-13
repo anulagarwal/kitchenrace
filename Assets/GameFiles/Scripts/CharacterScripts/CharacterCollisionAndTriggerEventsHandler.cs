@@ -53,6 +53,19 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 other.gameObject.transform.parent.GetComponent<StairHandler>().EnableBlocker(false);
             }
         }
+
+        if (other.gameObject.tag == "StairEnd")
+        {
+            if (gameObject.tag == "Enemy")
+            {
+                GetComponent<EnemyMovementHandler>().UpdateStage();
+            }
+
+            if(gameObject.tag =="Player")
+            {
+
+            }
+        }
     }
     #endregion
 }
