@@ -9,6 +9,7 @@ TagManager:
   - Blocker
   - StairEnd
   - Enemy
+  - BridgeTop
   layers:
   - Default
   - TransparentFX

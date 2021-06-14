@@ -33,8 +33,6 @@ public class EnemyMovementHandler : MonoBehaviour
     private AIMovementType aIMovementType = AIMovementType.Stacking;
     #endregion
 
-
-
     #region MonoBehaviour Functions
     private void Start()
     {

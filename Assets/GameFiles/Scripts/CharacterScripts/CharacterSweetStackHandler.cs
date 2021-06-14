@@ -36,6 +36,7 @@ public class CharacterSweetStackHandler : MonoBehaviour
         sweetTransform.localPosition = stackingPosition;
         stackingPosition = new Vector3(0, stackingPosition.y + sweetSizeYOffset, 0);        
         sweetTransform.localRotation = Quaternion.identity;
+        C_SweetsPacketHandler.sweetObjs.Remove(sweetTransform.gameObject);
     }
 
     public void ReleaseSweet()
@@ -44,9 +45,11 @@ public class CharacterSweetStackHandler : MonoBehaviour
         {
             sweetStack[sweetStack.Count - 1].transform.position = sweetStack[sweetStack.Count - 1].GetComponent<SweetsHandler>().LocationTransform.position;
             sweetStack[sweetStack.Count - 1].transform.parent = C_SweetsPacketHandler.transform;
+            sweetStack[sweetStack.Count - 1].transform.rotation = Quaternion.identity;
+            C_SweetsPacketHandler.sweetObjs.Add(sweetStack[sweetStack.Count - 1].transform.gameObject);
             sweetStack[sweetStack.Count - 1].GetComponent<BoxCollider>().enabled = true;
-            //Destroy(sweetStack[sweetStack.Count - 1].gameObject);
-            sweetStack.RemoveAt(sweetStack.Count - 1);  
+            sweetStack.RemoveAt(sweetStack.Count - 1);
+            stackingPosition.y -= sweetSizeYOffset;
         }
     }
     #endregion
