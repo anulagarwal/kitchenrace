@@ -15,12 +15,20 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
     {
         if (other.gameObject.tag == "Sweet" && other.gameObject.GetComponent<SweetsHandler>().SweetCode == characterData.GetCharacterCode)
         {
-            characterSweetStackHandler.StackSweet(other.transform);
             other.gameObject.GetComponent<BoxCollider>().enabled = false;
+            characterSweetStackHandler.StackSweet(other.transform);
 
             if (characterData.GetCharacterCode != CharacterCode.Player && characterData.GetCharacterCode != CharacterCode.None)
             {
-                gameObject.GetComponent<EnemyMovementHandler>().ChangeDestination();
+                if (gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler))
+                {
+                    enemyMovementHandler.sweetCollectionCount -= 1;
+
+                    if (enemyMovementHandler.aIMovementType == AIMovementType.Stacking)
+                    {
+                        enemyMovementHandler.ChangeDestination();
+                    }
+                }
             }
         }
         else if (other.gameObject.tag == "Stair")
@@ -31,8 +39,8 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 {
                     if (stairHandler.OwnerCode != characterData.GetCharacterCode)
                     {
-                        characterSweetStackHandler.ReleaseSweet();
                         stairHandler.ChangeStairColor(characterData.GetColorCode, characterData.GetCharacterCode);
+                        characterSweetStackHandler.ReleaseSweet();
 
                         if (characterSweetStackHandler.GetSweetStackSize <= 0)
                         {

@@ -29,6 +29,16 @@ public class SweetsPacketHandler : MonoBehaviour
             sweetObjs[sweetObjs.Count - 1].transform.parent = this.transform;
         }
     }
+
+    public void UpdateSweetPacket()
+    {
+        sweetObjs.Clear();
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            sweetObjs.Add(transform.GetChild(i).gameObject);
+        }
+    }
     #endregion
 
     #region Getter And Setter

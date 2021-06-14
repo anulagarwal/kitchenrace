@@ -37,6 +37,7 @@ public class CharacterSweetStackHandler : MonoBehaviour
         stackingPosition = new Vector3(0, stackingPosition.y + sweetSizeYOffset, 0);        
         sweetTransform.localRotation = Quaternion.identity;
         C_SweetsPacketHandler.sweetObjs.Remove(sweetTransform.gameObject);
+        C_SweetsPacketHandler.UpdateSweetPacket();
     }
 
     public void ReleaseSweet()

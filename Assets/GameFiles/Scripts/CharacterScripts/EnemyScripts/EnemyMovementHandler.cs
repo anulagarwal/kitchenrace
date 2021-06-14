@@ -29,8 +29,8 @@ public class EnemyMovementHandler : MonoBehaviour
     private SweetsPacketHandler sweetsPacketHandler = null;
     private Transform targetLocationTransform = null;
     private int stage = 0;
-    private int sweetCollectionCount = 0;
-    private AIMovementType aIMovementType = AIMovementType.Stacking;
+    internal int sweetCollectionCount = 0;
+    internal AIMovementType aIMovementType = AIMovementType.Stacking;
     #endregion
 
     #region MonoBehaviour Functions
@@ -68,7 +68,7 @@ public class EnemyMovementHandler : MonoBehaviour
                 }
             }
 
-            if (characterSweetStackHandler.GetSweetStackSize >= sweetCollectionCount)
+            if (sweetCollectionCount <= 0 || characterSweetStackHandler.C_SweetsPacketHandler.sweetObjs.Count <= 0)
             {
                 targetLocationTransform = LevelManager.Instance.GetTargetBridge(stage);
                 aIMovementType = AIMovementType.Building;
@@ -92,6 +92,11 @@ public class EnemyMovementHandler : MonoBehaviour
                 targetLocationTransform = null;
                 NewLocation();
                 aIMovementType = AIMovementType.Stacking;
+
+                if (sweetCollectionCount <= 0)
+                {
+                    sweetCollectionCount = Random.Range(2, 5);
+                }
             }
         }
     }
@@ -135,10 +140,10 @@ public class EnemyMovementHandler : MonoBehaviour
     public void ChangeDestination()
     {
         NewLocation();
-        if (characterAnimator.GetBool("b_Run"))
-        {
-            characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
-        }
+        //if (characterAnimator.GetBool("b_Run"))
+        //{
+        //    characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
+        //}
         sweetsPacketHandler.sweetObjs.Remove(targetLocationTransform.gameObject);
         targetLocationTransform = null;
     }
