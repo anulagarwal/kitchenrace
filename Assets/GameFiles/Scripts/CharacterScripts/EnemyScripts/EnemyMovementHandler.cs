@@ -173,6 +173,10 @@ public class EnemyMovementHandler : MonoBehaviour
     public void UpdateStage()
     {
         stage++;
+        if (LevelManager.Instance.stageHandlers.Count - 1 >= stage)
+        {
+            print("Victory");
+        }
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
         {
             if (sh.GetCharacterCode == characterCode)
