@@ -20,5 +20,6 @@ public enum CharacterCode
 public enum AIMovementType
 {
     Stacking,
-    Building
+    Building,
+    ChangingStage
 };

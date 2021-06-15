@@ -49,10 +49,6 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                print("StackEmpty");
-            }
         }
         else if (other.gameObject.tag == "Blocker")
         {
@@ -61,19 +57,33 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 other.gameObject.transform.parent.GetComponent<StairHandler>().EnableBlocker(false);
             }
         }
-
-        if (other.gameObject.tag == "StairEnd")
+       
+        if (other.gameObject.tag == "BridgeTop")
         {
-            if (gameObject.tag == "Enemy")
+            if (gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler))
             {
-                GetComponent<EnemyMovementHandler>().UpdateStage();
-            }
-
-            if(gameObject.tag =="Player")
-            {
-
+                enemyMovementHandler.enabled = false;
+                enemyMovementHandler.NullifyTargetDestinationTransform();
+                enemyMovementHandler.aIMovementType = AIMovementType.ChangingStage;
+                enemyMovementHandler.targetLocationTransform = other.gameObject.GetComponent<BridgeTopHandler>().GetNextStageTransform;
+                enemyMovementHandler.UpdateStage();
+                other.gameObject.GetComponent<BoxCollider>().enabled = false;
+                enemyMovementHandler.enabled = true;
             }
         }
+
+        //if (other.gameObject.tag == "StairEnd")
+        //{
+        //    if (gameObject.tag == "Enemy")
+        //    {
+        //        GetComponent<EnemyMovementHandler>().UpdateStage();
+        //    }
+
+        //    if(gameObject.tag =="Player")
+        //    {
+
+        //    }
+        //}
     }
     #endregion
 }

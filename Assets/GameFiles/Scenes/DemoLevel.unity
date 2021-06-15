@@ -183,24 +183,6 @@ Transform:
   m_Father: {fileID: 1273685790}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &28246635 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1933529000024038797, guid: 54186071d5dcd354487838c368807064, type: 3}
-  m_PrefabInstance: {fileID: 5933533974793967548}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &28246637
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28246635}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2.2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &59544037
 GameObject:
   m_ObjectHideFlags: 0
@@ -3859,7 +3841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1933529000024038797, guid: 54186071d5dcd354487838c368807064, type: 3}
       propertyPath: m_TagString
-      value: StairEnd
+      value: BridgeTop
       objectReference: {fileID: 0}
     - target: {fileID: 4380594474581214627, guid: 54186071d5dcd354487838c368807064, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4346,24 +4328,6 @@ Transform:
   m_Father: {fileID: 321222965}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1425299848 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1933529000024038797, guid: 54186071d5dcd354487838c368807064, type: 3}
-  m_PrefabInstance: {fileID: 1256510971}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1425299850
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1425299848}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2.2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1446908700
 GameObject:
   m_ObjectHideFlags: 0
@@ -4611,7 +4575,7 @@ PrefabInstance:
     - target: {fileID: 2536839777262078214, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
       propertyPath: stageHandlers.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 917557696}
     - target: {fileID: 2536839777262078215, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -6710,7 +6674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1933529000024038797, guid: 54186071d5dcd354487838c368807064, type: 3}
       propertyPath: m_TagString
-      value: StairEnd
+      value: BridgeTop
       objectReference: {fileID: 0}
     - target: {fileID: 4380594474581214627, guid: 54186071d5dcd354487838c368807064, type: 3}
       propertyPath: m_LocalPosition.z

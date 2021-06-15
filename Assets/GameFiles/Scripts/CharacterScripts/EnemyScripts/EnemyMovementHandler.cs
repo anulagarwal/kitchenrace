@@ -27,7 +27,7 @@ public class EnemyMovementHandler : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private bool isGrounded = false;
     private SweetsPacketHandler sweetsPacketHandler = null;
-    private Transform targetLocationTransform = null;
+    internal Transform targetLocationTransform = null;
     private int stage = 0;
     internal int sweetCollectionCount = 0;
     internal AIMovementType aIMovementType = AIMovementType.Stacking;
@@ -52,7 +52,11 @@ public class EnemyMovementHandler : MonoBehaviour
     private void Update()
     {
         GravityMechanism();
-        NewLocation();
+
+        if (aIMovementType != AIMovementType.ChangingStage)
+        {
+            NewLocation();
+        }
 
         if (targetLocationTransform && aIMovementType == AIMovementType.Stacking)
         {
@@ -84,7 +88,10 @@ public class EnemyMovementHandler : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, targetLocationTransform.position) <= 0.2f)
                 {
-                    targetLocationTransform = targetLocationTransform.GetComponent<BridgeHandler>().GetBridgeTopTransform;
+                    if (targetLocationTransform.TryGetComponent<BridgeHandler>(out BridgeHandler bridgeHandler))
+                    {
+                        targetLocationTransform = bridgeHandler.GetBridgeTopTransform;
+                    }
                 }
             }
             else
@@ -97,6 +104,21 @@ public class EnemyMovementHandler : MonoBehaviour
                 {
                     sweetCollectionCount = Random.Range(2, 5);
                 }
+            }
+        }
+        
+        if (targetLocationTransform && aIMovementType == AIMovementType.ChangingStage)
+        {
+            if (Vector3.Distance(transform.position, targetLocationTransform.position) >= 0.2f)
+            {
+                movementDirection = (targetLocationTransform.position - transform.position).normalized;
+                characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
+                transform.rotation = Quaternion.LookRotation(movementDirection);
+            }
+            else
+            {
+                aIMovementType = AIMovementType.Stacking;
+                //characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
             }
         }
     }
@@ -160,6 +182,11 @@ public class EnemyMovementHandler : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void NullifyTargetDestinationTransform()
+    {
+        targetLocationTransform = null;
     }
     #endregion
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class StairHandler : MonoBehaviour
 {
     #region Properties
+    [Header("Attributes")]
+    [SerializeField] private bool isLast = false;
+
     [Header("Components Reference")]
     [SerializeField] private MeshRenderer meshRenderer = null;
     [SerializeField] private GameObject blockerObj = null;
@@ -31,7 +34,10 @@ public class StairHandler : MonoBehaviour
 
     public void EnableBlocker(bool value)
     {
-        blockerObj.SetActive(value);
+        if (!isLast)
+        {
+            blockerObj.SetActive(value);
+        }
     }
     #endregion
 }
