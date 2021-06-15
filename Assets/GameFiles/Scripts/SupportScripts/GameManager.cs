@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     private float startTimer;
     private float endTimer;
 
+    [Header("Component References")]
+    [SerializeField] private PlayerMovementHandler player;
+    [SerializeField] private List<EnemyMovementHandler> enemies;
+
 
     #region MonoBehaviour Functions
     private void Awake()
@@ -50,7 +54,12 @@ public class GameManager : MonoBehaviour
         IncreaseCurrentLevel();
         endTimer = Time.time;
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);
-
+        LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);
+        foreach (EnemyMovementHandler e in enemies)
+        {
+            e.enabled = false;
+        }
+        player.enabled = false;
     }
 
     public void Lose()
@@ -58,14 +67,23 @@ public class GameManager : MonoBehaviour
         //Stop characters       
         isGameOn = false;
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Lose);
-        LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);
+        foreach (EnemyMovementHandler e in enemies)
+        {
+            e.enabled = false;
+        }
+        player.enabled = false;
     }
 
     public void StartLevel()
     {
         isGameOn = true;
         startTimer = Time.time;
-        LevelUIManager.Instance.UpdateState(LevelUIManager.State.InGame);    
+        LevelUIManager.Instance.UpdateState(LevelUIManager.State.InGame);
+        foreach(EnemyMovementHandler e in enemies)
+        {
+            e.enabled = true;
+        }
+        player.enabled = true;
         //Launch character
     }
 

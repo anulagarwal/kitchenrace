@@ -175,7 +175,7 @@ public class EnemyMovementHandler : MonoBehaviour
         stage++;
         if (LevelManager.Instance.stageHandlers.Count - 1 >= stage)
         {
-            print("Victory");
+            GameManager.Instance.Lose();
         }
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
         {
