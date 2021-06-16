@@ -28,7 +28,7 @@ public class EnemyMovementHandler : MonoBehaviour
     private bool isGrounded = false;
     private SweetsPacketHandler sweetsPacketHandler = null;
     internal Transform targetLocationTransform = null;
-    private int stage = 0;
+    internal int stage = 0;
     internal int sweetCollectionCount = 0;
     internal AIMovementType aIMovementType = AIMovementType.Stacking;
     #endregion
@@ -51,74 +51,78 @@ public class EnemyMovementHandler : MonoBehaviour
 
     private void Update()
     {
-        GravityMechanism();
-
-        if (aIMovementType != AIMovementType.ChangingStage)
+        if (aIMovementType != AIMovementType.GameOver)
         {
-            NewLocation();
-        }
+            GravityMechanism();
 
-        if (targetLocationTransform && aIMovementType == AIMovementType.Stacking)
-        {
-            if (Vector3.Distance(transform.position, targetLocationTransform.position) >= 0.2f)
+            if (aIMovementType != AIMovementType.ChangingStage)
             {
-                movementDirection = (targetLocationTransform.position - transform.position).normalized;
-                characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
-                transform.rotation = Quaternion.LookRotation(movementDirection);
+                NewLocation();
+            }
 
-                if (!characterAnimator.GetBool("b_Run"))
+            if (targetLocationTransform && aIMovementType == AIMovementType.Stacking)
+            {
+                if (Vector3.Distance(transform.position, targetLocationTransform.position) >= 0.2f)
                 {
-                    characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Run);
+                    movementDirection = (targetLocationTransform.position - transform.position).normalized;
+                    characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
+                    transform.rotation = Quaternion.LookRotation(movementDirection);
+
+                    if (!characterAnimator.GetBool("b_Run"))
+                    {
+                        characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Run);
+                    }
+                }
+
+                if (sweetCollectionCount <= 0 || characterSweetStackHandler.C_SweetsPacketHandler.sweetObjs.Count <= 0)
+                {
+                    targetLocationTransform = LevelManager.Instance.GetTargetBridge(stage);
+                    aIMovementType = AIMovementType.Building;
                 }
             }
-
-            if (sweetCollectionCount <= 0 || characterSweetStackHandler.C_SweetsPacketHandler.sweetObjs.Count <= 0)
+            else if (targetLocationTransform && aIMovementType == AIMovementType.Building)
             {
-                targetLocationTransform = LevelManager.Instance.GetTargetBridge(stage);
-                aIMovementType = AIMovementType.Building;
-            }
-        }
-        else if (targetLocationTransform && aIMovementType == AIMovementType.Building)
-        {
-            if (characterSweetStackHandler.GetSweetStackSize > 0)
-            {
-                movementDirection = (targetLocationTransform.position - transform.position).normalized;
-                characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
-                transform.rotation = Quaternion.LookRotation(movementDirection);
-
-                if (Vector3.Distance(transform.position, targetLocationTransform.position) <= 0.2f)
+                if (characterSweetStackHandler.GetSweetStackSize > 0)
                 {
-                    if (targetLocationTransform.TryGetComponent<BridgeHandler>(out BridgeHandler bridgeHandler))
+                    movementDirection = (targetLocationTransform.position - transform.position).normalized;
+                    characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
+                    transform.rotation = Quaternion.LookRotation(movementDirection);
+
+                    if (Vector3.Distance(transform.position, targetLocationTransform.position) <= 0.2f)
                     {
-                        targetLocationTransform = bridgeHandler.GetBridgeTopTransform;
+                        if (targetLocationTransform.TryGetComponent<BridgeHandler>(out BridgeHandler bridgeHandler))
+                        {
+                            targetLocationTransform = bridgeHandler.GetBridgeTopTransform;
+                        }
+                    }
+                }
+                else
+                {
+                    targetLocationTransform = null;
+                    NewLocation();
+                    aIMovementType = AIMovementType.Stacking;
+
+                    if (sweetCollectionCount <= 0)
+                    {
+                        sweetCollectionCount = Random.Range(2, 5);
                     }
                 }
             }
-            else
-            {
-                targetLocationTransform = null;
-                NewLocation();
-                aIMovementType = AIMovementType.Stacking;
 
-                if (sweetCollectionCount <= 0)
+            if (targetLocationTransform && aIMovementType == AIMovementType.ChangingStage)
+            {
+                if (Vector3.Distance(transform.position, targetLocationTransform.position) >= 0.2f)
                 {
-                    sweetCollectionCount = Random.Range(2, 5);
+                    movementDirection = (targetLocationTransform.position - transform.position).normalized;
+                    characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
+                    transform.rotation = Quaternion.LookRotation(movementDirection);
                 }
-            }
-        }
-        
-        if (targetLocationTransform && aIMovementType == AIMovementType.ChangingStage)
-        {
-            if (Vector3.Distance(transform.position, targetLocationTransform.position) >= 0.2f)
-            {
-                movementDirection = (targetLocationTransform.position - transform.position).normalized;
-                characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
-                transform.rotation = Quaternion.LookRotation(movementDirection);
-            }
-            else
-            {
-                aIMovementType = AIMovementType.Stacking;
-                //characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
+                else
+                {
+                    NewLocation();
+                    aIMovementType = AIMovementType.Stacking;
+                    //characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
+                }
             }
         }
     }
@@ -173,9 +177,12 @@ public class EnemyMovementHandler : MonoBehaviour
     public void UpdateStage()
     {
         stage++;
-        if (LevelManager.Instance.stageHandlers.Count - 1 >= stage)
+        if (stage >= LevelManager.Instance.stageHandlers.Count - 1)
         {
-            GameManager.Instance.Lose();
+            aIMovementType = AIMovementType.GameOver;
+            characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Victory);
+            this.enabled = false;
+            //GameManager.Instance.Lose();
         }
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
         {

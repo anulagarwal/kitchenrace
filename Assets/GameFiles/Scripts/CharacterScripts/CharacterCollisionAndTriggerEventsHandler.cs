@@ -62,13 +62,16 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         {
             if (gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler))
             {
-                enemyMovementHandler.enabled = false;
-                enemyMovementHandler.NullifyTargetDestinationTransform();
-                enemyMovementHandler.aIMovementType = AIMovementType.ChangingStage;
-                enemyMovementHandler.targetLocationTransform = other.gameObject.GetComponent<BridgeTopHandler>().GetNextStageTransform;
-                enemyMovementHandler.UpdateStage();
-                other.gameObject.GetComponent<BoxCollider>().enabled = false;
-                enemyMovementHandler.enabled = true;
+                if (other.gameObject.GetComponent<BridgeTopHandler>().stageNumber == enemyMovementHandler.stage)
+                {
+                    enemyMovementHandler.enabled = false;
+                    enemyMovementHandler.NullifyTargetDestinationTransform();
+                    enemyMovementHandler.aIMovementType = AIMovementType.ChangingStage;
+                    enemyMovementHandler.targetLocationTransform = other.gameObject.GetComponent<BridgeTopHandler>().GetNextStageTransform;
+                    enemyMovementHandler.UpdateStage();
+                    other.gameObject.GetComponent<BoxCollider>().enabled = false;
+                    enemyMovementHandler.enabled = true;
+                }
             }
         }
 
