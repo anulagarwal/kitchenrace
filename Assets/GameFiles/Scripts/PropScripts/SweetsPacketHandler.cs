@@ -43,8 +43,7 @@ public class SweetsPacketHandler : MonoBehaviour
     public void EnableSweetsMeshRenderer()
     {
         for (int i = 0; i < sweetObjs.Count; i++)
-        {
-            print("Working");
+        {            
             sweetObjs[i].GetComponent<SweetsHandler>().cookieMeshRenderer.enabled = true;
         }
     }
