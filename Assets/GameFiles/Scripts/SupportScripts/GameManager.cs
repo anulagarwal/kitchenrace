@@ -54,12 +54,7 @@ public class GameManager : MonoBehaviour
         IncreaseCurrentLevel();
         endTimer = Time.time;
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);
-        LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);
-        foreach (EnemyMovementHandler e in enemies)
-        {
-            e.enabled = false;
-        }
-        player.enabled = false;
+        LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);       
     }
 
     public void Lose()
@@ -70,6 +65,7 @@ public class GameManager : MonoBehaviour
         foreach (EnemyMovementHandler e in enemies)
         {
             e.enabled = false;
+            
         }
         player.enabled = false;
     }

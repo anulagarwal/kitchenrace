@@ -15,6 +15,8 @@ public class PlayerCharacterTriggerEventsHandler : MonoBehaviour
         {
             playerMovementHandler.enabled = false;
             characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Victory);
+            EnemyManager.Instance.EnemyLose();
+            GameManager.Instance.Win();
         }
     }
     #endregion

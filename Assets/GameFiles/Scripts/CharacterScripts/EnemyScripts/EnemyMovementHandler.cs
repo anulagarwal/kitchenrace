@@ -178,12 +178,11 @@ public class EnemyMovementHandler : MonoBehaviour
     public void UpdateStage()
     {
         stage++;
+        //Modified
         if (stage >= LevelManager.Instance.stageHandlers.Count)
         {
             aIMovementType = AIMovementType.GameOver;
-            characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Victory);
-            this.enabled = false;
-            //GameManager.Instance.Lose();
+            Win();
         }
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
         {
@@ -197,6 +196,24 @@ public class EnemyMovementHandler : MonoBehaviour
         }
     }
 
+    //Added
+    public void Lose()
+    {        
+        characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Defeat);
+        Stop();
+    }
+    //Added
+    public void Win()
+    {
+        characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Victory);
+        GameManager.Instance.Lose();
+        Stop();
+    }
+
+    public void Stop()
+    {
+        this.enabled = false;
+    }
     public void NullifyTargetDestinationTransform()
     {
         targetLocationTransform = null;

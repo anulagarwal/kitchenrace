@@ -22,6 +22,17 @@ public class PlayerSingleton : MonoBehaviour
     }
     #endregion
 
+    #region Public functions
+
+    public void Lose()
+    {
+        GetComponent<PlayerMovementHandler>().enabled = false;
+        characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Defeat);
+    }
+
+
+    #endregion
+
     #region Getter And Setter
     public CharacterAnimationHandler GetCharacterAnimationHandler { get => characterAnimationHandler; }
     #endregion
