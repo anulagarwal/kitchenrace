@@ -43,6 +43,7 @@ public class EnemyMovementHandler : MonoBehaviour
             if (sh.GetCharacterCode == characterCode)
             {
                 sweetsPacketHandler = sh;
+                sweetsPacketHandler.EnableSweetsMeshRenderer();
                 characterSweetStackHandler.C_SweetsPacketHandler = sh;
                 return;
             }
@@ -177,7 +178,7 @@ public class EnemyMovementHandler : MonoBehaviour
     public void UpdateStage()
     {
         stage++;
-        if (stage >= LevelManager.Instance.stageHandlers.Count - 1)
+        if (stage >= LevelManager.Instance.stageHandlers.Count)
         {
             aIMovementType = AIMovementType.GameOver;
             characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Victory);
@@ -189,6 +190,7 @@ public class EnemyMovementHandler : MonoBehaviour
             if (sh.GetCharacterCode == characterCode)
             {
                 sweetsPacketHandler = sh;
+                sweetsPacketHandler.EnableSweetsMeshRenderer();
                 characterSweetStackHandler.C_SweetsPacketHandler = sh;
                 return;
             }

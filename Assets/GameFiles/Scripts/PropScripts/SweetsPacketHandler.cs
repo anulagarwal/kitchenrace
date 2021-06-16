@@ -39,6 +39,15 @@ public class SweetsPacketHandler : MonoBehaviour
             sweetObjs.Add(transform.GetChild(i).gameObject);
         }
     }
+
+    public void EnableSweetsMeshRenderer()
+    {
+        for (int i = 0; i < sweetObjs.Count; i++)
+        {
+            print("Working");
+            sweetObjs[i].GetComponent<SweetsHandler>().cookieMeshRenderer.enabled = true;
+        }
+    }
     #endregion
 
     #region Getter And Setter

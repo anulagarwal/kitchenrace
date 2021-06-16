@@ -73,6 +73,12 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                     enemyMovementHandler.enabled = true;
                 }
             }
+            else if (gameObject.TryGetComponent<PlayerMovementHandler>(out PlayerMovementHandler playerMovementHandler))
+            {
+                playerMovementHandler.stage++;
+                characterSweetStackHandler.C_SweetsPacketHandler.EnableSweetsMeshRenderer();
+                playerMovementHandler.SelectSweetsPacketHandler();
+            }
         }
 
         //if (other.gameObject.tag == "StairEnd")

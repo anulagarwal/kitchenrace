@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SweetsHandler : MonoBehaviour
 {
+    #region Properties
+    [Header("Components Reference")]
+    [SerializeField] internal MeshRenderer cookieMeshRenderer = null;
+    #endregion
+
     #region Getter And Setter
     public CharacterCode SweetCode { get; set; }
     

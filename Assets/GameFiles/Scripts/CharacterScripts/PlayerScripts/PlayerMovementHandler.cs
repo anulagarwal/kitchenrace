@@ -14,7 +14,7 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private CharacterData characterData = null;
     [SerializeField] private Animator playerAnimator = null;
     [SerializeField] private CharacterController characterController = null;
-    [SerializeField] private CharacterSweetStackHandler characterSweetStackHandler = null;
+    [SerializeField] internal CharacterSweetStackHandler characterSweetStackHandler = null;
 
     [Header("Gravity Setup")]
     [SerializeField] private float groundDistance = 0f;
@@ -27,6 +27,7 @@ public class PlayerMovementHandler : MonoBehaviour
     private VariableJoystick movementJS = null;
     private CharacterAnimationHandler characterAnimationHandler = null;
     private bool isGrounded = false;
+    internal int stage = 0;
     #endregion
 
     #region MonoBehaviour Functions
@@ -35,11 +36,12 @@ public class PlayerMovementHandler : MonoBehaviour
         movementJS = LevelUIManager.Instance.GetMovementJS;
         characterAnimationHandler = PlayerSingleton.Instance.GetCharacterAnimationHandler;
 
-        foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[0].sweetsPacketHandlers)
+        foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
         {
             if (sh.GetCharacterCode == characterData.GetCharacterCode)
             {
                 characterSweetStackHandler.C_SweetsPacketHandler = sh;
+                characterSweetStackHandler.C_SweetsPacketHandler.EnableSweetsMeshRenderer();
                 return;
             }
         }
@@ -82,6 +84,21 @@ public class PlayerMovementHandler : MonoBehaviour
 
         velocity.y += gravityInfluence * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+    }
+    #endregion
+
+    #region Public Core Functions
+    public void SelectSweetsPacketHandler()
+    {
+        foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
+        {
+            if (sh.GetCharacterCode == characterData.GetCharacterCode)
+            {
+                characterSweetStackHandler.C_SweetsPacketHandler = sh;
+                characterSweetStackHandler.C_SweetsPacketHandler.EnableSweetsMeshRenderer();
+                return;
+            }
+        }
     }
     #endregion
 }
