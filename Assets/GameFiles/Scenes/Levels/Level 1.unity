@@ -1198,7 +1198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3363842925938048729, guid: 2bd1ca4a0b65041ffa50f9dbcde6e85a, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3363842925938048729, guid: 2bd1ca4a0b65041ffa50f9dbcde6e85a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2578,6 +2578,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterAnimator: {fileID: 332928979}
+  playerMovementHandler: {fileID: 0}
+  enemyMovementHandler: {fileID: 0}
 --- !u!114 &332928976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2616,6 +2618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 3670a9d17014c3b4c99203b9c77910cd, type: 2}
   characterSweetStackHandler: {fileID: 691830219}
+  playerMovementHandler: {fileID: 0}
 --- !u!143 &332928978
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2668,7 +2671,7 @@ Transform:
   - {fileID: 490034546}
   - {fileID: 1139755165}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &333416088
 PrefabInstance:
@@ -5819,9 +5822,17 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4197367022558708276, guid: 45cbff9104caa49cd8092d014ecb2421, type: 3}
+      propertyPath: playerMovementHandler
+      value: 
+      objectReference: {fileID: 743254009}
+    - target: {fileID: 4197367022558708277, guid: 45cbff9104caa49cd8092d014ecb2421, type: 3}
+      propertyPath: playerMovementHandler
+      value: 
+      objectReference: {fileID: 743254009}
     - target: {fileID: 4197367022596690998, guid: 45cbff9104caa49cd8092d014ecb2421, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4197367022596690998, guid: 45cbff9104caa49cd8092d014ecb2421, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8167,7 +8178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6256924091007590897, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6256924091007590897, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12604,7 +12615,7 @@ PrefabInstance:
       objectReference: {fileID: 829481986}
     - target: {fileID: 2536839777262078215, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2536839777262078215, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15299,7 +15310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2053047029
 GameObject:
@@ -15710,7 +15721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3363842925938048729, guid: 2bd1ca4a0b65041ffa50f9dbcde6e85a, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3363842925938048729, guid: 2bd1ca4a0b65041ffa50f9dbcde6e85a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16365,7 +16376,7 @@ Transform:
   - {fileID: 5465940246395220988}
   - {fileID: 1267290278}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &608321761334022911
 Transform:
@@ -16490,6 +16501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterAnimator: {fileID: 919132147956828627}
+  playerMovementHandler: {fileID: 0}
+  enemyMovementHandler: {fileID: 0}
 --- !u!114 &919132147956828632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16504,6 +16517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 4ac626f68c9ca9240820a12c9d132e16, type: 2}
   characterSweetStackHandler: {fileID: 593375153}
+  playerMovementHandler: {fileID: 0}
 --- !u!137 &920448390192659866
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -17265,7 +17279,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6831517366446748946, guid: 5fdeb71c1a43d479390406a17971025c, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6831517366446748946, guid: 5fdeb71c1a43d479390406a17971025c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17319,6 +17333,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6831517366447140775, guid: 5fdeb71c1a43d479390406a17971025c, type: 3}
+      propertyPath: enemyMovementHandler
+      value: 
+      objectReference: {fileID: 712483363}
     - target: {fileID: 6831517366447237426, guid: 5fdeb71c1a43d479390406a17971025c, type: 3}
       propertyPath: m_Name
       value: EnemyCharacter

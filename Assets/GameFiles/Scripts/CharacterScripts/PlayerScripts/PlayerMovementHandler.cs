@@ -25,7 +25,7 @@ public class PlayerMovementHandler : MonoBehaviour
     private Vector3 movementDirection = Vector3.zero;
     private Vector3 velocity = Vector3.zero;
     private VariableJoystick movementJS = null;
-    private CharacterAnimationHandler characterAnimationHandler = null;
+    internal CharacterAnimationHandler characterAnimationHandler = null;
     private bool isGrounded = false;
     internal int stage = 0;
     #endregion

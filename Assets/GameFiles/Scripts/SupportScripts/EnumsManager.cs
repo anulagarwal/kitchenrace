@@ -3,7 +3,8 @@ public enum CharacterAnimationState
     Idle,
     Run,
     Victory,
-    Defeat
+    Defeat,
+    Stumble
 };
 
 public enum CharacterCode

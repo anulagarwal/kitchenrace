@@ -8,6 +8,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
     [Header("Components Reference")]
     [SerializeField] private CharacterData characterData = null;
     [SerializeField] private CharacterSweetStackHandler characterSweetStackHandler = null;
+    [SerializeField] private PlayerMovementHandler playerMovementHandler = null;
     #endregion
 
     #region MonoBehaviour Functions
@@ -88,10 +89,12 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 if (enemyMovementHandler.characterSweetStackHandler.sweetStack.Count < characterSweetStackHandler.sweetStack.Count)
                 {
                     enemyMovementHandler.characterSweetStackHandler.EnablePhysics();
+                    enemyMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
                 }
                 else
                 {
                     characterSweetStackHandler.EnablePhysics();
+                    playerMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
                 }
             }
         }

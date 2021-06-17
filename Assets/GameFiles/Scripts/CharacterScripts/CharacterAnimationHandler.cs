@@ -7,6 +7,8 @@ public class CharacterAnimationHandler : MonoBehaviour
     #region Properties
     [Header("Components Reference")]
     [SerializeField] private Animator characterAnimator = null;
+    [SerializeField] private PlayerMovementHandler playerMovementHandler = null;
+    [SerializeField] private EnemyMovementHandler enemyMovementHandler = null;
     #endregion
 
     #region Public Core Functions
@@ -28,6 +30,35 @@ public class CharacterAnimationHandler : MonoBehaviour
                 characterAnimator.SetBool("b_Run", false);
                 characterAnimator.SetTrigger("t_Defeat");
                 break;
+            case CharacterAnimationState.Stumble:
+                characterAnimator.SetTrigger("t_Stumble");
+                break;
+        }
+    }
+    #endregion
+
+    #region Private Core Functions
+    private void AnimEvent_StumbleStart()
+    {
+        if (playerMovementHandler)
+        {
+            playerMovementHandler.enabled = false;
+        }
+        else if (enemyMovementHandler)
+        {
+            enemyMovementHandler.enabled = false;
+        }
+    }
+
+    private void AnimEvent_StumbleEnd()
+    {
+        if (playerMovementHandler)
+        {
+            playerMovementHandler.enabled = true;
+        }
+        else if (enemyMovementHandler)
+        {
+            enemyMovementHandler.enabled = true;
         }
     }
     #endregion
