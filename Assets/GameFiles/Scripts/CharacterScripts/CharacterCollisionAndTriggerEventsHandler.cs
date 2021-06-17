@@ -74,7 +74,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 }
             }
             else if (gameObject.TryGetComponent<PlayerMovementHandler>(out PlayerMovementHandler playerMovementHandler))
-            {
+            {                
                 playerMovementHandler.stage++;
                 characterSweetStackHandler.C_SweetsPacketHandler.EnableSweetsMeshRenderer();
                 playerMovementHandler.SelectSweetsPacketHandler();

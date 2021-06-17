@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [Header("Component References")]
     [SerializeField] private PlayerMovementHandler player;
     [SerializeField] private List<EnemyMovementHandler> enemies;
-
+    [SerializeField] private GameObject confetti;
 
     #region MonoBehaviour Functions
     private void Awake()
@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
         isGameOn = false;
         IncreaseCurrentLevel();
         endTimer = Time.time;
+        confetti.SetActive(true);
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);
         LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);       
     }

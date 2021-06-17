@@ -90,6 +90,7 @@ public class PlayerMovementHandler : MonoBehaviour
     #region Public Core Functions
     public void SelectSweetsPacketHandler()
     {
+        print(stage);
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
         {
             if (sh.GetCharacterCode == characterData.GetCharacterCode)
