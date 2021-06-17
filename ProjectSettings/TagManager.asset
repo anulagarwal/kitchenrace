@@ -10,6 +10,7 @@ TagManager:
   - StairEnd
   - Enemy
   - BridgeTop
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ public class EnemyMovementHandler : MonoBehaviour
     [SerializeField] private Animator characterAnimator = null;
     [SerializeField] private CharacterController characterController = null;
     [SerializeField] private CharacterAnimationHandler characterAnimationHandler = null;
-    [SerializeField] private CharacterSweetStackHandler characterSweetStackHandler = null;
+    [SerializeField] internal CharacterSweetStackHandler characterSweetStackHandler = null;
 
     [Header("Gravity Setup")]
     [SerializeField] private float groundDistance = 0f;

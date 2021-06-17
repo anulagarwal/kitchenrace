@@ -57,7 +57,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 other.gameObject.transform.parent.GetComponent<StairHandler>().EnableBlocker(false);
             }
         }
-       
+
         if (other.gameObject.tag == "BridgeTop")
         {
             if (gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler))
@@ -74,10 +74,25 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 }
             }
             else if (gameObject.TryGetComponent<PlayerMovementHandler>(out PlayerMovementHandler playerMovementHandler))
-            {                
+            {
                 playerMovementHandler.stage++;
                 characterSweetStackHandler.C_SweetsPacketHandler.EnableSweetsMeshRenderer();
                 playerMovementHandler.SelectSweetsPacketHandler();
+            }
+        }
+
+        if (other.gameObject.tag == "Enemy")
+        {
+            if (other.gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler))
+            {
+                if (enemyMovementHandler.characterSweetStackHandler.sweetStack.Count < characterSweetStackHandler.sweetStack.Count)
+                {
+                    enemyMovementHandler.characterSweetStackHandler.EnablePhysics();
+                }
+                else
+                {
+                    characterSweetStackHandler.EnablePhysics();
+                }
             }
         }
 

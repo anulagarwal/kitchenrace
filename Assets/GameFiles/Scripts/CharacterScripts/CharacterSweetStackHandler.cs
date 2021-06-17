@@ -53,5 +53,17 @@ public class CharacterSweetStackHandler : MonoBehaviour
             stackingPosition.y -= sweetSizeYOffset;
         }
     }
+
+    public void EnablePhysics()
+    {
+        foreach (Transform t in sweetStack)
+        {
+            t.GetComponent<Rigidbody>().isKinematic = false;
+            t.GetComponent<BoxCollider>().isTrigger = false;
+            t.GetComponent<BoxCollider>().enabled = true;
+            t.parent = null;
+        }
+        sweetStack.Clear();
+    }
     #endregion
 }

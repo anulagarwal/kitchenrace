@@ -1232,6 +1232,7 @@ GameObject:
   - component: {fileID: 6831517366446748946}
   - component: {fileID: 6831517366437714680}
   - component: {fileID: 6831517366447140769}
+  - component: {fileID: 6915635648321604020}
   - component: {fileID: 6831517366447140774}
   - component: {fileID: 6831517366447140772}
   - component: {fileID: 6831517366447140775}
@@ -1275,7 +1276,7 @@ Animator:
   m_GameObject: {fileID: 6831517366447237426}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ab1cb58579abb4baabfda6755dc434fb, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4dc41fc7977ec4ed197e24f32e615771, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1295,13 +1296,27 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3.42
-  m_Radius: 0.8
+  m_Height: 3.01
+  m_Radius: 0.57
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.55, z: 0}
+  m_Center: {x: 0, y: 1.08, z: 0}
+--- !u!136 &6915635648321604020
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6831517366447237426}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6831517366447140774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1680,7 +1695,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 16c0918945bf740018b2f119be3f0a50, type: 2}
+  - {fileID: 2100000, guid: 4f90ff78d1e104e8494f0fa225d3765a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
