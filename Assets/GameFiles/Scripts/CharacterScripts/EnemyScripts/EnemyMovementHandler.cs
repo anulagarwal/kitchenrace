@@ -10,8 +10,11 @@ public class EnemyMovementHandler : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private CharacterCode characterCode = CharacterCode.None;
     [SerializeField] private float moveSpeed = 0f;
+    [SerializeField] private float stumbleforce = 0f;
 
     [Header("Components Reference")]
+    [SerializeField] private Rigidbody rb = null;
+    [SerializeField] private CapsuleCollider capsuleCollider = null;
     [SerializeField] private Animator characterAnimator = null;
     [SerializeField] private CharacterController characterController = null;
     [SerializeField] internal CharacterAnimationHandler characterAnimationHandler = null;
@@ -196,6 +199,15 @@ public class EnemyMovementHandler : MonoBehaviour
         }
     }
 
+    public void ApplyStumbleForce(Vector3 direction)
+    {
+        rb.isKinematic = false;
+        capsuleCollider.isTrigger = false;
+        rb.AddForce(direction * stumbleforce, ForceMode.Impulse);
+
+        Invoke("DisablePhysics", 2f);
+    }
+
     //Added
     public void Lose()
     {        
@@ -217,6 +229,14 @@ public class EnemyMovementHandler : MonoBehaviour
     public void NullifyTargetDestinationTransform()
     {
         targetLocationTransform = null;
+    }
+    #endregion
+
+    #region Invoke Functions
+    private void DisablePhysics()
+    {
+        capsuleCollider.isTrigger = true;
+        rb.isKinematic = true;
     }
     #endregion
 }

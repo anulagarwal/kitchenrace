@@ -7,7 +7,6 @@ public class CharacterSweetStackHandler : MonoBehaviour
     #region Properties
     [Header("Attributes")]
     [SerializeField] private float sweetSizeYOffset = 0f;
-    [SerializeField] private float stackFallForce = 0f;
 
     [Header("Components Reference")]
     [SerializeField] private Transform stackStartTransform = null;
@@ -59,8 +58,7 @@ public class CharacterSweetStackHandler : MonoBehaviour
     {
         foreach (Transform t in sweetStack)
         {
-            t.GetComponent<Rigidbody>().isKinematic = false;
-            t.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0, 1), Random.Range(0, 1), Random.Range(0, 1)) * stackFallForce, ForceMode.Impulse);
+            t.GetComponent<Rigidbody>().isKinematic = false;            
             t.GetComponent<BoxCollider>().isTrigger = false;
             t.GetComponent<BoxCollider>().enabled = true;
             t.parent = null;
