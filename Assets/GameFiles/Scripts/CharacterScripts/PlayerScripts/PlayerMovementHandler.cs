@@ -96,7 +96,8 @@ public class PlayerMovementHandler : MonoBehaviour
         if (stage >= LevelManager.Instance.stageHandlers.Count)
         {
             // aIMovementType = AIMovementType.GameOver;
-            //Win();            
+            //Win();
+            SoundManager.Instance.PlaySound(SoundType.Victory);
             characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Victory);
             EnemyManager.Instance.EnemyLose();
             GameManager.Instance.Win();

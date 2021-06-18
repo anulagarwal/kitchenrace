@@ -25,6 +25,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             if (characterData.GetCharacterCode == CharacterCode.Player)
             {
                 Vibration.Vibrate(30);
+                SoundManager.Instance.PlaySound(SoundType.Collect);
             }
 
             if (characterData.GetCharacterCode != CharacterCode.Player && characterData.GetCharacterCode != CharacterCode.None)
@@ -99,6 +100,8 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                     //enemyMovementHandler.ApplyStumbleForce((transform.position - other.gameObject.transform.position).normalized);
                     enemyMovementHandler.characterSweetStackHandler.EnablePhysics();
                     enemyMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
+                    SoundManager.Instance.PlaySound(SoundType.Bump);
+
                 }
                 else
                 {

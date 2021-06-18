@@ -38,5 +38,7 @@ public enum StageNumber
 public enum SoundType
 {
     Collect,
-    Bump
+    Bump,
+    UI,
+    Victory
 }

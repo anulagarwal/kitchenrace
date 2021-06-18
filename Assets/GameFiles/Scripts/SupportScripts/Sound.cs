@@ -1,7 +1,8 @@
 using UnityEngine;
 
-[System.Serializable]
-public class Sound : MonoBehaviour
+
+[CreateAssetMenu(fileName = "SoundItem", menuName = "CustomObjects/Sound")]
+public class Sound : ScriptableObject
 {
     public SoundType type;
     public AudioClip clip;

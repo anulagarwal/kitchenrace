@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject mainCam;
     [SerializeField] private GameObject endCam;
     [SerializeField] private Transform endStackPos;
+    [SerializeField] private GameObject awesomeText;
+
 
     [Header("End Level Attributes")]
     [SerializeField] private float eatSpeed;
@@ -63,11 +65,15 @@ public class GameManager : MonoBehaviour
         confetti.SetActive(true);
         LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);
         PlayerSingleton.Instance.ShiftStack(endStackPos);
-        PlayerSingleton.Instance.characterSweetStackHandler.EatStack(pointsPerStack,eatSpeed);
         mainCam.SetActive(false);
         endCam.SetActive(true);
+        Invoke("EatRemainingStack",1.5f);
     }
 
+    public void EatRemainingStack()
+    {
+        PlayerSingleton.Instance.characterSweetStackHandler.EatStack(pointsPerStack, eatSpeed);
+    }
     public void ShowWinUI()
     {
         LevelUIManager.Instance.UpdateScoreText("" + currentScore);
@@ -100,9 +106,11 @@ public class GameManager : MonoBehaviour
         //Launch character
     }
 
-    public void AddScore(int value)
+    public void AddScore(int value, Vector3 pos)
     {
         currentScore += value;
+        Instantiate(awesomeText, pos, Quaternion.identity);
+        SoundManager.Instance.PlaySound(SoundType.Collect);
     }
 
     #region Scene Handlers
