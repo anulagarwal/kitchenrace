@@ -92,7 +92,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             {
                 if (enemyMovementHandler.characterSweetStackHandler.sweetStack.Count < characterSweetStackHandler.sweetStack.Count)
                 {
-                    enemyMovementHandler.ApplyStumbleForce((transform.position - other.gameObject.transform.position).normalized);
+                    //enemyMovementHandler.ApplyStumbleForce((transform.position - other.gameObject.transform.position).normalized);
                     enemyMovementHandler.characterSweetStackHandler.EnablePhysics();
                     enemyMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
                 }
