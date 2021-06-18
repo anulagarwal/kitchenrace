@@ -68,15 +68,16 @@ public class CharacterSweetStackHandler : MonoBehaviour
 
     public void EatStack(int pointsPerStack, float eatSpeed)
     {
-        StartCoroutine(RemoveStack(eatSpeed));
+        StartCoroutine(RemoveStack(pointsPerStack, eatSpeed));
     }
 
-    IEnumerator RemoveStack(float speed)
+    IEnumerator RemoveStack(int points, float speed)
     {
         int x = sweetStack.Count;
         while(sweetStack.Count != 0) { 
             Destroy(sweetStack[sweetStack.Count - 1].gameObject);
-            sweetStack.RemoveAt(sweetStack.Count - 1);            
+            sweetStack.RemoveAt(sweetStack.Count - 1);
+            GameManager.Instance.AddScore(points);
             yield return new WaitForSeconds(speed);
         }
         GameManager.Instance.ShowWinUI();

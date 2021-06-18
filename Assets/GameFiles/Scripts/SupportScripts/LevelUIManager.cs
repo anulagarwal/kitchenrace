@@ -19,6 +19,8 @@ public class LevelUIManager : MonoBehaviour
     [Header("Text Fields")]
     [SerializeField] private List<Text> levelTexts;
     [SerializeField] private Text timerText;
+    [SerializeField] private Text scoreText;
+
 
     [Header("Progress Bar")]
     [SerializeField] List<GameObject> progressBars;
@@ -57,6 +59,10 @@ public class LevelUIManager : MonoBehaviour
         timerText.text = niceTime;
     }
 
+    public void UpdateScoreText(string s)
+    {
+        scoreText.text = s;
+    }
     public void UpdateState(State state)
     {
         switch (state)

@@ -22,7 +22,10 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         {
             other.gameObject.GetComponent<BoxCollider>().enabled = false;
             characterSweetStackHandler.StackSweet(other.transform);
-            Vibration.Vibrate(30);
+            if (characterData.GetCharacterCode == CharacterCode.Player)
+            {
+                Vibration.Vibrate(30);
+            }
 
             if (characterData.GetCharacterCode != CharacterCode.Player && characterData.GetCharacterCode != CharacterCode.None)
             {
@@ -41,7 +44,6 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         {
             if (characterSweetStackHandler.GetSweetStackSize > 0)
             {
-                Handheld.Vibrate();
                 if (other.gameObject.TryGetComponent<StairHandler>(out StairHandler stairHandler))
                 {
                     if (stairHandler.OwnerCode != characterData.GetCharacterCode)

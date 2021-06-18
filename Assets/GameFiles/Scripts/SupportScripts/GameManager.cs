@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private bool isGameOn;
     private float startTimer;
     private float endTimer;
+    private int currentScore = 0;
 
     [Header("Component References")]
     [SerializeField] private PlayerMovementHandler player;
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowWinUI()
     {
+        LevelUIManager.Instance.UpdateScoreText("" + currentScore);
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);      
     }
 
@@ -96,6 +98,11 @@ public class GameManager : MonoBehaviour
         }
         player.enabled = true;
         //Launch character
+    }
+
+    public void AddScore(int value)
+    {
+        currentScore += value;
     }
 
     #region Scene Handlers
