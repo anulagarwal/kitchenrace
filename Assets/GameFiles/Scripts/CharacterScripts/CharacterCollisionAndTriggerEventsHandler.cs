@@ -9,6 +9,10 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
     [SerializeField] private CharacterData characterData = null;
     [SerializeField] private CharacterSweetStackHandler characterSweetStackHandler = null;
     [SerializeField] private PlayerMovementHandler playerMovementHandler = null;
+
+    [Header("Attributes Reference")]
+    [SerializeField] private Vector3 bumpForce;
+
     #endregion
 
     #region MonoBehaviour Functions
@@ -18,6 +22,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         {
             other.gameObject.GetComponent<BoxCollider>().enabled = false;
             characterSweetStackHandler.StackSweet(other.transform);
+            Vibration.Vibrate(30);
 
             if (characterData.GetCharacterCode != CharacterCode.Player && characterData.GetCharacterCode != CharacterCode.None)
             {
@@ -36,6 +41,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         {
             if (characterSweetStackHandler.GetSweetStackSize > 0)
             {
+                Handheld.Vibrate();
                 if (other.gameObject.TryGetComponent<StairHandler>(out StairHandler stairHandler))
                 {
                     if (stairHandler.OwnerCode != characterData.GetCharacterCode)
@@ -76,9 +82,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             }
             else if (gameObject.TryGetComponent<PlayerMovementHandler>(out PlayerMovementHandler playerMovementHandler))
             {
-                playerMovementHandler.stage++;
-                characterSweetStackHandler.C_SweetsPacketHandler.EnableSweetsMeshRenderer();
-                playerMovementHandler.SelectSweetsPacketHandler();
+                playerMovementHandler.UpdateStage();               
             }
         }
 
@@ -97,6 +101,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                     playerMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
                 }
             }
+            //Handheld.Vibrate();
         }
 
         //if (other.gameObject.tag == "StairEnd")

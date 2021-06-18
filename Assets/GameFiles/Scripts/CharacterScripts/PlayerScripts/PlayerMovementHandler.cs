@@ -88,9 +88,28 @@ public class PlayerMovementHandler : MonoBehaviour
     #endregion
 
     #region Public Core Functions
+
+    public void UpdateStage()
+    {
+        stage++;
+        //Modified
+        if (stage >= LevelManager.Instance.stageHandlers.Count)
+        {
+            // aIMovementType = AIMovementType.GameOver;
+            //Win();            
+            characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Victory);
+            EnemyManager.Instance.EnemyLose();
+            GameManager.Instance.Win();
+            this.enabled = false;
+        }
+
+        characterSweetStackHandler.C_SweetsPacketHandler.EnableSweetsMeshRenderer();
+        SelectSweetsPacketHandler();       
+    }
+
     public void SelectSweetsPacketHandler()
     {
-        print(stage);
+     
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
         {
             if (sh.GetCharacterCode == characterData.GetCharacterCode)

@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentLevel = PlayerPrefs.GetInt("level", 1);
-        LevelUIManager.Instance.UpdateLevelText(currentLevel);
+        LevelUIManager.Instance.UpdateLevelText(currentLevel);        
     }
 
     // Update is called once per frame
@@ -54,8 +54,13 @@ public class GameManager : MonoBehaviour
         IncreaseCurrentLevel();
         endTimer = Time.time;
         confetti.SetActive(true);
+        LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);
+        Invoke("ShowWinUI",1.5f);
+    }
+
+    public void ShowWinUI()
+    {
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);
-        LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);       
     }
 
     public void Lose()
@@ -97,19 +102,24 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("level", currentLevel);
     }
 
+    public void LoadScene(string s)
+    {
+        SceneManager.LoadScene(s);
+    }
+
     public void RestartLevel()
     {
-        SceneManager.LoadScene("Level " + currentLevel);
+        SceneManager.LoadScene("Level " + GetSceneNumber(currentLevel));
     }
 
     public void StartNextLevel()
     {
-        SceneManager.LoadScene("Level " + currentLevel);
+        SceneManager.LoadScene("Level " + GetSceneNumber(currentLevel));
     }
 
     private int GetSceneNumber(int number)
     {
-        return number / 3;
+        return (int)Mathf.Ceil(number / 3f);        
     }
 
     #endregion

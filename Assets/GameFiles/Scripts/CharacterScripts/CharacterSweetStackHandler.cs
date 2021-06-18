@@ -65,5 +65,7 @@ public class CharacterSweetStackHandler : MonoBehaviour
         }
         sweetStack.Clear();
     }
+
+   
     #endregion
 }
