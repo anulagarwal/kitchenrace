@@ -34,3 +34,9 @@ public enum StageNumber
     Stage_4,
     Stage_5
 };
+
+public enum SoundType
+{
+    Collect,
+    Bump
+}

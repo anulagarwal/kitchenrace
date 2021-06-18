@@ -47,6 +47,8 @@ public class SweetsPacketHandler : MonoBehaviour
             sweetObjs[i].GetComponent<SweetsHandler>().cookieMeshRenderer.enabled = true;
         }
     }
+
+   
     #endregion
 
     #region Getter And Setter

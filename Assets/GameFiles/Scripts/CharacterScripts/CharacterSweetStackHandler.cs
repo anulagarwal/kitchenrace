@@ -66,6 +66,20 @@ public class CharacterSweetStackHandler : MonoBehaviour
         sweetStack.Clear();
     }
 
-   
+    public void EatStack(int pointsPerStack, float eatSpeed)
+    {
+        StartCoroutine(RemoveStack(eatSpeed));
+    }
+
+    IEnumerator RemoveStack(float speed)
+    {
+        int x = sweetStack.Count;
+        while(sweetStack.Count != 0) { 
+            Destroy(sweetStack[sweetStack.Count - 1].gameObject);
+            sweetStack.RemoveAt(sweetStack.Count - 1);            
+            yield return new WaitForSeconds(speed);
+        }
+        GameManager.Instance.ShowWinUI();
+    }
     #endregion
 }

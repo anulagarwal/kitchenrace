@@ -69,7 +69,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         {
             if (gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler))
             {
-                if (other.gameObject.GetComponent<BridgeTopHandler>().stageNumber == enemyMovementHandler.stage)
+                if (other.gameObject.GetComponent<BridgeTopHandler>().stageNumber > enemyMovementHandler.stage)
                 {
                     enemyMovementHandler.enabled = false;
                     enemyMovementHandler.NullifyTargetDestinationTransform();
@@ -82,9 +82,11 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             }
             else if (gameObject.TryGetComponent<PlayerMovementHandler>(out PlayerMovementHandler playerMovementHandler))
             {
-                playerMovementHandler.UpdateStage();               
+                if (other.gameObject.GetComponent<BridgeTopHandler>().stageNumber > playerMovementHandler.stage)
+                    playerMovementHandler.UpdateStage();
             }
         }
+
 
         if (other.gameObject.tag == "Enemy")
         {

@@ -9,6 +9,8 @@ public class PlayerSingleton : MonoBehaviour
 
     [Header("Components Reference")]
     [SerializeField] private CharacterAnimationHandler characterAnimationHandler = null;
+    [SerializeField] internal CharacterSweetStackHandler characterSweetStackHandler = null;
+
     #endregion
 
     #region MonoBehaviour Functions
@@ -30,6 +32,11 @@ public class PlayerSingleton : MonoBehaviour
         characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Defeat);
     }
 
+    public void ShiftStack(Transform t)
+    {
+        characterSweetStackHandler.transform.SetParent(t);
+        characterSweetStackHandler.transform.localPosition = Vector3.zero;
+    }
 
     #endregion
 

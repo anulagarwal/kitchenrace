@@ -20,6 +20,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerMovementHandler player;
     [SerializeField] private List<EnemyMovementHandler> enemies;
     [SerializeField] private GameObject confetti;
+    [SerializeField] private GameObject mainCam;
+    [SerializeField] private GameObject endCam;
+    [SerializeField] private Transform endStackPos;
+
+    [Header("End Level Attributes")]
+    [SerializeField] private float eatSpeed;
+    [SerializeField] private int pointsPerStack;
+
+
 
     #region MonoBehaviour Functions
     private void Awake()
@@ -46,21 +55,21 @@ public class GameManager : MonoBehaviour
     }
 
     public void Win()
-    {
-        //Stop characters
-        //Confetti
-        //Victory animation
-        isGameOn = false;
+    {                
+        isGameOn = false;       
         IncreaseCurrentLevel();
         endTimer = Time.time;
         confetti.SetActive(true);
         LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);
-        Invoke("ShowWinUI",1.5f);
+        PlayerSingleton.Instance.ShiftStack(endStackPos);
+        PlayerSingleton.Instance.characterSweetStackHandler.EatStack(pointsPerStack,eatSpeed);
+        mainCam.SetActive(false);
+        endCam.SetActive(true);
     }
 
     public void ShowWinUI()
     {
-        LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);
+        LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);      
     }
 
     public void Lose()
