@@ -24,5 +24,7 @@ public class SweetsHandler : MonoBehaviour
     public CharacterCode SweetCode { get; set; }
     
     public Transform LocationTransform { get; set; }
+
+    public MeshRenderer GetCookieMeshRenderer { get => cookieMeshRenderer; }
     #endregion
 }

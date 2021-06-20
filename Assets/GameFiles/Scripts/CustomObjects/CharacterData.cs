@@ -9,6 +9,8 @@ public class CharacterData : ScriptableObject
     [Header("Attributes")]
     [SerializeField] private CharacterCode characterCode = CharacterCode.None;
     [SerializeField] private Color colorCode = Color.white;
+
+    internal CharacterCode manipulationCode = CharacterCode.None;
     #endregion
 
     #region Getter And Setter

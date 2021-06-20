@@ -18,10 +18,16 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
     #region MonoBehaviour Functions
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Sweet" && other.gameObject.GetComponent<SweetsHandler>().SweetCode == characterData.GetCharacterCode)
+        if (other.gameObject.tag == "Sweet" && (other.gameObject.GetComponent<SweetsHandler>().SweetCode == characterData.GetCharacterCode || other.gameObject.GetComponent<SweetsHandler>().SweetCode == characterData.manipulationCode))
         {
             other.gameObject.GetComponent<BoxCollider>().enabled = false;
             characterSweetStackHandler.StackSweet(other.transform);
+
+            if (other.gameObject.GetComponent<SweetsHandler>().SweetCode == characterData.manipulationCode)
+            {
+                other.gameObject.GetComponent<SweetsHandler>().GetCookieMeshRenderer.material.color = characterData.GetColorCode;
+            }
+
             if (characterData.GetCharacterCode == CharacterCode.Player)
             {
                 Vibration.Vibrate(30);

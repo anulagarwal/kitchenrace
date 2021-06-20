@@ -63,6 +63,7 @@ public class CharacterSweetStackHandler : MonoBehaviour
             t.GetComponent<BoxCollider>().enabled = true;
             t.parent = null;
             stackingPosition.y -= sweetSizeYOffset;
+            t.GetComponent<SweetsHandler>().SweetCode = CharacterCode.None;
 
         }
         sweetStack.Clear();
