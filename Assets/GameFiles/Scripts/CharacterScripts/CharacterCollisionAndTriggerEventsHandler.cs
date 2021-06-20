@@ -111,6 +111,8 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 }
                 else
                 {
+                    print("GameOver");
+
                     characterSweetStackHandler.EnablePhysics();
                     playerMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
                 }

@@ -26,6 +26,11 @@ public enum AIMovementType
     GameOver
 };
 
+public enum PlayerMovementType
+{
+    Stacking
+};
+
 public enum StageNumber
 {
     Stage_1,
