@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<EnemyMovementHandler> enemies;
     [SerializeField] private GameObject confetti;
     [SerializeField] private GameObject mainCam;
+    [SerializeField] private GameObject shiftCam;
     [SerializeField] private GameObject endCam;
     [SerializeField] private Transform endStackPos;
     [SerializeField] private GameObject awesomeText;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     [Header("End Level Attributes")]
     [SerializeField] private float eatSpeed;
     [SerializeField] private int pointsPerStack;
+    [SerializeField] private float shiftSpeed;
 
 
 
@@ -64,22 +66,32 @@ public class GameManager : MonoBehaviour
         endTimer = Time.time;
         confetti.SetActive(true);
         LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);
-        PlayerSingleton.Instance.ShiftStack(endStackPos);
-        mainCam.SetActive(false);
-        endCam.SetActive(true);
-        Invoke("EatRemainingStack",1.5f);
+        PlayerSingleton.Instance.ShiftStack(endStackPos, shiftSpeed);
+
+        // Invoke("EatRemainingStack",1.5f);
     }
 
     public void EatRemainingStack()
     {
+       
         PlayerSingleton.Instance.characterSweetStackHandler.EatStack(pointsPerStack, eatSpeed);
     }
+    public void FinishEating()
+    {
+        Invoke("ShowWinUi", 3f);
+    }
+   
     public void ShowWinUI()
     {
         LevelUIManager.Instance.UpdateScoreText("" + currentScore);
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);      
     }
-
+    public void SwitchCam()
+    {
+        mainCam.SetActive(false);
+        shiftCam.SetActive(false);
+        endCam.SetActive(true);
+    }
     public void Lose()
     {
         //Stop characters       

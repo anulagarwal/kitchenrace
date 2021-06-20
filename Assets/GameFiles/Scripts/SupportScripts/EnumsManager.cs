@@ -45,5 +45,6 @@ public enum SoundType
     Collect,
     Bump,
     UI,
-    Victory
+    Victory,
+    Bridge
 }

@@ -11,6 +11,10 @@ public class PlayerSingleton : MonoBehaviour
     [SerializeField] private CharacterAnimationHandler characterAnimationHandler = null;
     [SerializeField] internal CharacterSweetStackHandler characterSweetStackHandler = null;
 
+    [Header("Shift Speed")]
+    [SerializeField] private float shiftSpeed;
+    private bool isShifting;    
+
     #endregion
 
     #region MonoBehaviour Functions
@@ -22,6 +26,14 @@ public class PlayerSingleton : MonoBehaviour
         }
         Instance = this;
     }
+
+    private void Update()
+    {
+        if (isShifting)
+        {
+            characterSweetStackHandler.transform.localPosition = Vector3.Lerp(characterSweetStackHandler.transform.localPosition, Vector3.zero,shiftSpeed);            
+        }
+    }
     #endregion
 
     #region Public functions
@@ -31,11 +43,22 @@ public class PlayerSingleton : MonoBehaviour
         GetComponent<PlayerMovementHandler>().enabled = false;
         characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Defeat);
     }
-
-    public void ShiftStack(Transform t)
+    public void CompleteShift()
+    {
+        isShifting = false;
+        GameManager.Instance.EatRemainingStack();
+    }
+    public void ShiftCam()
+    {
+        GameManager.Instance.SwitchCam();
+    }
+    public void ShiftStack(Transform t, float time)
     {
         characterSweetStackHandler.transform.SetParent(t);
-        characterSweetStackHandler.transform.localPosition = Vector3.zero;
+        shiftSpeed = time;
+        isShifting = true;
+        Invoke("CompleteShift", 3.5f);
+        Invoke("ShiftCam", 1f);
     }
 
     #endregion

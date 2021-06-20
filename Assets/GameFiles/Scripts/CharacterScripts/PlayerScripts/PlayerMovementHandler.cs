@@ -102,6 +102,7 @@ public class PlayerMovementHandler : MonoBehaviour
             EnemyManager.Instance.EnemyLose();
             GameManager.Instance.Win();
             this.enabled = false;
+            return;
         }
 
         characterSweetStackHandler.C_SweetsPacketHandler.EnableSweetsMeshRenderer();
