@@ -7,6 +7,11 @@ public class SweetsHandler : MonoBehaviour
     #region Properties
     [Header("Components Reference")]
     [SerializeField] internal MeshRenderer cookieMeshRenderer = null;
+
+    [Header("Lerp properties")]
+    private Vector3 targetPos;
+    private bool isStacking;
+    private float stackSpeed = 0.2f;
     #endregion
 
     #region MonoBehaviour Functions
@@ -18,8 +23,33 @@ public class SweetsHandler : MonoBehaviour
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
         }
     }
+
+    private void Update()
+    {
+        if (isStacking)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, stackSpeed);
+            if(Vector3.Distance(transform.localPosition, targetPos)<= 0.1f)
+            {
+                isStacking = false;
+                transform.localPosition = targetPos;
+            }
+        }
+    }
     #endregion
 
+    #region Public Functions
+
+    public void StackSweet(Transform target, Vector3 stackingPos)
+    {
+        transform.parent = target;
+        //transform.localPosition = stackingPos;
+        targetPos = stackingPos;
+        isStacking = true;
+       // print(targetPos)
+    }
+
+    #endregion
     #region Getter And Setter
     public CharacterCode SweetCode { get; set; }
     
