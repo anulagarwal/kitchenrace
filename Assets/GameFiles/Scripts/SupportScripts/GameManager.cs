@@ -84,7 +84,10 @@ public class GameManager : MonoBehaviour
     public void ShowWinUI()
     {
         LevelUIManager.Instance.UpdateScoreText("" + currentScore);
-        LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);      
+        LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);
+        confetti.SetActive(false);
+        confetti.SetActive(true);
+
     }
     public void SwitchCam()
     {

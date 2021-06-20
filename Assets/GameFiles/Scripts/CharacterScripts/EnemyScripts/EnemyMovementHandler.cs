@@ -39,7 +39,7 @@ public class EnemyMovementHandler : MonoBehaviour
     #region MonoBehaviour Functions
     private void Start()
     {
-        sweetCollectionCount = Random.Range(4, 8);
+        sweetCollectionCount = Random.Range(15, 20);
 
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
         {
