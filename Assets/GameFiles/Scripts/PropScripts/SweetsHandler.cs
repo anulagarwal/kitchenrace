@@ -42,11 +42,9 @@ public class SweetsHandler : MonoBehaviour
 
     public void StackSweet(Transform target, Vector3 stackingPos)
     {
-        transform.parent = target;
-        //transform.localPosition = stackingPos;
+        transform.parent = target;   
         targetPos = stackingPos;
-        isStacking = true;
-       // print(targetPos)
+        isStacking = true;      
     }
 
     #endregion

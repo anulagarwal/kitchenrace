@@ -57,7 +57,10 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                     {
                         stairHandler.ChangeStairColor(characterData.GetColorCode, characterData.GetCharacterCode);
                         characterSweetStackHandler.ReleaseSweet();
-
+                        if(characterData.GetCharacterCode == CharacterCode.Player)
+                        {
+                            SoundManager.Instance.PlaySound(SoundType.Bridge);
+                        }
                         if (characterSweetStackHandler.GetSweetStackSize <= 0)
                         {
                             stairHandler.EnableBlocker(true);

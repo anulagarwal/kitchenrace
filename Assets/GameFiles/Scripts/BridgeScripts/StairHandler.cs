@@ -7,7 +7,7 @@ public class StairHandler : MonoBehaviour
     #region Properties
     [Header("Attributes")]
     [SerializeField] private bool isLast = false;
-    [SerializeField] private float changeRate = 0.05f;
+    [SerializeField] private float changeRate = 0.02f;
 
     private bool isChangingColor;
     private float colorChangeRate;
