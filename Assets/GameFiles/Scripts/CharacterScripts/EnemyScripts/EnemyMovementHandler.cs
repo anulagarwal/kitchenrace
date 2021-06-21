@@ -145,10 +145,10 @@ public class EnemyMovementHandler : MonoBehaviour
         velocity.y += gravityInfluence * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
 
-        if (!isGrounded && aIMovementType == AIMovementType.Stacking)
-        {
-            Stop();
-        }
+        //if (!isGrounded && aIMovementType == AIMovementType.Stacking)
+        //{
+        //    Stop();
+        //}
     }
 
     private void NewLocation()

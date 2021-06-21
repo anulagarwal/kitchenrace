@@ -32,11 +32,15 @@ public class CharacterSweetStackHandler : MonoBehaviour
     public void StackSweet(Transform sweetTransform)
     {
         sweetStack.Add(sweetTransform);
-        sweetTransform.GetComponent<SweetsHandler>().StackSweet(stackStartTransform, stackingPosition);  
-        stackingPosition = new Vector3(0, stackingPosition.y + sweetSizeYOffset, 0);        
+        sweetTransform.GetComponent<SweetsHandler>().StackSweet(stackStartTransform, stackingPosition);
+        stackingPosition = new Vector3(0, stackingPosition.y + sweetSizeYOffset, 0);
         sweetTransform.localRotation = Quaternion.identity;
-        C_SweetsPacketHandler.sweetObjs.Remove(sweetTransform.gameObject);
-        C_SweetsPacketHandler.UpdateSweetPacket();
+
+        if (C_SweetsPacketHandler)
+        {
+            C_SweetsPacketHandler.sweetObjs.Remove(sweetTransform.gameObject);
+            C_SweetsPacketHandler.UpdateSweetPacket();
+        }
     }
 
     public void ReleaseSweet()
