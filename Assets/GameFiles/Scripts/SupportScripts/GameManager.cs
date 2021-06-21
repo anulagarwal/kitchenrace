@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<EnemyMovementHandler> enemies;
     [SerializeField] private GameObject confetti;
     [SerializeField] private GameObject mainCam;
-    [SerializeField] private GameObject shiftCam;
     [SerializeField] private GameObject endCam;
     [SerializeField] private Transform endStackPos;
     [SerializeField] private GameObject awesomeText;
@@ -92,7 +91,7 @@ public class GameManager : MonoBehaviour
     public void SwitchCam()
     {
         mainCam.SetActive(false);
-        shiftCam.SetActive(false);
+        //shiftCam.SetActive(false);
         endCam.SetActive(true);
     }
     public void Lose()

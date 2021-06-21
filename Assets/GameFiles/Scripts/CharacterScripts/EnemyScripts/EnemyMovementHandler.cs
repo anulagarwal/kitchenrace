@@ -191,6 +191,7 @@ public class EnemyMovementHandler : MonoBehaviour
         {
             aIMovementType = AIMovementType.GameOver;
             Win();
+            return;
         }
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
         {

@@ -4505,13 +4505,12 @@ MonoBehaviour:
   - {fileID: 712483363}
   confetti: {fileID: 1045389871}
   mainCam: {fileID: 349840536}
-  shiftCam: {fileID: 0}
   endCam: {fileID: 1974142834}
   endStackPos: {fileID: 1702202284}
   awesomeText: {fileID: 5602576887195481037, guid: 3a9f35f8792c447f1bd9a0e8b9893502, type: 3}
   eatSpeed: 0.2
   pointsPerStack: 1
-  shiftSpeed: 0
+  shiftSpeed: 0.1
 --- !u!114 &584003908
 MonoBehaviour:
   m_ObjectHideFlags: 0
