@@ -49,6 +49,8 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         }
         else if (other.gameObject.tag == "Stair")
         {
+            print(characterData.GetCharacterCode);
+
             if (characterSweetStackHandler.GetSweetStackSize > 0)
             {
                 if (other.gameObject.TryGetComponent<StairHandler>(out StairHandler stairHandler))

@@ -6,24 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/GameFiles/Scenes/Levels/Level 7_3 Enemies.unity
-    guid: 1ed60d1fcda014172b652d3feb431140
-  - enabled: 1
     path: Assets/GameFiles/Scenes/Game.unity
     guid: e42881a69cfc6471aad74470d76273c8
   - enabled: 1
     path: Assets/GameFiles/Scenes/Levels/Level 1.unity
-    guid: 8bbbd1de89b8341c2a0a9f1bbe3937c7
+    guid: 1ed60d1fcda014172b652d3feb431140
   - enabled: 1
     path: Assets/GameFiles/Scenes/Levels/Level 2.unity
-    guid: e5a6af29800b14025a9a6a703f731c53
-  - enabled: 1
-    path: Assets/GameFiles/Scenes/Levels/Level 3.unity
     guid: cf206c3323d474d77b619d4c28c9e208
-  - enabled: 1
-    path: Assets/GameFiles/Scenes/Levels/Level 4.unity
-    guid: ce80c65edfb884a68bb452ffdbf271af
-  - enabled: 1
-    path: Assets/GameFiles/Scenes/Levels/Level 5.unity
-    guid: 143d6c39bc1d64480800e60aa52c7027
   m_configObjects: {}
