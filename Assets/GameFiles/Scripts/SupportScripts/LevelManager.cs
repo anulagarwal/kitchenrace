@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
     public Transform GetTargetBridge(int index)
     {
         //return stageHandlers[index].bridgeTransforms[Random.Range(0, stageHandlers[index].bridgeTransforms.Count)];
-        return stageHandlers[index].bridgeTransforms[0];
+        return stageHandlers[index].bridgeTransforms[Random.Range(0, stageHandlers[index].bridgeTransforms.Count)];
     }
     #endregion
 }
