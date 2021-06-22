@@ -27,7 +27,21 @@ public class EnemyManager : MonoBehaviour
     {
 
     }
+    public void EnableEnemies()
+    {
+        foreach (EnemyMovementHandler e in enemies)
+        {
+            e.enabled = true;
+        }
+    }
 
+    public void DisableEnemies()
+    {
+        foreach (EnemyMovementHandler e in enemies)
+        {
+            e.enabled = false;
+        }
+    }
     public void EnemyLose()
     {
         foreach(EnemyMovementHandler e in enemies)

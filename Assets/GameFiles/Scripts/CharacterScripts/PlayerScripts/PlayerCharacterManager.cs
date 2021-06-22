@@ -11,6 +11,8 @@ public class PlayerCharacterManager : MonoBehaviour
     [Header("Components Reference")]
     [SerializeField] private List<GameObject> playerCharacters = new List<GameObject>();
     [SerializeField] private CinemachineVirtualCameraBase cmvcb = null;
+
+    private int currentEnabledCharacter;
     #endregion
 
     #region MonoBehaviour Functions
@@ -33,6 +35,17 @@ public class PlayerCharacterManager : MonoBehaviour
         }
         cmvcb.Follow = playerCharacters[index].transform;
         playerCharacters[index].SetActive(true);
+        currentEnabledCharacter = index;
+    }
+
+    public void EnablePlayer()
+    {
+        playerCharacters[currentEnabledCharacter].GetComponent<PlayerMovementHandler>().enabled = true;
+    }
+
+    public void DisablePlayer()
+    {
+        playerCharacters[currentEnabledCharacter].GetComponent<PlayerMovementHandler>().enabled = false;
     }
     #endregion
 }

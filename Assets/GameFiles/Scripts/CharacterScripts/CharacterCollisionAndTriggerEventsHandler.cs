@@ -99,7 +99,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             }
         }
 
-        if (other.gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler))
+       /* if (other.gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler))
         {
             if (enemyMovementHandler.characterSweetStackHandler.sweetStack.Count < characterSweetStackHandler.sweetStack.Count)
             {
@@ -112,7 +112,6 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             }
             else
             {
-                print("GameOver");
 
                 characterSweetStackHandler.EnablePhysics();
                 if (playerMovementHandler)
@@ -120,7 +119,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                     playerMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
                 }
             }
-        }
+        }*/
 
         //if (other.gameObject.tag == "Enemy")
         //{

@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Component References")]
     [SerializeField] private PlayerMovementHandler player;
-    [SerializeField] private List<EnemyMovementHandler> enemies;
+    [SerializeField] private PlayerCharacterManager pcm;
     [SerializeField] private GameObject confetti;
     [SerializeField] private GameObject mainCam;
     [SerializeField] private GameObject endCam;
@@ -112,12 +112,8 @@ public class GameManager : MonoBehaviour
         //Stop characters       
         isGameOn = false;
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Lose);
-        foreach (EnemyMovementHandler e in enemies)
-        {
-            e.enabled = false;
-            
-        }
-        player.enabled = false;
+        EnemyManager.Instance.DisableEnemies();
+        PlayerCharacterManager.Instance.DisablePlayer();
     }
 
     public void StartLevel()
@@ -125,11 +121,8 @@ public class GameManager : MonoBehaviour
         isGameOn = true;
         startTimer = Time.time;
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.InGame);
-        foreach(EnemyMovementHandler e in enemies)
-        {
-            e.enabled = true;
-        }
-        player.enabled = true;
+        EnemyManager.Instance.EnableEnemies();
+        PlayerCharacterManager.Instance.EnablePlayer();
         //Launch character
     }
 

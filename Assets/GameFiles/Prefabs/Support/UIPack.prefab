@@ -3704,12 +3704,12 @@ MonoBehaviour:
   charactersImg: {fileID: 4737478310943568351}
   levelTexts:
   - {fileID: 1967493650100227837}
-  - {fileID: 0}
+  - {fileID: 144569584262953401}
   timerText: {fileID: 3780708516486202640}
   scoreText: {fileID: 3780708517074306115}
-  coinText: {fileID: 0}
-  doubleCoinText: {fileID: 0}
-  normalCoinText: {fileID: 0}
+  coinText: {fileID: 8247078477248822845}
+  doubleCoinText: {fileID: 5804536180409415914}
+  normalCoinText: {fileID: 1865317766}
   progressBars: []
   movementJS: {fileID: 3881087802447401679}
 --- !u!1 &6256924090029967893
