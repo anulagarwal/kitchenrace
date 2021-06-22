@@ -27,6 +27,12 @@ public class LevelUIManager : MonoBehaviour
     [SerializeField] private List<Text> levelTexts;
     [SerializeField] private Text timerText;
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text coinText;
+    [SerializeField] private Text doubleCoinText;
+    [SerializeField] private Text normalCoinText;
+
+
+
 
 
     [Header("Progress Bar")]
@@ -66,6 +72,11 @@ public class LevelUIManager : MonoBehaviour
         }
     }
 
+    public void UpdateCoinCount(int val)
+    {
+        coinText.text = "" + val;
+    }
+
     public void UpdateTimerText(float time)
     {
         int minutes = Mathf.FloorToInt(time / 60F);
@@ -74,9 +85,11 @@ public class LevelUIManager : MonoBehaviour
         timerText.text = niceTime;
     }
 
-    public void UpdateScoreText(string s)
+    public void UpdateScoreText(int v)
     {
-        scoreText.text = s;
+        scoreText.text = ""+v;
+        doubleCoinText.text = "$" + v * 2;
+        normalCoinText.text = "$" + v + " IS ENOUGH";
     }
     public void UpdateState(State state)
     {
