@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private float startTimer;
     private float endTimer;
     private int currentScore = 0;
+    private int globalCoins = 0;
+
 
     [Header("Component References")]
     [SerializeField] private PlayerMovementHandler player;
@@ -49,6 +51,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentLevel = PlayerPrefs.GetInt("level", 1);
+        globalCoins = PlayerPrefs.GetInt("coins", 0);
+        LevelUIManager.Instance.UpdateCoinCount(globalCoins);
         LevelUIManager.Instance.UpdateLevelText(currentLevel);        
     }
 
@@ -66,7 +70,7 @@ public class GameManager : MonoBehaviour
         confetti.SetActive(true);
         LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);
         PlayerSingleton.Instance.ShiftStack(endStackPos, shiftSpeed);
-
+       
         // Invoke("EatRemainingStack",1.5f);
     }
 
@@ -82,7 +86,7 @@ public class GameManager : MonoBehaviour
    
     public void ShowWinUI()
     {
-        LevelUIManager.Instance.UpdateScoreText("" + currentScore);
+        LevelUIManager.Instance.UpdateScoreText(currentScore);
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);
         confetti.SetActive(false);
         confetti.SetActive(true);
@@ -93,6 +97,15 @@ public class GameManager : MonoBehaviour
         mainCam.SetActive(false);
         //shiftCam.SetActive(false);
         endCam.SetActive(true);
+    }
+    public void AddCoins()
+    {
+        PlayerPrefs.SetInt("coins", globalCoins + currentScore);
+    }
+
+    public void AddDoubleCoins()
+    {
+        PlayerPrefs.SetInt("coins", globalCoins + (currentScore * 2));
     }
     public void Lose()
     {
@@ -127,6 +140,10 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.PlaySound(SoundType.Collect);
     }
 
+    public void EndLevelScoreMultiplier()
+    {
+
+    }
     #region Scene Handlers
 
     public int GetCurrentLevel()
