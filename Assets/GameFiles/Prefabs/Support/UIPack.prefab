@@ -3707,6 +3707,9 @@ MonoBehaviour:
   - {fileID: 0}
   timerText: {fileID: 3780708516486202640}
   scoreText: {fileID: 3780708517074306115}
+  coinText: {fileID: 0}
+  doubleCoinText: {fileID: 0}
+  normalCoinText: {fileID: 0}
   progressBars: []
   movementJS: {fileID: 3881087802447401679}
 --- !u!1 &6256924090029967893

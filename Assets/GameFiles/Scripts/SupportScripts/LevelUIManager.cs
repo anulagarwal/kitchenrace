@@ -59,6 +59,8 @@ public class LevelUIManager : MonoBehaviour
     {
         charactersImg.sprite = characterRenders[storeCharacterIndex];
         LeftBtn.interactable = false;
+
+        PlayerCharacterManager.Instance.EnablePlayerCharacter(storeCharacterIndex);
     }
     #endregion
 
@@ -165,6 +167,8 @@ public class LevelUIManager : MonoBehaviour
         {
             charactersImg.sprite = characterRenders[storeCharacterIndex];
 
+            PlayerCharacterManager.Instance.EnablePlayerCharacter(storeCharacterIndex);
+
             if (storeCharacterIndex >= characterRenders.Count - 1)
             {
                 RightBtn.interactable = false;
@@ -184,6 +188,8 @@ public class LevelUIManager : MonoBehaviour
         if (storeCharacterIndex > -1)
         {
             charactersImg.sprite = characterRenders[storeCharacterIndex];
+
+            PlayerCharacterManager.Instance.EnablePlayerCharacter(storeCharacterIndex);
 
             if (storeCharacterIndex <= 0)
             {

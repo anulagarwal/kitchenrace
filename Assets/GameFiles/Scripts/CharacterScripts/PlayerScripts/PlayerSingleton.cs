@@ -22,7 +22,7 @@ public class PlayerSingleton : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         Instance = this;
     }
