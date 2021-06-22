@@ -14,6 +14,13 @@ public class LevelUIManager : MonoBehaviour
     [SerializeField] private GameObject gameplayUIObj = null;
     [SerializeField] private GameObject gameWinUIObj = null;
     [SerializeField] private GameObject gameLoseUIObj = null;
+    [SerializeField] private GameObject storeUIObj = null;
+
+    [Header("Store UI Panel Setup")]
+    [SerializeField] private Button LeftBtn = null;
+    [SerializeField] private Button RightBtn = null;
+    [SerializeField] private List<Sprite> characterRenders = new List<Sprite>();
+    [SerializeField] private Image charactersImg = null;
 
 
     [Header("Text Fields")]
@@ -28,6 +35,8 @@ public class LevelUIManager : MonoBehaviour
 
     [Header("Gameplay UI Panel")]
     [SerializeField] private VariableJoystick movementJS = null;
+
+    private int storeCharacterIndex = 0;
     #endregion
 
     #region MonoBehaviour Functions
@@ -38,6 +47,12 @@ public class LevelUIManager : MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
+    }
+
+    private void Start()
+    {
+        charactersImg.sprite = characterRenders[storeCharacterIndex];
+        LeftBtn.interactable = false;
     }
     #endregion
 
@@ -106,7 +121,68 @@ public class LevelUIManager : MonoBehaviour
     }
 
     #endregion
+
     #region Getter And Setter
     public VariableJoystick GetMovementJS { get => movementJS; }
+    #endregion
+
+    #region Btn Events Functions
+    public void OnClick_StoreBtn()
+    {
+        mainMenuUIObj.SetActive(false);
+        gameplayUIObj.SetActive(false);
+        gameLoseUIObj.SetActive(false);
+        gameWinUIObj.SetActive(false);
+        storeUIObj.SetActive(true);
+    }
+
+    public void OnClick_StoreExitBtn()
+    {
+        mainMenuUIObj.SetActive(true);
+        gameplayUIObj.SetActive(false);
+        gameLoseUIObj.SetActive(false);
+        gameWinUIObj.SetActive(false);
+        storeUIObj.SetActive(false);
+    }
+
+    public void OnClick_StoreRightBtn()
+    {
+        storeCharacterIndex++;
+        if (storeCharacterIndex < characterRenders.Count)
+        {
+            charactersImg.sprite = characterRenders[storeCharacterIndex];
+
+            if (storeCharacterIndex >= characterRenders.Count - 1)
+            {
+                RightBtn.interactable = false;
+                LeftBtn.interactable = true;
+            }
+            else
+            {
+                RightBtn.interactable = true;
+                LeftBtn.interactable = true;
+            }
+        }
+    }
+
+    public void OnClick_StoreLeftBtn()
+    {
+        storeCharacterIndex--;
+        if (storeCharacterIndex > -1)
+        {
+            charactersImg.sprite = characterRenders[storeCharacterIndex];
+
+            if (storeCharacterIndex <= 0)
+            {
+                RightBtn.interactable = true;
+                LeftBtn.interactable = false;
+            }
+            else
+            {
+                RightBtn.interactable = true;
+                LeftBtn.interactable = true;
+            }
+        }
+    }
     #endregion
 }
