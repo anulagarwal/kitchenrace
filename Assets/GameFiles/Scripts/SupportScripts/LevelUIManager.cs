@@ -19,6 +19,8 @@ public class LevelUIManager : MonoBehaviour
     [Header("Store UI Panel Setup")]
     [SerializeField] private Button LeftBtn = null;
     [SerializeField] private Button RightBtn = null;
+    [SerializeField] private Button nextBtn = null;
+    [SerializeField] private Button buyBtn = null;
     [SerializeField] private List<Sprite> characterRenders = new List<Sprite>();
     [SerializeField] private Image charactersImg = null;
 
@@ -30,10 +32,6 @@ public class LevelUIManager : MonoBehaviour
     [SerializeField] private Text coinText;
     [SerializeField] private Text doubleCoinText;
     [SerializeField] private Text normalCoinText;
-
-
-
-
 
     [Header("Progress Bar")]
     [SerializeField] List<GameObject> progressBars;
@@ -59,6 +57,16 @@ public class LevelUIManager : MonoBehaviour
     {
         charactersImg.sprite = characterRenders[storeCharacterIndex];
         LeftBtn.interactable = false;
+        if (StoreManager.Instance.IsPlayable(storeCharacterIndex))
+        {
+            buyBtn.interactable = false;
+            nextBtn.interactable = true;
+        }
+        else
+        {
+            buyBtn.interactable = true;
+            nextBtn.interactable = false;
+        }
 
         PlayerCharacterManager.Instance.EnablePlayerCharacter(storeCharacterIndex);
     }
@@ -166,6 +174,19 @@ public class LevelUIManager : MonoBehaviour
         if (storeCharacterIndex < characterRenders.Count)
         {
             charactersImg.sprite = characterRenders[storeCharacterIndex];
+            
+            if (StoreManager.Instance.IsPlayable(storeCharacterIndex))
+            {
+                StoreManager.Instance.UpdatePrice(00, false);
+                buyBtn.interactable = false;
+                nextBtn.interactable = true;
+            }
+            else
+            {
+                StoreManager.Instance.UpdatePrice(storeCharacterIndex, true);
+                buyBtn.interactable = true;
+                nextBtn.interactable = false;
+            }
 
             PlayerCharacterManager.Instance.EnablePlayerCharacter(storeCharacterIndex);
 
@@ -188,6 +209,19 @@ public class LevelUIManager : MonoBehaviour
         if (storeCharacterIndex > -1)
         {
             charactersImg.sprite = characterRenders[storeCharacterIndex];
+            
+            if (StoreManager.Instance.IsPlayable(storeCharacterIndex))
+            {
+                StoreManager.Instance.UpdatePrice(00, false);
+                buyBtn.interactable = false;
+                nextBtn.interactable = true;
+            }
+            else
+            {
+                StoreManager.Instance.UpdatePrice(storeCharacterIndex, true);
+                buyBtn.interactable = true;
+                nextBtn.interactable = false;
+            }
 
             PlayerCharacterManager.Instance.EnablePlayerCharacter(storeCharacterIndex);
 

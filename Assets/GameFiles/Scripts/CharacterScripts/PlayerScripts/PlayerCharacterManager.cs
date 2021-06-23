@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine;
 
 public class PlayerCharacterManager : MonoBehaviour
-{//
+{
     #region Properties
     public static PlayerCharacterManager Instance = null;
 
