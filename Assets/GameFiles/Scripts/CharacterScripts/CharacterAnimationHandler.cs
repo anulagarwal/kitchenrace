@@ -35,9 +35,9 @@ public class CharacterAnimationHandler : MonoBehaviour
                 characterAnimator.SetTrigger("t_Defeat");
                 break;
             case CharacterAnimationState.Stumble:
-                characterAnimator.SetBool("b_Stumble", false);
                 characterAnimator.SetTrigger("t_Stumble");
                 characterAnimator.SetBool("b_Stumble", true);
+                Invoke("DisableStumbling", 1f);
                 break;
         }
     }
@@ -66,6 +66,13 @@ public class CharacterAnimationHandler : MonoBehaviour
         {
             enemyMovementHandler.enabled = true;
         }
+    }
+    #endregion
+
+    #region Invoke Functions
+    private void DisableStumbling()
+    {
+        characterAnimator.SetBool("b_Stumble", false);
     }
     #endregion
 }

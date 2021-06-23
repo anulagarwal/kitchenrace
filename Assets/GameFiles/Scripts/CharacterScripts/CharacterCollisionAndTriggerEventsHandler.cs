@@ -101,11 +101,10 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             }
         }
 
-        if (other.gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler))
+        if (other.gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler) && characterData.GetCharacterCode == CharacterCode.Player)
         {
             if (enemyMovementHandler.characterSweetStackHandler.sweetStack.Count < characterSweetStackHandler.sweetStack.Count)
             {
-                print("Inside");
                 //enemyMovementHandler.ApplyStumbleForce((transform.position - other.gameObject.transform.position).normalized);
                 enemyMovementHandler.characterSweetStackHandler.EnablePhysics();
                 enemyMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
