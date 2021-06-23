@@ -67,7 +67,7 @@ public class CharacterSweetStackHandler : MonoBehaviour
             t.parent = null;
             stackingPosition.y -= sweetSizeYOffset;
             t.GetComponent<SweetsHandler>().SweetCode = CharacterCode.None;
-
+            t.GetComponent<SweetsHandler>().GetCookieMeshRenderer.material.color = new Color(.7f, .7f, .7f, 1); 
         }
         sweetStack.Clear();
     }
