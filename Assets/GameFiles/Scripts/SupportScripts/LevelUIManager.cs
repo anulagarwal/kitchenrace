@@ -55,7 +55,7 @@ public class LevelUIManager : MonoBehaviour
 
     private void Start()
     {
-        charactersImg.sprite = characterRenders[storeCharacterIndex];
+//        charactersImg.sprite = characterRenders[storeCharacterIndex];
         LeftBtn.interactable = false;
         if (StoreManager.Instance.IsPlayable(storeCharacterIndex))
         {
@@ -173,7 +173,7 @@ public class LevelUIManager : MonoBehaviour
         storeCharacterIndex++;
         if (storeCharacterIndex < characterRenders.Count)
         {
-            charactersImg.sprite = characterRenders[storeCharacterIndex];
+           // charactersImg.sprite = characterRenders[storeCharacterIndex];
             
             if (StoreManager.Instance.IsPlayable(storeCharacterIndex))
             {
@@ -208,7 +208,7 @@ public class LevelUIManager : MonoBehaviour
         storeCharacterIndex--;
         if (storeCharacterIndex > -1)
         {
-            charactersImg.sprite = characterRenders[storeCharacterIndex];
+           // charactersImg.sprite = characterRenders[storeCharacterIndex];
             
             if (StoreManager.Instance.IsPlayable(storeCharacterIndex))
             {

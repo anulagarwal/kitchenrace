@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject mainCam;
     [SerializeField] private GameObject endCam;
     [SerializeField] private Transform endStackPos;
+    [SerializeField] private Animator chef;
     [SerializeField] private GameObject awesomeText;
 
 
@@ -75,9 +76,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void EatRemainingStack()
-    {
-       
+    {       
         PlayerSingleton.Instance.characterSweetStackHandler.EatStack(pointsPerStack, eatSpeed);
+        chef.Play("Eat");
     }
     public void FinishEating()
     {
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);
         confetti.SetActive(false);
         confetti.SetActive(true);
-
+        chef.Play("Victory");
     }
     public void SwitchCam()
     {

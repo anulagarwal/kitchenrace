@@ -40,7 +40,7 @@ public class PlayerCharacterManager : MonoBehaviour
 
     public void EnablePlayer()
     {
-        playerCharacters[currentEnabledCharacter].GetComponent<PlayerMovementHandler>().enabled = true;
+        playerCharacters[currentEnabledCharacter].GetComponent<PlayerSingleton>().StartPlayer();
     }
 
     public void DisablePlayer()

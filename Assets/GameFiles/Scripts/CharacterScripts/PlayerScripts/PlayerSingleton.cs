@@ -10,6 +10,10 @@ public class PlayerSingleton : MonoBehaviour
     [Header("Components Reference")]
     [SerializeField] private CharacterAnimationHandler characterAnimationHandler = null;
     [SerializeField] internal CharacterSweetStackHandler characterSweetStackHandler = null;
+    [SerializeField] internal GameObject label;
+    [SerializeField] internal GameObject tray;
+
+
 
     [Header("Shift Speed")]
     [SerializeField] private float shiftSpeed;
@@ -25,6 +29,8 @@ public class PlayerSingleton : MonoBehaviour
             //Destroy(gameObject);
         }
         Instance = this;
+        label.SetActive(false);
+        tray.SetActive(false);
     }
 
     private void Update()
@@ -42,6 +48,13 @@ public class PlayerSingleton : MonoBehaviour
     {
         GetComponent<PlayerMovementHandler>().enabled = false;
         characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Defeat);
+    }
+
+    public void StartPlayer()
+    {
+        label.SetActive(true);
+        tray.SetActive(true);
+        GetComponent<PlayerMovementHandler>().enabled = true;
     }
     public void CompleteShift()
     {
