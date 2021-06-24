@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance = null;
 
-
     [Header ("Game Attributes")]
     private int currentLevel;
     private bool isGameOn;
@@ -57,12 +56,6 @@ public class GameManager : MonoBehaviour
         LevelUIManager.Instance.UpdateLevelText(currentLevel);        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Win()
     {                
         isGameOn = false;       
@@ -71,8 +64,6 @@ public class GameManager : MonoBehaviour
         confetti.SetActive(true);
         LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);
         PlayerSingleton.Instance.ShiftStack(endStackPos, shiftSpeed);
-       
-        // Invoke("EatRemainingStack",1.5f);
     }
 
     public void EatRemainingStack()
@@ -96,7 +87,6 @@ public class GameManager : MonoBehaviour
     public void SwitchCam()
     {
         mainCam.SetActive(false);
-        //shiftCam.SetActive(false);
         endCam.SetActive(true);
     }
     public void AddCoins()
@@ -116,7 +106,6 @@ public class GameManager : MonoBehaviour
     }
     public void Lose()
     {
-        //Stop characters       
         isGameOn = false;
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Lose);
         EnemyManager.Instance.DisableEnemies();
@@ -130,7 +119,6 @@ public class GameManager : MonoBehaviour
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.InGame);
         EnemyManager.Instance.EnableEnemies();
         PlayerCharacterManager.Instance.EnablePlayer();
-        //Launch character
     }
 
     public void AddScore(int value, Vector3 pos)
@@ -139,11 +127,7 @@ public class GameManager : MonoBehaviour
         Instantiate(awesomeText, pos, Quaternion.identity);
         SoundManager.Instance.PlaySound(SoundType.Collect);
     }
-
-    public void EndLevelScoreMultiplier()
-    {
-
-    }
+  
     #region Scene Handlers
 
     public int GetCurrentLevel()
