@@ -9,6 +9,7 @@ public class LevelUIManager : MonoBehaviour
     #region Properties
     public static LevelUIManager Instance = null;
     public enum State { Main, InGame, Win, Lose};
+    public State currentState;
     [Header("UI Panel")]
     [SerializeField] private GameObject mainMenuUIObj = null;
     [SerializeField] private GameObject gameplayUIObj = null;
@@ -34,7 +35,7 @@ public class LevelUIManager : MonoBehaviour
     [SerializeField] private Text normalCoinText;
 
 
-    [Header("Text Fields")]
+    [Header("Settings")]
     [SerializeField] private Image SoundOn;
     [SerializeField] private Image SoundOff;
     [SerializeField] private Image VibrateOn;
@@ -63,7 +64,6 @@ public class LevelUIManager : MonoBehaviour
 
     private void Start()
     {
-//        charactersImg.sprite = characterRenders[storeCharacterIndex];
         LeftBtn.interactable = false;
         if (StoreManager.Instance.IsPlayable(storeCharacterIndex))
         {
@@ -78,6 +78,7 @@ public class LevelUIManager : MonoBehaviour
       
         PlayerCharacterManager.Instance.EnablePlayerCharacter(storeCharacterIndex);
     }
+
     #endregion
 
     #region Public Functions
@@ -106,8 +107,17 @@ public class LevelUIManager : MonoBehaviour
     public void UpdateScoreText(int v)
     {
         scoreText.text = ""+v;
-        doubleCoinText.text = "$" + v * 2;
         normalCoinText.text = "$" + v + " IS ENOUGH";
+    }
+
+    public void UpdateMultiplierScoreText(int value)
+    {
+        doubleCoinText.text = "$" + (value);
+    }
+
+    public int GetMultiplierValue()
+    {
+        return GetComponent<MultiplierWheel>().GetCurrentMultiplier();
     }
     public void UpdateState(State state)
     {
@@ -131,6 +141,7 @@ public class LevelUIManager : MonoBehaviour
                 gameplayUIObj.SetActive(false);
                 gameWinUIObj.SetActive(true);
                 gameLoseUIObj.SetActive(false);
+                GetComponent<MultiplierWheel>().Spin();
                 break;
 
             case State.Lose:

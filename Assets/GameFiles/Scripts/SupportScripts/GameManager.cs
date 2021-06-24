@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float eatSpeed;
     [SerializeField] private int pointsPerStack;
     [SerializeField] private float shiftSpeed;
-
+    private int finalMultiplier;
 
 
     #region MonoBehaviour Functions
@@ -106,7 +106,13 @@ public class GameManager : MonoBehaviour
 
     public void AddDoubleCoins()
     {
-        PlayerPrefs.SetInt("coins", globalCoins + (currentScore * 2));
+        PlayerPrefs.SetInt("coins", globalCoins + (currentScore * finalMultiplier));
+    }
+
+    public void UpdateMultiplier(int value)
+    {
+        finalMultiplier = value;
+        LevelUIManager.Instance.UpdateMultiplierScoreText(currentScore * finalMultiplier);
     }
     public void Lose()
     {
