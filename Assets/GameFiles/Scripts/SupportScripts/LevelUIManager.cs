@@ -33,6 +33,14 @@ public class LevelUIManager : MonoBehaviour
     [SerializeField] private Text doubleCoinText;
     [SerializeField] private Text normalCoinText;
 
+
+    [Header("Text Fields")]
+    [SerializeField] private Image SoundOn;
+    [SerializeField] private Image SoundOff;
+    [SerializeField] private Image VibrateOn;
+    [SerializeField] private Image VibrateOff;
+
+
     [Header("Progress Bar")]
     [SerializeField] List<GameObject> progressBars;
 
@@ -67,7 +75,7 @@ public class LevelUIManager : MonoBehaviour
             buyBtn.interactable = true;
             nextBtn.interactable = false;
         }
-
+      
         PlayerCharacterManager.Instance.EnablePlayerCharacter(storeCharacterIndex);
     }
     #endregion
@@ -200,6 +208,32 @@ public class LevelUIManager : MonoBehaviour
                 RightBtn.interactable = true;
                 LeftBtn.interactable = true;
             }
+        }
+    }
+
+    public void UpdateSettings(bool sound, bool vibrate)
+    {
+        if (sound)
+        {
+            SoundOn.enabled = true;
+            SoundOff.enabled = false;
+        }
+       else if (!sound)
+        {
+            SoundOn.enabled = false;
+            SoundOff.enabled = true;
+        }
+
+        if (vibrate)
+        {
+            VibrateOn.enabled = true;
+            VibrateOff.enabled = false;
+        }
+
+       else if (!vibrate)
+        {
+            VibrateOn.enabled = false;
+            VibrateOff.enabled = true;
         }
     }
 

@@ -27,7 +27,10 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(SoundType type)
     {
-        audioSource.clip = sounds.Find(x => x.type == type).clip;
-        audioSource.Play();
+        if (SettingsManager.Instance.isSoundOn)
+        {
+            audioSource.clip = sounds.Find(x => x.type == type).clip;
+            audioSource.Play();
+        }
     }
 }

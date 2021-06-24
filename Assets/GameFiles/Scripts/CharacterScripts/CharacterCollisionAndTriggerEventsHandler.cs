@@ -30,8 +30,13 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
 
             if (characterData.GetCharacterCode == CharacterCode.Player)
             {
-                Vibration.Vibrate(30);
-                SoundManager.Instance.PlaySound(SoundType.Collect);
+                if (SettingsManager.Instance.isVibrateOn)
+                {
+                    Vibration.Vibrate(30);
+                }
+               
+                    SoundManager.Instance.PlaySound(SoundType.Collect);
+                
             }
 
             if (characterData.GetCharacterCode != CharacterCode.Player && characterData.GetCharacterCode != CharacterCode.None)
@@ -49,8 +54,6 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         }
         else if (other.gameObject.tag == "Stair")
         {
-            print(characterData.GetCharacterCode);
-
             if (characterSweetStackHandler.GetSweetStackSize > 0)
             {
                 if (other.gameObject.TryGetComponent<StairHandler>(out StairHandler stairHandler))
@@ -101,7 +104,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             }
         }
 
-        if (other.gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler) && characterData.GetCharacterCode == CharacterCode.Player)
+        if (other.gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler) && characterData.GetCharacterCode == CharacterCode.Player )
         {
             if (enemyMovementHandler.characterSweetStackHandler.sweetStack.Count < characterSweetStackHandler.sweetStack.Count)
             {
