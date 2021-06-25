@@ -11,4 +11,9 @@ public class StoreItemButton : MonoBehaviour
     public int id;
     public int cost;
     public bool isPurchased;
+
+    private void Start()
+    {
+        costText.text = "" + cost;
+    }
 }

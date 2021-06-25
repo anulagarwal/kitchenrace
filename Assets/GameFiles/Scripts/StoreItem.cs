@@ -1,8 +1,8 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "StoreItem", menuName = "Store/Item")]
-public class StoreItem : ScriptableObject
+[System.Serializable]
+public class StoreItem 
 {
     public Item itemType;
     public int cost;
@@ -11,5 +11,6 @@ public class StoreItem : ScriptableObject
     public Sprite img;
     public int id;
     public bool isPurchased;
+    public bool isSelected;
 
 }

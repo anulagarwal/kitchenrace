@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,7 +39,7 @@ public class PurchaseManager : MonoBehaviour
     void Start()
     {
         currentCoins = PlayerPrefs.GetInt("coins", 0);
-       // PopulateStore();
+        RefreshStore();
     }
 
     // Update is called once per frame
@@ -50,30 +52,46 @@ public class PurchaseManager : MonoBehaviour
 
     public void SelectItem(int id)
     {
-        buttonCost.text = items.Find(x => x.id == id).cost + "";
-        if(items.Find(x => x.id == id).cost > currentCoins)
+       if(items.Find(x=> x.id == id).itemType == Item.Character)
         {
-            purchaseButton.interactable = false;
+            PlayerPrefs.SetInt("character", id);
+            items.Find(x => x.id == id).isSelected = true;
         }
+        else if(items.Find(x => x.id == id).itemType == Item.Sweet)
+        {
+            PlayerPrefs.SetInt("sweet", id);
+            items.Find(x => x.id == id).isSelected = true;
+        }
+        SaveData();
+
     }
     public void PurchaseItem(int id)
     {
 
         foreach(StoreItemButton sib in itemButtons)
         {
-            if(id == sib.id)
+            if(id == sib.id && !sib.isPurchased)
             {
                 sib.availableBorder.SetActive(false);
                 sib.purchasedBorder.SetActive(true);
                 currentCoins -= sib.cost;
                 sib.isPurchased = true;
+                items.Find(x => x.id == sib.id).isPurchased = true;
+                items.Find(x => x.id == sib.id).isSelected = true;
                 PlayerPrefs.SetInt("coins", currentCoins);
+                LevelUIManager.Instance.UpdateCoinCount(currentCoins);
+                SelectItem(sib.id);
+                RefreshStore();
+                return;
                 //Purchase here save data
                 //Set as new prefab
             }
+            else if(id == sib.id && sib.isPurchased)
+            {
+                SelectItem(sib.id);
+            }
         }
-        LevelUIManager.Instance.UpdateCoinCount(currentCoins);
-        RefreshStore();
+        
     }
     public void WatchAdCoins(int coins)
     {
@@ -81,6 +99,7 @@ public class PurchaseManager : MonoBehaviour
         currentCoins = currentCoins + coins;
         PlayerPrefs.SetInt("coins", currentCoins);
         LevelUIManager.Instance.UpdateCoinCount(currentCoins);
+        RefreshStore();
     }
 
     public void PopulateStore()
@@ -135,12 +154,60 @@ public class PurchaseManager : MonoBehaviour
                 if (sib.cost <= currentCoins)
                 {
                     sib.availableBorder.SetActive(true);
+                    sib.GetComponent<Button>().interactable = true;
                 }
                 else
                 {
                     sib.GetComponent<Button>().interactable = false;
                 }
             }
+        }
+    }
+
+    private Save CreateSaveGameObject()
+    {
+        Save save = new Save();        
+        foreach (StoreItem targetGameObject in items)
+        {
+            save.items.Add(targetGameObject);
+        }       
+        return save;
+    }
+    public void SaveData()
+    {
+        // 1
+        Save save = CreateSaveGameObject();
+
+        // 2
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+        bf.Serialize(file, save);
+        file.Close();
+        Debug.Log("Game Saved");
+    }
+
+    public void LoadData()
+    {
+        // 1
+        if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        {
+           // ClearBullets();
+           // ClearRobots();
+           // RefreshRobots();
+            // 2
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+            Save save = (Save)bf.Deserialize(file);
+            file.Close();     
+            for (int i = 0; i < save.items.Count; i++)
+            {
+                items.Add(save.items[i]);
+            }             
+            Debug.Log("Game Loaded");           
+        }
+        else
+        {
+            Debug.Log("No game saved!");
         }
     }
     #endregion

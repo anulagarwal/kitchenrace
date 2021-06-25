@@ -273,6 +273,17 @@ Transform:
   m_Father: {fileID: 130924976}
   m_RootOrder: 137
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &42050316 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8718417023355812665, guid: 52212a85a0eb04d54975bed814a22387, type: 3}
+  m_PrefabInstance: {fileID: 1880538790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664c90fa387144cb2a2cb3e8c9f3988d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &44565465
 GameObject:
   m_ObjectHideFlags: 0
@@ -3964,6 +3975,17 @@ Transform:
   m_Father: {fileID: 130924976}
   m_RootOrder: 125
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &398548390 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8718417023355812665, guid: 52212a85a0eb04d54975bed814a22387, type: 3}
+  m_PrefabInstance: {fileID: 678803098}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664c90fa387144cb2a2cb3e8c9f3988d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &403915880
 GameObject:
   m_ObjectHideFlags: 0
@@ -6555,9 +6577,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8548974081176693236, guid: 52212a85a0eb04d54975bed814a22387, type: 3}
+      propertyPath: m_Text
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 8718417023355812665, guid: 52212a85a0eb04d54975bed814a22387, type: 3}
       propertyPath: id
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8718417023355812665, guid: 52212a85a0eb04d54975bed814a22387, type: 3}
       propertyPath: cost
@@ -10260,6 +10286,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 584003907}
+    - target: {fileID: 9151783434266572774, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+      propertyPath: id
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9151783434266572774, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
       propertyPath: cost
       value: 100
@@ -15269,6 +15299,22 @@ PrefabInstance:
       propertyPath: purchaseButton
       value: 
       objectReference: {fileID: 1233420828}
+    - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
+      propertyPath: itemButtons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
+      propertyPath: itemButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1975283333}
+    - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
+      propertyPath: itemButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 42050316}
+    - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
+      propertyPath: itemButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 398548390}
     - target: {fileID: 2536839777262078214, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
       propertyPath: stageHandlers.Array.data[0]
       value: 
@@ -17189,9 +17235,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8548974081176693236, guid: 52212a85a0eb04d54975bed814a22387, type: 3}
+      propertyPath: m_Text
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548974081176693236, guid: 52212a85a0eb04d54975bed814a22387, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8718417023355812665, guid: 52212a85a0eb04d54975bed814a22387, type: 3}
       propertyPath: id
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8718417023355812665, guid: 52212a85a0eb04d54975bed814a22387, type: 3}
       propertyPath: cost
@@ -17958,6 +18012,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 21.99, y: 0.2, z: 0}
+--- !u!114 &1975283333 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9151783434266572774, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+  m_PrefabInstance: {fileID: 1078071644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664c90fa387144cb2a2cb3e8c9f3988d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1975713166
 GameObject:
   m_ObjectHideFlags: 0
