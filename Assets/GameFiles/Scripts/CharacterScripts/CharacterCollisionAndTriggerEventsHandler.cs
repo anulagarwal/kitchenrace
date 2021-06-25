@@ -56,6 +56,8 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         {
             if (characterSweetStackHandler.GetSweetStackSize > 0)
             {
+                print(other.gameObject.tag);
+
                 if (other.gameObject.TryGetComponent<StairHandler>(out StairHandler stairHandler))
                 {
                     if (stairHandler.OwnerCode != characterData.GetCharacterCode)
@@ -73,6 +75,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                     }
                 }
             }
+
         }
         else if (other.gameObject.tag == "Blocker")
         {

@@ -26,6 +26,12 @@ public enum AIMovementType
     GameOver
 };
 
+public enum Item
+{
+    Sweet,
+    Character
+}
+
 public enum PlayerMovementType
 {
     Stacking

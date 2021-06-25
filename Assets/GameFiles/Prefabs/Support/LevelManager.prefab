@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 584003908}
   - component: {fileID: 584003910}
   - component: {fileID: 4170594069613061182}
+  - component: {fileID: 1607481109}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -250,3 +251,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVibrateOn: 0
   isSoundOn: 0
+--- !u!114 &1607481109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536839777262078232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a1d57c16e254455ebe8c24b7ed995af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 11400000, guid: ce6665524590e45d89d77c71dcbb3219, type: 2}
+  - {fileID: 11400000, guid: 45384cc5e2b9041ceb4af3b62e42e936, type: 2}
+  - {fileID: 11400000, guid: 8092a4dabf8ce4594877485640ff2eac, type: 2}
+  itemButtons: []
+  currentCoins: 0
+  buttonCost: {fileID: 0}
+  purchaseButton: {fileID: 0}
+  cookieGrid: {fileID: 0}
+  characterGrid: {fileID: 0}
+  storeButton: {fileID: 2834544269464086303, guid: 52212a85a0eb04d54975bed814a22387, type: 3}
