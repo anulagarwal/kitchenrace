@@ -127,7 +127,7 @@ public class EnemyMovementHandler : MonoBehaviour
                     aIMovementType = AIMovementType.Stacking;
                     if (sweetCollectionCount <= 0)
                     {
-                        sweetCollectionCount = Random.Range(5, 8);
+                       // sweetCollectionCount = Random.Range(5, 8);
                     }
                     //characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
                 }
@@ -187,7 +187,7 @@ public class EnemyMovementHandler : MonoBehaviour
         targetLocationTransform = null;
     }
 
-    public void UpdateStage()
+    public void UpdateStage(SweetsPacketManager sweetsPacketManager)
     {
         stage++;
         //Modified
@@ -197,7 +197,7 @@ public class EnemyMovementHandler : MonoBehaviour
             Win();
             return;
         }
-        foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
+        foreach (SweetsPacketHandler sh in sweetsPacketManager.sweetsPacketHandlers)
         {
             if (sh.GetCharacterCode == characterCode)
             {
@@ -209,7 +209,7 @@ public class EnemyMovementHandler : MonoBehaviour
         }
     }
 
-    //Testing
+    //Testing - not used
     public void SetSweetsPacketHandler(SweetsPacketManager sweetsPacketManager)
     {
         foreach (SweetsPacketHandler sh in sweetsPacketManager.sweetsPacketHandlers)
