@@ -39,7 +39,10 @@ public class PurchaseManager : MonoBehaviour
     void Start()
     {
         currentCoins = PlayerPrefs.GetInt("coins", 0);
+        LoadData();
+        PopulateStore();
         RefreshStore();
+
     }
 
     // Update is called once per frame
@@ -56,11 +59,62 @@ public class PurchaseManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("character", id);
             items.Find(x => x.id == id).isSelected = true;
+            foreach(StoreItem si in items)
+            {
+                if(si.itemType == Item.Character)
+                {
+                    if(si.id == id)
+                    {
+                        si.isSelected = true;
+                    }
+                    else
+                    {
+                        si.isSelected = false;
+                    }
+                }
+
+                else if (si.itemType == Item.Sweet)
+                {
+                    if (si.id == id)
+                    {
+                        si.isSelected = true;
+                    }
+                    else
+                    {
+                        si.isSelected = false;
+                    }
+                }
+            }
         }
         else if(items.Find(x => x.id == id).itemType == Item.Sweet)
         {
             PlayerPrefs.SetInt("sweet", id);
-            items.Find(x => x.id == id).isSelected = true;
+            foreach (StoreItem si in items)
+            {
+                if (si.itemType == Item.Character)
+                {
+                    if (si.id == id)
+                    {
+                        si.isSelected = true;
+                    }
+                    else
+                    {
+                        si.isSelected = false;
+                    }
+                }
+
+                else if (si.itemType == Item.Sweet)
+                {
+                    if (si.id == id)
+                    {
+                        si.isSelected = true;
+                    }
+                    else
+                    {
+                        si.isSelected = false;
+                    }
+                }
+            }
         }
         SaveData();
 
@@ -70,8 +124,9 @@ public class PurchaseManager : MonoBehaviour
 
         foreach(StoreItemButton sib in itemButtons)
         {
-            if(id == sib.id && !sib.isPurchased)
+            if(id == sib.id && !items.Find(x => x.id == sib.id).isPurchased)
             {
+                print(id);
                 sib.availableBorder.SetActive(false);
                 sib.purchasedBorder.SetActive(true);
                 currentCoins -= sib.cost;
@@ -81,14 +136,14 @@ public class PurchaseManager : MonoBehaviour
                 PlayerPrefs.SetInt("coins", currentCoins);
                 LevelUIManager.Instance.UpdateCoinCount(currentCoins);
                 SelectItem(sib.id);
-                RefreshStore();
+                RefreshStore();                
                 return;
-                //Purchase here save data
-                //Set as new prefab
+                
             }
             else if(id == sib.id && sib.isPurchased)
             {
                 SelectItem(sib.id);
+                return;
             }
         }
         
@@ -112,16 +167,26 @@ public class PurchaseManager : MonoBehaviour
                 g.GetComponent<StoreItemButton>().id = si.id;
                 g.GetComponent<StoreItemButton>().costText.text = si.cost +"";
                 g.GetComponent<StoreItemButton>().cost = si.cost;
-                g.GetComponent<Button>().onClick.AddListener(delegate { PurchaseItem(si.id);  });
+                g.GetComponent<Button>().onClick.AddListener(delegate { PurchaseItem(4);  });
                 itemButtons.Add(g.GetComponent<StoreItemButton>());
 
-                if (si.cost <= currentCoins)
+                if (si.isPurchased == false)
                 {
-                    g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
+                    if (si.cost <= currentCoins)
+                    {
+                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
+                    }
+                    else
+                    {
+                        g.GetComponent<Button>().interactable = false;
+                    }
                 }
                 else
                 {
-                    g.GetComponent<Button>().interactable = false;
+                    g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(true);
+                    g.GetComponent<StoreItemButton>().isPurchased = true;
+                    g.GetComponent<Button>().interactable = true;
+
                 }
             }
 
@@ -133,13 +198,25 @@ public class PurchaseManager : MonoBehaviour
                 g.GetComponent<StoreItemButton>().cost = si.cost;
                 g.GetComponent<Button>().onClick.AddListener(delegate { PurchaseItem(si.id); });
                 itemButtons.Add(g.GetComponent<StoreItemButton>());
-                if (si.cost <= currentCoins)
+
+                if (si.isPurchased == false)
                 {
-                    g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
+                    if (si.cost <= currentCoins)
+                    {
+                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
+                    }
+                    else
+                    {
+                        g.GetComponent<Button>().interactable = false;
+                    }
                 }
                 else
                 {
-                    g.GetComponent<Button>().interactable = false;
+                    g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(true);
+                    g.GetComponent<Button>().interactable = true;
+                    g.GetComponent<StoreItemButton>().isPurchased = true;
+
+
                 }
             }
         }
@@ -153,7 +230,7 @@ public class PurchaseManager : MonoBehaviour
             {
                 if (sib.cost <= currentCoins)
                 {
-                    sib.availableBorder.SetActive(true);
+                    //sib.availableBorder.SetActive(true);
                     sib.GetComponent<Button>().interactable = true;
                 }
                 else
@@ -191,10 +268,7 @@ public class PurchaseManager : MonoBehaviour
         // 1
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
-           // ClearBullets();
-           // ClearRobots();
-           // RefreshRobots();
-            // 2
+            items.Clear();
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
