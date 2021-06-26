@@ -10,7 +10,9 @@ public class PurchaseManager : MonoBehaviour
 {
     public static PurchaseManager Instance = null;
 
-    public List<StoreItem> items;
+    public List<StoreItem> sweetItems;
+    public List<StoreItem> characterItems;
+
     public List<StoreItemButton> itemButtons;
     public int currentCoins;
 
@@ -36,15 +38,8 @@ public class PurchaseManager : MonoBehaviour
     void Start()
     {
         currentCoins = PlayerPrefs.GetInt("coins", 0);
-        bool isLoaded = LoadData();
-        if (isLoaded)
-        {
-
-        }
-        else
-        {
-
-        }
+     //   bool isLoaded = LoadData();
+        File.Delete(Application.persistentDataPath + "/gamesave.save");
         PopulateStore();
         RefreshStore();
 
@@ -60,67 +55,52 @@ public class PurchaseManager : MonoBehaviour
 
     public void SelectItem(int id)
     {
-       if(items.Find(x=> x.id == id).itemType == Item.Character)
+        if (sweetItems.Find(x => x.id == id) != null)
         {
-            PlayerPrefs.SetInt("character", id);
-            items.Find(x => x.id == id).isSelected = true;
-            foreach(StoreItem si in items)
-            {
-                if(si.itemType == Item.Character)
-                {
-                    if(si.id == id)
-                    {
-                        si.isSelected = true;
-                    }
-                    else
-                    {
-                        si.isSelected = false;
-                    }
-                }
+            PlayerPrefs.SetInt("sweet", id);
 
-                else if (si.itemType == Item.Sweet)
+            foreach (StoreItem si in sweetItems)
+            { 
+                if (si.itemType == Item.Sweet)
                 {
                     if (si.id == id)
                     {
                         si.isSelected = true;
+                        print("Green " + id);
+                        itemButtons.Find(x=> x.id == id).GetComponent<Image>().color = Color.green;                     
                     }
                     else
                     {
                         si.isSelected = false;
+                        itemButtons.Find(x => x.id == id).GetComponent<Image>().color = Color.white;
+
                     }
                 }
             }
         }
-        else if(items.Find(x => x.id == id).itemType == Item.Sweet)
+        else if(characterItems.Find(x => x.id == id) != null)
         {
-            PlayerPrefs.SetInt("sweet", id);
-            foreach (StoreItem si in items)
+            PlayerPrefs.SetInt("character", id);
+
+            foreach (StoreItem si in characterItems)
             {
                 if (si.itemType == Item.Character)
                 {
                     if (si.id == id)
                     {
-                        si.isSelected = true;
-                    }
-                    else
-                    {
-                        si.isSelected = false;
-                    }
-                }
 
-                else if (si.itemType == Item.Sweet)
-                {
-                    if (si.id == id)
-                    {
                         si.isSelected = true;
+                        itemButtons.Find(x => x.id == id).GetComponent<Image>().color = Color.green;                       
                     }
                     else
                     {
                         si.isSelected = false;
+                        itemButtons.Find(x => x.id == id).GetComponent<Image>().color = Color.white;
                     }
                 }
+               
             }
-        }
+        }                        
         SaveData();
 
     }
@@ -128,27 +108,45 @@ public class PurchaseManager : MonoBehaviour
     {
 
         foreach(StoreItemButton sib in itemButtons)
-        {
-            if(id == sib.id && !items.Find(x => x.id == sib.id).isPurchased)
+        {         
+            if(id == sib.id && sib.isPurchased)
             {
-                print(id);
-                sib.availableBorder.SetActive(false);
-                sib.purchasedBorder.SetActive(true);
-                currentCoins -= sib.cost;
-                sib.isPurchased = true;
-                items.Find(x => x.id == sib.id).isPurchased = true;
-                items.Find(x => x.id == sib.id).isSelected = true;
-                PlayerPrefs.SetInt("coins", currentCoins);
-                LevelUIManager.Instance.UpdateCoinCount(currentCoins);
                 SelectItem(sib.id);
-                RefreshStore();                
                 return;
-                
             }
-            else if(id == sib.id && sib.isPurchased)
-            {
-                SelectItem(sib.id);
-                return;
+            else if(sib.id==id)
+            {                
+                
+                if (sweetItems.Find(x => x.id == id) != null)
+                {
+                    sib.availableBorder.SetActive(false);
+                    sib.purchasedBorder.SetActive(true);
+                    currentCoins -= sib.cost;
+                    sib.isPurchased = true;
+
+                    sweetItems.Find(x => x.id == id).isPurchased = true;
+                    sweetItems.Find(x => x.id == id).isSelected = true;
+                    PlayerPrefs.SetInt("coins", currentCoins);
+                    LevelUIManager.Instance.UpdateCoinCount(currentCoins);
+                    SelectItem(sib.id);
+                    RefreshStore();
+                    return;
+                }
+                else if(characterItems.Find(x => x.id == id) != null)
+                
+                {
+                    sib.availableBorder.SetActive(false);
+                    sib.purchasedBorder.SetActive(true);
+                    currentCoins -= sib.cost;
+                    sib.isPurchased = true;
+                    characterItems.Find(x => x.id == id).isPurchased = true;
+                    characterItems.Find(x => x.id == id).isSelected = true;
+                    PlayerPrefs.SetInt("coins", currentCoins);
+                    LevelUIManager.Instance.UpdateCoinCount(currentCoins);
+                    SelectItem(sib.id);
+                    RefreshStore();
+                    return;
+                }
             }
         }
         
@@ -164,46 +162,17 @@ public class PurchaseManager : MonoBehaviour
 
     public void PopulateStore()
     {        
-        foreach(StoreItem si in items)
+        
+        foreach (StoreItem si in sweetItems)
         {
-            if(si.itemType == Item.Character)
-            {
-                GameObject g = Instantiate(storeButton, characterGrid);
-                print(g.transform.parent);
-
-                g.GetComponent<StoreItemButton>().id = si.id;
-                g.GetComponent<StoreItemButton>().costText.text = si.cost +"";
-                g.GetComponent<StoreItemButton>().cost = si.cost;
-                g.GetComponent<Button>().onClick.AddListener(delegate { PurchaseItem(4);  });
-                itemButtons.Add(g.GetComponent<StoreItemButton>());
-
-                if (si.isPurchased == false)
-                {
-                    if (si.cost <= currentCoins)
-                    {
-                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
-                    }
-                    else
-                    {
-                        g.GetComponent<Button>().interactable = false;
-                    }
-                }
-                else
-                {
-                    g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(true);
-                    g.GetComponent<StoreItemButton>().isPurchased = true;
-                    g.GetComponent<Button>().interactable = true;
-
-                }
-            }
-
-            else if(si.itemType == Item.Sweet)
+             if (si.itemType == Item.Sweet)
             {
                 GameObject g = Instantiate(storeButton, cookieGrid);
                 g.GetComponent<StoreItemButton>().id = si.id;
                 g.GetComponent<StoreItemButton>().costText.text = si.cost + "";
                 g.GetComponent<StoreItemButton>().cost = si.cost;
-                g.GetComponent<Button>().onClick.AddListener(delegate { PurchaseItem(si.id); });
+                g.GetComponent<StoreItemButton>().name = si.itemName;
+
                 itemButtons.Add(g.GetComponent<StoreItemButton>());
 
                 if (si.isPurchased == false)
@@ -211,9 +180,15 @@ public class PurchaseManager : MonoBehaviour
                     if (si.cost <= currentCoins)
                     {
                         g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
+                        g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
+                        g.GetComponent<Button>().interactable = true;
+
+
                     }
                     else
                     {
+                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
+                        g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
                         g.GetComponent<Button>().interactable = false;
                     }
                 }
@@ -222,10 +197,55 @@ public class PurchaseManager : MonoBehaviour
                     g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(true);
                     g.GetComponent<Button>().interactable = true;
                     g.GetComponent<StoreItemButton>().isPurchased = true;
-
+                    if (si.isSelected)
+                    {
+                        g.GetComponent<Image>().color = Color.green;
+                    }
 
                 }
             }
+        }
+        foreach (StoreItem si in characterItems)
+        {
+            if (si.itemType == Item.Character)
+            {
+                GameObject g = Instantiate(storeButton, characterGrid);
+
+                g.GetComponent<StoreItemButton>().id = si.id;
+                g.GetComponent<StoreItemButton>().costText.text = si.cost + "";
+                g.GetComponent<StoreItemButton>().cost = si.cost;
+                g.GetComponent<StoreItemButton>().name = si.itemName;
+
+                itemButtons.Add(g.GetComponent<StoreItemButton>());
+
+                if (si.isPurchased == false)
+                {
+                    if (si.cost <= currentCoins)
+                    {
+                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
+                        g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
+                        g.GetComponent<Button>().interactable = true;
+
+
+                    }
+                    else
+                    {
+                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
+                        g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
+                        g.GetComponent<Button>().interactable = false;
+                    }
+                }
+                else
+                {
+                    g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(true);
+                    g.GetComponent<StoreItemButton>().isPurchased = true;
+                    g.GetComponent<Button>().interactable = true;
+                    if (si.isSelected)
+                    {
+                        g.GetComponent<Image>().color = Color.green;
+                    }
+                }
+            }          
         }
     }
 
@@ -251,10 +271,15 @@ public class PurchaseManager : MonoBehaviour
     private Save CreateSaveGameObject()
     {
         Save save = new Save();        
-        foreach (StoreItem targetGameObject in items)
+       
+        foreach (StoreItem targetGameObject in sweetItems)
         {
-            save.items.Add(targetGameObject);
-        }       
+            save.sweetItems.Add(targetGameObject);
+        }
+        foreach (StoreItem targetGameObject in characterItems)
+        {
+            save.characterItems.Add(targetGameObject);
+        }
         return save;
     }
     public void SaveData()
@@ -269,20 +294,28 @@ public class PurchaseManager : MonoBehaviour
         file.Close();
         Debug.Log("Game Saved");
     }
-
+    
     public bool LoadData()
     {
         // 1
+        //File.Delete(Application.persistentDataPath + "/gamesave.save");
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
-            items.Clear();
+           
+            sweetItems.Clear();
+            characterItems.Clear();
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();     
-            for (int i = 0; i < save.items.Count; i++)
+          
+            for (int i = 0; i < save.sweetItems.Count; i++)
             {
-                items.Add(save.items[i]);
+                sweetItems.Add(save.sweetItems[i]);
+            }
+            for (int i = 0; i < save.characterItems.Count; i++)
+            {
+                characterItems.Add(save.characterItems[i]);
             }
             return true;          
         }

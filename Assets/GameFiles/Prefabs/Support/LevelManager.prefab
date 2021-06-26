@@ -263,35 +263,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1d57c16e254455ebe8c24b7ed995af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
+  sweetItems:
   - itemType: 0
-    cost: 5000
+    cost: 300
     itemName: 
     id: 1
     isPurchased: 0
     isSelected: 0
   - itemType: 0
-    cost: 200
+    cost: 600
     itemName: 
     id: 2
     isPurchased: 0
     isSelected: 0
   - itemType: 0
-    cost: 220
+    cost: 900
     itemName: 
     id: 3
     isPurchased: 0
     isSelected: 0
+  characterItems:
   - itemType: 1
-    cost: 450
-    itemName: 
+    cost: 300
+    itemName: ogchef
     id: 4
     isPurchased: 0
     isSelected: 0
   - itemType: 1
-    cost: 300
-    itemName: 
+    cost: 500
+    itemName: fatchef
     id: 5
+    isPurchased: 0
+    isSelected: 0
+  - itemType: 1
+    cost: 700
+    itemName: tallchef
+    id: 6
     isPurchased: 0
     isSelected: 0
   itemButtons: []

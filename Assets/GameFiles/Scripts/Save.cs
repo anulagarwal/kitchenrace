@@ -5,5 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Save
 {
-    public List<StoreItem> items = new List<StoreItem>();            
+    public List<StoreItem> sweetItems = new List<StoreItem>();
+    public List<StoreItem> characterItems = new List<StoreItem>();
+
 }

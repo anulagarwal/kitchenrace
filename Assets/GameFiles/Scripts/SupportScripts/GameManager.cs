@@ -138,7 +138,15 @@ public class GameManager : MonoBehaviour
         Instantiate(awesomeText, pos, Quaternion.identity);
         SoundManager.Instance.PlaySound(SoundType.Collect);
     }
-  
+
+    public int GetSelectedCharacterIndex(int id)
+    {
+        return PlayerPrefs.GetInt("character", 0);
+    }
+    public int GetSelectedSweetIndex(int id)
+    {
+        return PlayerPrefs.GetInt("sweet", 0);
+    }
     #region Scene Handlers
 
     public int GetCurrentLevel()
