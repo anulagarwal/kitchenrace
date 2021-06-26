@@ -41,6 +41,12 @@ public class LevelUIManager : MonoBehaviour
     [SerializeField] private Image VibrateOn;
     [SerializeField] private Image VibrateOff;
 
+    [Header("Unlockable")]
+    [SerializeField] private GameObject unlockClaimButton;
+    [SerializeField] private Image unlockSprite;
+    [SerializeField] private Text unlockPercent;
+
+
 
     [Header("Progress Bar")]
     [SerializeField] List<GameObject> progressBars;
@@ -160,6 +166,34 @@ public class LevelUIManager : MonoBehaviour
         {
             progressBars[i].SetActive(true);
         }
+    }
+
+    public void UpdateUnlockableSprite(Image img)
+    {
+        
+    }
+
+    public void UpdateUnlockPercent(float value)
+    {
+        print(value);
+        if (value >= 100)
+        {
+            unlockPercent.text = "UNLOCKED!";
+            unlockClaimButton.GetComponent<Button>().interactable = true;
+
+            unlockSprite.fillAmount = 1;
+
+
+        }
+        else
+        {
+            unlockPercent.text = "" + value;
+            unlockSprite.fillAmount =  value / 100;
+            unlockClaimButton.GetComponent<Button>().interactable =false;
+
+        }
+
+
     }
 
     #endregion

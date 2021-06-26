@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float shiftSpeed;
     private int finalMultiplier;
 
+    int unlockable;
 
     #region MonoBehaviour Functions
     private void Awake()
@@ -53,7 +54,8 @@ public class GameManager : MonoBehaviour
         currentLevel = PlayerPrefs.GetInt("level", 1);
         globalCoins = PlayerPrefs.GetInt("coins", 0);
         LevelUIManager.Instance.UpdateCoinCount(globalCoins);
-        LevelUIManager.Instance.UpdateLevelText(currentLevel);        
+        LevelUIManager.Instance.UpdateLevelText(currentLevel);
+        unlockable = PlayerPrefs.GetInt("unlockable", 0);
     }
 
     public void Win()
@@ -64,8 +66,14 @@ public class GameManager : MonoBehaviour
         confetti.SetActive(true);
         LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);
         PlayerSingleton.Instance.ShiftStack(endStackPos, shiftSpeed);
+      
     }
 
+    public void UnlockCharacter(int id)
+    {
+        unlockable = 0;
+        PlayerPrefs.SetInt("unlockable", 0);
+    }
     public void EatRemainingStack()
     {       
         PlayerSingleton.Instance.characterSweetStackHandler.EatStack(pointsPerStack, eatSpeed);
@@ -78,6 +86,9 @@ public class GameManager : MonoBehaviour
    
     public void ShowWinUI()
     {
+        unlockable += 20;
+        PlayerPrefs.SetInt("unlockable", unlockable);
+        LevelUIManager.Instance.UpdateUnlockPercent(unlockable);
         LevelUIManager.Instance.UpdateScoreText(currentScore);
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);
         confetti.SetActive(false);

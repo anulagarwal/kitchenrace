@@ -136,11 +136,11 @@ public class PlayerMovementHandler : MonoBehaviour
         }
     }
 
-    public void JumpMechanism(bool value)
+    public void JumpMechanism(bool value, float jumpValue)
     {
         if (value)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityInfluence);
+            velocity.y = Mathf.Sqrt(jumpValue * -2 * gravityInfluence);
             //groundCheckTrans.local
         }
     }
