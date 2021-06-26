@@ -88,7 +88,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         {
             if (playerMovementHandler)
             {
-                playerMovementHandler.JumpMechanism(true);
+                playerMovementHandler.JumpMechanism(true, other.GetComponent<Jumper>().jumpForce);
                 playerMovementHandler.playerMovementType = PlayerMovementType.Jumping;
             }
         }
