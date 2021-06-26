@@ -21,19 +21,24 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private float gravityInfluence = -9.81f;
     [SerializeField] private Transform groundCheckTrans = null;
     [SerializeField] private LayerMask groundCheckLayerMask = 0;
+    [SerializeField] private float jumpHeight = 0f;
 
     private Vector3 movementDirection = Vector3.zero;
-    private Vector3 velocity = Vector3.zero;
+    internal Vector3 velocity = Vector3.zero;
     private VariableJoystick movementJS = null;
     internal CharacterAnimationHandler characterAnimationHandler = null;
     private bool isGrounded = false;
     internal int stage = 0;
+
+    private RaycastHit hit;
+    internal PlayerMovementType playerMovementType = PlayerMovementType.Running; 
     #endregion
 
     #region MonoBehaviour Functions
     private void Start()
     {
         movementJS = LevelUIManager.Instance.GetMovementJS;
+        playerMovementType = PlayerMovementType.Running;
         characterAnimationHandler = PlayerSingleton.Instance.GetCharacterAnimationHandler;
 
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
@@ -51,8 +56,10 @@ public class PlayerMovementHandler : MonoBehaviour
     {
         GravityMechanism();
 
+        print(playerMovementType);
+
         movementDirection = new Vector3(movementJS.Horizontal, 0, movementJS.Vertical).normalized;
-        if (movementDirection != Vector3.zero)
+        if (movementDirection != Vector3.zero && playerMovementType == PlayerMovementType.Running)
         {
             transform.rotation = Quaternion.LookRotation(movementDirection);
             characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
@@ -61,6 +68,10 @@ public class PlayerMovementHandler : MonoBehaviour
             {
                 characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Run);
             }
+        }
+        else if (playerMovementType == PlayerMovementType.Jumping)
+        {
+            characterController.Move(Vector3.forward * Time.deltaTime * moveSpeed);
         }
         else
         {
@@ -75,7 +86,8 @@ public class PlayerMovementHandler : MonoBehaviour
     #region Private Core Functions
     private void GravityMechanism()
     {
-        isGrounded = Physics.Raycast(groundCheckTrans.position, -groundCheckTrans.up, groundDistance, groundCheckLayerMask);
+        isGrounded = Physics.Raycast(groundCheckTrans.position, groundCheckTrans.up, groundDistance, groundCheckLayerMask);
+
 
         if (isGrounded && velocity.y < 0)
         {
@@ -121,6 +133,15 @@ public class PlayerMovementHandler : MonoBehaviour
                 characterSweetStackHandler.C_SweetsPacketHandler.EnableSweetsMeshRenderer();
                 return;
             }
+        }
+    }
+
+    public void JumpMechanism(bool value)
+    {
+        if (value)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityInfluence);
+            //groundCheckTrans.local
         }
     }
     #endregion

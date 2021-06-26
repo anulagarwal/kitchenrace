@@ -34,7 +34,9 @@ public enum Item
 
 public enum PlayerMovementType
 {
-    Stacking
+    Stacking,
+    Jumping,
+    Running
 };
 
 public enum StageNumber

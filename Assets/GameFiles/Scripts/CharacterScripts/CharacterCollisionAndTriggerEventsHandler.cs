@@ -26,7 +26,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             if (other.gameObject.GetComponent<SweetsHandler>().SweetCode == characterData.manipulationCode)
             {
                 other.gameObject.GetComponent<SweetsHandler>().GetCookieMeshRenderer.material.color = characterData.GetColorCode;
-            } 
+            }
 
             if (characterData.GetCharacterCode == CharacterCode.Player)
             {
@@ -34,9 +34,9 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 {
                     Vibration.Vibrate(30);
                 }
-               
-                    SoundManager.Instance.PlaySound(SoundType.Collect);
-                
+
+                SoundManager.Instance.PlaySound(SoundType.Collect);
+
             }
 
             if (characterData.GetCharacterCode != CharacterCode.Player && characterData.GetCharacterCode != CharacterCode.None)
@@ -64,7 +64,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                     {
                         stairHandler.ChangeStairColor(characterData.GetColorCode, characterData.GetCharacterCode);
                         characterSweetStackHandler.ReleaseSweet();
-                        if(characterData.GetCharacterCode == CharacterCode.Player)
+                        if (characterData.GetCharacterCode == CharacterCode.Player)
                         {
                             SoundManager.Instance.PlaySound(SoundType.Bridge);
                         }
@@ -82,6 +82,23 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             if (characterSweetStackHandler.GetSweetStackSize > 0)
             {
                 other.gameObject.transform.parent.GetComponent<StairHandler>().EnableBlocker(false);
+            }
+        }
+        else if (other.gameObject.tag == "JumpPad")
+        {
+            if (playerMovementHandler)
+            {
+                playerMovementHandler.JumpMechanism(true);
+                playerMovementHandler.playerMovementType = PlayerMovementType.Jumping;
+            }
+        }
+
+        if (other.gameObject.tag == "Ground")
+        {
+            if (playerMovementHandler)
+            {
+                playerMovementHandler.playerMovementType = PlayerMovementType.Running;
+                playerMovementHandler.velocity.y = -2f;
             }
         }
 
@@ -167,6 +184,15 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
 
         //    }
         //}
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground" && playerMovementHandler)
+        {
+            playerMovementHandler.playerMovementType = PlayerMovementType.Running;
+            playerMovementHandler.velocity.y = -2f;
+        }
     }
     #endregion
 }
