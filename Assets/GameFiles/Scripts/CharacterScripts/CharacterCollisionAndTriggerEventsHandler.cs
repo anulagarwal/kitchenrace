@@ -92,6 +92,16 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 playerMovementHandler.playerMovementType = PlayerMovementType.Jumping;
             }
         }
+        else if (other.gameObject.tag == "ElevatorPlot")
+        {
+            if (characterData.GetCharacterCode == CharacterCode.Player)
+            {
+                playerMovementHandler.ForceStop = true;
+                playerMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
+                other.gameObject.GetComponent<ElevatorTriggerEventsHandler>().elevatorMovementHandler.EnableElevatorMovementUp();
+                other.gameObject.GetComponent<ElevatorTriggerEventsHandler>().elevatorMovementHandler.ActivePlayerMovementHandler = playerMovementHandler;
+            }
+        }
 
         if (other.gameObject.tag == "Ground")
         {

@@ -31,7 +31,8 @@ public class PlayerMovementHandler : MonoBehaviour
     internal int stage = 0;
 
     private RaycastHit hit;
-    internal PlayerMovementType playerMovementType = PlayerMovementType.Running; 
+    internal PlayerMovementType playerMovementType = PlayerMovementType.Running;
+    internal bool ForceStop = false;
     #endregion
 
     #region MonoBehaviour Functions
@@ -56,28 +57,29 @@ public class PlayerMovementHandler : MonoBehaviour
     {
         GravityMechanism();
 
-        print(playerMovementType);
-
-        movementDirection = new Vector3(movementJS.Horizontal, 0, movementJS.Vertical).normalized;
-        if (movementDirection != Vector3.zero && playerMovementType == PlayerMovementType.Running)
+        if (!ForceStop)
         {
-            transform.rotation = Quaternion.LookRotation(movementDirection);
-            characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
-
-            if (!playerAnimator.GetBool("b_Run"))
+            movementDirection = new Vector3(movementJS.Horizontal, 0, movementJS.Vertical).normalized;
+            if (movementDirection != Vector3.zero && playerMovementType == PlayerMovementType.Running)
             {
-                characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Run);
+                transform.rotation = Quaternion.LookRotation(movementDirection);
+                characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
+
+                if (!playerAnimator.GetBool("b_Run"))
+                {
+                    characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Run);
+                }
             }
-        }
-        else if (playerMovementType == PlayerMovementType.Jumping)
-        {
-            characterController.Move(Vector3.forward * Time.deltaTime * moveSpeed);
-        }
-        else
-        {
-            if (playerAnimator.GetBool("b_Run"))
+            else if (playerMovementType == PlayerMovementType.Jumping)
             {
-                characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
+                characterController.Move(Vector3.forward * Time.deltaTime * moveSpeed);
+            }
+            else
+            {
+                if (playerAnimator.GetBool("b_Run"))
+                {
+                    characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
+                }
             }
         }
     }

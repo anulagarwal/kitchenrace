@@ -55,4 +55,10 @@ public enum SoundType
     UI,
     Victory,
     Bridge
-}
+};
+
+public enum ElevatorMovementDirection
+{
+    Up,
+    Down
+};

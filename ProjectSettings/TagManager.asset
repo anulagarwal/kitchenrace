@@ -12,6 +12,7 @@ TagManager:
   - BridgeTop
   - Ground
   - JumpPad
+  - ElevatorPlot
   layers:
   - Default
   - TransparentFX
