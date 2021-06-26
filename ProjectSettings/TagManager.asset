@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - BridgeTop
   - Ground
+  - JumpPad
   layers:
   - Default
   - TransparentFX
