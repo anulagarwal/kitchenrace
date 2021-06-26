@@ -21,9 +21,6 @@ public class PurchaseManager : MonoBehaviour
     [SerializeField] Transform characterGrid;
     [SerializeField] GameObject storeButton;
 
-
-
-
     #region MonoBehaviour Functions
     private void Awake()
     {
@@ -39,7 +36,15 @@ public class PurchaseManager : MonoBehaviour
     void Start()
     {
         currentCoins = PlayerPrefs.GetInt("coins", 0);
-        LoadData();
+        bool isLoaded = LoadData();
+        if (isLoaded)
+        {
+
+        }
+        else
+        {
+
+        }
         PopulateStore();
         RefreshStore();
 
@@ -158,12 +163,14 @@ public class PurchaseManager : MonoBehaviour
     }
 
     public void PopulateStore()
-    {
+    {        
         foreach(StoreItem si in items)
         {
             if(si.itemType == Item.Character)
             {
                 GameObject g = Instantiate(storeButton, characterGrid);
+                print(g.transform.parent);
+
                 g.GetComponent<StoreItemButton>().id = si.id;
                 g.GetComponent<StoreItemButton>().costText.text = si.cost +"";
                 g.GetComponent<StoreItemButton>().cost = si.cost;
@@ -263,7 +270,7 @@ public class PurchaseManager : MonoBehaviour
         Debug.Log("Game Saved");
     }
 
-    public void LoadData()
+    public bool LoadData()
     {
         // 1
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
@@ -276,12 +283,12 @@ public class PurchaseManager : MonoBehaviour
             for (int i = 0; i < save.items.Count; i++)
             {
                 items.Add(save.items[i]);
-            }             
-            Debug.Log("Game Loaded");           
+            }
+            return true;          
         }
         else
         {
-            Debug.Log("No game saved!");
+            return false;
         }
     }
     #endregion

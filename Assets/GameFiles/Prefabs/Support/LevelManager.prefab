@@ -264,9 +264,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 11400000, guid: ce6665524590e45d89d77c71dcbb3219, type: 2}
-  - {fileID: 11400000, guid: 45384cc5e2b9041ceb4af3b62e42e936, type: 2}
-  - {fileID: 11400000, guid: 8092a4dabf8ce4594877485640ff2eac, type: 2}
+  - itemType: 0
+    cost: 5000
+    itemName: 
+    id: 1
+    isPurchased: 0
+    isSelected: 0
+  - itemType: 0
+    cost: 200
+    itemName: 
+    id: 2
+    isPurchased: 0
+    isSelected: 0
+  - itemType: 0
+    cost: 220
+    itemName: 
+    id: 3
+    isPurchased: 0
+    isSelected: 0
+  - itemType: 1
+    cost: 450
+    itemName: 
+    id: 4
+    isPurchased: 0
+    isSelected: 0
+  - itemType: 1
+    cost: 300
+    itemName: 
+    id: 5
+    isPurchased: 0
+    isSelected: 0
   itemButtons: []
   currentCoins: 0
   buttonCost: {fileID: 0}
