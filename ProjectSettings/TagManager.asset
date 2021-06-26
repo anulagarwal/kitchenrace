@@ -13,6 +13,7 @@ TagManager:
   - Ground
   - JumpPad
   - ElevatorPlot
+  - NextStage
   layers:
   - Default
   - TransparentFX

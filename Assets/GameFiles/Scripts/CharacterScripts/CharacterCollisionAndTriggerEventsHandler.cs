@@ -122,7 +122,9 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                     enemyMovementHandler_2.NullifyTargetDestinationTransform();
                     enemyMovementHandler_2.aIMovementType = AIMovementType.ChangingStage;
                     enemyMovementHandler_2.targetLocationTransform = other.gameObject.GetComponent<BridgeTopHandler>().GetNextStageTransform;
-                    enemyMovementHandler_2.UpdateStage();
+                    //enemyMovementHandler_2.UpdateStage();
+                    enemyMovementHandler_2.SetSweetsPacketHandler(other.gameObject.GetComponent<BridgeTopHandler>().GetSweetsPacketManager);
+                    
                     other.gameObject.GetComponent<BoxCollider>().enabled = false;
                     enemyMovementHandler_2.enabled = true;
                 }
@@ -131,6 +133,14 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<BridgeTopHandler>().stageNumber > playerMovementHandler.stage)
                     playerMovementHandler.UpdateStage();
+            }
+        }
+
+        if (other.gameObject.tag == "NextStage" && characterData.GetCharacterCode != CharacterCode.Player)
+        {
+            if (other.gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler_3))
+            {
+                enemyMovementHandler_3.NewLocation();
             }
         }
 

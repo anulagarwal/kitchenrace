@@ -108,7 +108,7 @@ public class EnemyMovementHandler : MonoBehaviour
 
                     if (sweetCollectionCount <= 0)
                     {
-                        sweetCollectionCount = Random.Range(2, 5);
+                        sweetCollectionCount = Random.Range(5, 8);
                     }
                 }
             }
@@ -125,6 +125,10 @@ public class EnemyMovementHandler : MonoBehaviour
                 {
                     NewLocation();
                     aIMovementType = AIMovementType.Stacking;
+                    if (sweetCollectionCount <= 0)
+                    {
+                        sweetCollectionCount = Random.Range(5, 8);
+                    }
                     //characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Idle);
                 }
             }
@@ -151,7 +155,7 @@ public class EnemyMovementHandler : MonoBehaviour
         //}
     }
 
-    private void NewLocation()
+    internal void NewLocation()
     {
         if (sweetsPacketHandler.sweetObjs.Count > 0)
         {
@@ -194,6 +198,21 @@ public class EnemyMovementHandler : MonoBehaviour
             return;
         }
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
+        {
+            if (sh.GetCharacterCode == characterCode)
+            {
+                sweetsPacketHandler = sh;
+                sweetsPacketHandler.EnableSweetsMeshRenderer();
+                characterSweetStackHandler.C_SweetsPacketHandler = sh;
+                return;
+            }
+        }
+    }
+
+    //Testing
+    public void SetSweetsPacketHandler(SweetsPacketManager sweetsPacketManager)
+    {
+        foreach (SweetsPacketHandler sh in sweetsPacketManager.sweetsPacketHandlers)
         {
             if (sh.GetCharacterCode == characterCode)
             {

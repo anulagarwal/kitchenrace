@@ -10,9 +10,12 @@ public class BridgeTopHandler : MonoBehaviour
 
     [Header("Components Reference")]
     [SerializeField] private Transform nextStageTransform = null;
+    [SerializeField] private SweetsPacketManager sweetsPacketManager = null;
     #endregion
 
     #region Getter And Setter
     public Transform GetNextStageTransform { get => nextStageTransform; }
+
+    public SweetsPacketManager GetSweetsPacketManager { get => sweetsPacketManager; }
     #endregion
 }
