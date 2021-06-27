@@ -22,8 +22,9 @@ public class StoreItemButton : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if(GetComponent<Button>().interactable)
         PurchaseManager.Instance.PurchaseItem(id);
-        print(id);
+      
 //        throw new System.NotImplementedException();
     }
 }

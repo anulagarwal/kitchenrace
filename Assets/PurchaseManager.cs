@@ -179,13 +179,11 @@ public class PurchaseManager : MonoBehaviour
 
                 if (si.isPurchased == false)
                 {
-                    if (si.cost <= currentCoins)
+                    if (si.cost <= currentCoins && currentCoins - si.cost > 0)
                     {
                         g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
                         g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
                         g.GetComponent<Button>().interactable = true;
-
-
                     }
                     else
                     {
@@ -225,7 +223,7 @@ public class PurchaseManager : MonoBehaviour
                 itemButtons.Add(g.GetComponent<StoreItemButton>());
                 if (si.isPurchased == false)
                 {
-                    if (si.cost <= currentCoins)
+                    if (si.cost <= currentCoins && currentCoins - si.cost > 0)
                     {
                         g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
                         g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
@@ -259,7 +257,7 @@ public class PurchaseManager : MonoBehaviour
         {
             if (!sib.isPurchased)
             {
-                if (sib.cost <= currentCoins)
+                if (sib.cost <= currentCoins && currentCoins - sib.cost > 0)
                 {
                     //sib.availableBorder.SetActive(true);
                     sib.GetComponent<Button>().interactable = true;

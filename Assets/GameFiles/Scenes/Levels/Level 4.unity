@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.19141798, g: 0.59260935, b: 0.77133876, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10972,11 +10972,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5806481034371512091, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
   m_PrefabInstance: {fileID: 1078071644}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1078071647 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6829396756546737471, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
-  m_PrefabInstance: {fileID: 1078071644}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1101303089
 GameObject:
   m_ObjectHideFlags: 0
@@ -15764,7 +15759,7 @@ PrefabInstance:
     - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
       propertyPath: cookieGrid
       value: 
-      objectReference: {fileID: 1078071647}
+      objectReference: {fileID: 1632369767}
     - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
       propertyPath: characterGrid
       value: 
@@ -15951,6 +15946,11 @@ Transform:
   m_Father: {fileID: 238969952}
   m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1632369767 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1209188899, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+  m_PrefabInstance: {fileID: 1078071644}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1649148420
 PrefabInstance:
   m_ObjectHideFlags: 0
