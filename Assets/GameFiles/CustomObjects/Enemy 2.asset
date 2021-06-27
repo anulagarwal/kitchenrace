@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Enemy 2
   m_EditorClassIdentifier: 
   characterCode: 2
-  colorCode: {r: 0.5676557, g: 1, b: 0, a: 1}
+  colorCode: {r: 0, g: 0.16996336, b: 1, a: 1}

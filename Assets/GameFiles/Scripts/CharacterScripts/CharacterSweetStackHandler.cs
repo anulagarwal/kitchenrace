@@ -49,7 +49,7 @@ public class CharacterSweetStackHandler : MonoBehaviour
         {
             sweetStack[sweetStack.Count - 1].transform.position = sweetStack[sweetStack.Count - 1].GetComponent<SweetsHandler>().LocationTransform.position;
             sweetStack[sweetStack.Count - 1].transform.parent = C_SweetsPacketHandler.transform;
-            sweetStack[sweetStack.Count - 1].transform.rotation = Quaternion.identity;
+            sweetStack[sweetStack.Count - 1].transform.rotation = Quaternion.Euler(0,90,0);
             C_SweetsPacketHandler.sweetObjs.Add(sweetStack[sweetStack.Count - 1].transform.gameObject);
             sweetStack[sweetStack.Count - 1].GetComponent<BoxCollider>().enabled = true;
             sweetStack.RemoveAt(sweetStack.Count - 1);

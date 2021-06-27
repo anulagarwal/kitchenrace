@@ -33,6 +33,7 @@ public class PlayerMovementHandler : MonoBehaviour
     private RaycastHit hit;
     internal PlayerMovementType playerMovementType = PlayerMovementType.Running;
     internal bool ForceStop = false;
+    internal bool Building = false;
     #endregion
 
     #region MonoBehaviour Functions

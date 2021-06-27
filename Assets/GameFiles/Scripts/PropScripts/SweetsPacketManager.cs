@@ -16,10 +16,15 @@ public class SweetsPacketManager : MonoBehaviour
     #region MonoBehaviour Functions
     private void Awake()
     {
+       
+    }
+    #endregion
+
+    public void SpawnSweets()
+    {
         foreach (SweetsPacketHandler sph in sweetsPacketHandlers)
         {
             sph.SpawnSweets(sweetSpawnAmount);
         }
     }
-    #endregion
 }

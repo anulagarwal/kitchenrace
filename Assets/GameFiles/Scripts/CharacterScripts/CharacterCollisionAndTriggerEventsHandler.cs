@@ -43,11 +43,14 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             {
                 if (gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler_1))
                 {
-                    enemyMovementHandler_1.sweetCollectionCount -= 1;
-
-                    if (enemyMovementHandler_1.aIMovementType == AIMovementType.Stacking)
+                    if (enemyMovementHandler_1.enabled)
                     {
-                        enemyMovementHandler_1.ChangeDestination();
+                        enemyMovementHandler_1.sweetCollectionCount -= 1;
+
+                        if (enemyMovementHandler_1.aIMovementType == AIMovementType.Stacking)
+                        {
+                            enemyMovementHandler_1.ChangeDestination();
+                        }
                     }
                 }
             }
@@ -56,8 +59,11 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         {
             if (characterSweetStackHandler.GetSweetStackSize > 0)
             {
-                print(other.gameObject.tag);
+<<<<<<< HEAD
+                playerMovementHandler.Building = true;
 
+=======
+>>>>>>> 671808f90f826150ed614b4ae30e9edbbf9fbb75
                 if (other.gameObject.TryGetComponent<StairHandler>(out StairHandler stairHandler))
                 {
                     if (stairHandler.OwnerCode != characterData.GetCharacterCode)
@@ -146,23 +152,31 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
 
         if (other.gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler) && characterData.GetCharacterCode == CharacterCode.Player )
         {
-            if (enemyMovementHandler.characterSweetStackHandler.sweetStack.Count < characterSweetStackHandler.sweetStack.Count)
+            if (playerMovementHandler && !playerMovementHandler.Building)
             {
-                //enemyMovementHandler.ApplyStumbleForce((transform.position - other.gameObject.transform.position).normalized);
-                enemyMovementHandler.characterSweetStackHandler.EnablePhysics();
-                enemyMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
-                SoundManager.Instance.PlaySound(SoundType.Bump);
-
-            }
-            else
-            {
-
-                characterSweetStackHandler.EnablePhysics();
-                if (playerMovementHandler)
+                if (enemyMovementHandler.characterSweetStackHandler.sweetStack.Count < characterSweetStackHandler.sweetStack.Count)
                 {
-                    playerMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
+                    //enemyMovementHandler.ApplyStumbleForce((transform.position - other.gameObject.transform.position).normalized);
+                    enemyMovementHandler.characterSweetStackHandler.EnablePhysics();
+                    enemyMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
+                    SoundManager.Instance.PlaySound(SoundType.Bump);
+
+                }
+                else
+                {
+
+                    characterSweetStackHandler.EnablePhysics();
+                    if (playerMovementHandler)
+                    {
+                        playerMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
+                    }
                 }
             }
+        }
+
+        if (other.gameObject.tag == "BridgeStart" && playerMovementHandler)
+        {
+            playerMovementHandler.Building = false;
         }
 
         //if (other.gameObject.tag == "Enemy")

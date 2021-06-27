@@ -14,6 +14,7 @@ TagManager:
   - JumpPad
   - ElevatorPlot
   - NextStage
+  - BridgeStart
   layers:
   - Default
   - TransparentFX

@@ -187,7 +187,7 @@ public class LevelUIManager : MonoBehaviour
         }
         else
         {
-            unlockPercent.text = "" + value;
+            unlockPercent.text = "" + value+"%";
             unlockSprite.fillAmount =  value / 100;
             unlockClaimButton.GetComponent<Button>().interactable =false;
 

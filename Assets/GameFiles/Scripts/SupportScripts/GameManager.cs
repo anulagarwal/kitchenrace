@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.InGame);
         EnemyManager.Instance.EnableEnemies();
         PlayerCharacterManager.Instance.EnablePlayer();
+        SweetsManager.Instance.SpawnSweets();
     }
 
     public void AddScore(int value, Vector3 pos)

@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e77e0a5c8dc64d20b1b7105813c8e5e, type: 3}
-  m_Name: 300
+  m_Name: Sweet_300
   m_EditorClassIdentifier: 
-  itemType: 1
+  itemType: 0
   cost: 300
-  itemName: 
-  g: {fileID: 0}
-  img: {fileID: 21300000, guid: 03b62a6533b97bf428f151a5820f3ec4, type: 3}
-  id: 3
+  itemName: aa
+  id: 1
   isPurchased: 0
   isSelected: 0

@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b351018c118661149bd53e807973c3e6, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: 8e77e0a5c8dc64d20b1b7105813c8e5e, type: 3}
+  m_Name: Sweet_700
   m_EditorClassIdentifier: 
-  characterCode: 0
-  colorCode: {r: 0.02419076, g: 0.7735849, b: 0, a: 1}
+  itemType: 0
+  cost: 700
+  itemName: dd
+  id: 3
+  isPurchased: 0
+  isSelected: 0
