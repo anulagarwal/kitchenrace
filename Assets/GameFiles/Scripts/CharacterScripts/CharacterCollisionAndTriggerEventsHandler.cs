@@ -60,8 +60,11 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             if (characterSweetStackHandler.GetSweetStackSize > 0)
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 playerMovementHandler.Building = true;
 
+=======
+>>>>>>> 671808f90f826150ed614b4ae30e9edbbf9fbb75
 =======
 >>>>>>> 671808f90f826150ed614b4ae30e9edbbf9fbb75
                 if (other.gameObject.TryGetComponent<StairHandler>(out StairHandler stairHandler))
