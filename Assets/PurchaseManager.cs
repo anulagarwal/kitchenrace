@@ -38,8 +38,8 @@ public class PurchaseManager : MonoBehaviour
     void Start()
     {
         currentCoins = PlayerPrefs.GetInt("coins", 0);
-     //   bool isLoaded = LoadData();
-        File.Delete(Application.persistentDataPath + "/gamesave.save");
+        bool isLoaded = LoadData();
+     //   File.Delete(Application.persistentDataPath + "/gamesave.save");
         PopulateStore();
         RefreshStore();
 
@@ -88,9 +88,10 @@ public class PurchaseManager : MonoBehaviour
                 {
                     if (si.id == id)
                     {
-
                         si.isSelected = true;
-                        itemButtons.Find(x => x.id == id).GetComponent<Image>().color = Color.green;                       
+                        itemButtons.Find(x => x.id == id).GetComponent<Image>().color = Color.green;
+                        PlayerCharacterManager.Instance.EnablePlayerCharacter(characterItems.FindIndex(x=> x.id == id));
+
                     }
                     else
                     {
