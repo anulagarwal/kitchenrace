@@ -39,7 +39,7 @@ public class PurchaseManager : MonoBehaviour
     {
         currentCoins = PlayerPrefs.GetInt("coins", 0);
         bool isLoaded = LoadData();
-     //   File.Delete(Application.persistentDataPath + "/gamesave.save");
+      //  File.Delete(Application.persistentDataPath + "/gamesave.save");
         PopulateStore();
         RefreshStore();
 
@@ -66,7 +66,7 @@ public class PurchaseManager : MonoBehaviour
                     if (si.id == id)
                     {
                         si.isSelected = true;
-                        print("Green " + id);
+                        SweetsManager.Instance.SetSweetType(sweetItems.FindIndex(x => x.id == id));
                         itemButtons.Find(x=> x.id == id).GetComponent<Image>().color = Color.green;                     
                     }
                     else
@@ -201,6 +201,9 @@ public class PurchaseManager : MonoBehaviour
                     if (si.isSelected)
                     {
                         g.GetComponent<Image>().color = Color.green;
+
+                        SweetsManager.Instance.SetSweetType(sweetItems.FindIndex(x => x.id == si.id));
+
                     }
 
                 }
@@ -216,9 +219,7 @@ public class PurchaseManager : MonoBehaviour
                 g.GetComponent<StoreItemButton>().costText.text = si.cost + "";
                 g.GetComponent<StoreItemButton>().cost = si.cost;
                 g.GetComponent<StoreItemButton>().name = si.itemName;
-
                 itemButtons.Add(g.GetComponent<StoreItemButton>());
-
                 if (si.isPurchased == false)
                 {
                     if (si.cost <= currentCoins)
@@ -226,8 +227,6 @@ public class PurchaseManager : MonoBehaviour
                         g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
                         g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
                         g.GetComponent<Button>().interactable = true;
-
-
                     }
                     else
                     {
@@ -244,6 +243,7 @@ public class PurchaseManager : MonoBehaviour
                     if (si.isSelected)
                     {
                         g.GetComponent<Image>().color = Color.green;
+                        PlayerCharacterManager.Instance.EnablePlayerCharacter(characterItems.FindIndex(x => x.id == si.id));
                     }
                 }
             }          

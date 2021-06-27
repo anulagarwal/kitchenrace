@@ -21,7 +21,36 @@ public class SweetsPacketHandler : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             int index = Random.Range(0, sweetsPacketManager.spawnPoints.Count);
-            sweetObjs.Add(Instantiate(sweetPrefab, sweetsPacketManager.spawnPoints[index].position, Quaternion.identity));
+            switch (ownerCode)
+            {
+                case CharacterCode.Player:
+                    sweetObjs.Add(Instantiate(SweetsManager.Instance.GetSweetType().player, sweetsPacketManager.spawnPoints[index].position, Quaternion.Euler(0,90,0)));
+
+                    break;
+                case CharacterCode.Enemy_1:
+                    sweetObjs.Add(Instantiate(SweetsManager.Instance.GetSweetType().enemy1, sweetsPacketManager.spawnPoints[index].position, Quaternion.Euler(0, 90, 0)));
+
+                    break;
+
+                case CharacterCode.Enemy_2:
+                    sweetObjs.Add(Instantiate(SweetsManager.Instance.GetSweetType().enemy2, sweetsPacketManager.spawnPoints[index].position, Quaternion.Euler(0, 90, 0)));
+
+                    break;
+
+                case CharacterCode.Enemy_3:
+                    sweetObjs.Add(Instantiate(SweetsManager.Instance.GetSweetType().enemy3, sweetsPacketManager.spawnPoints[index].position, Quaternion.Euler(0, 90, 0)));
+
+                    break;
+
+                case CharacterCode.Enemy_4:
+                    sweetObjs.Add(Instantiate(SweetsManager.Instance.GetSweetType().enemy4, sweetsPacketManager.spawnPoints[index].position, Quaternion.Euler(0, 90, 0)));
+
+                    break;
+                case CharacterCode.Enemy_5:
+                    sweetObjs.Add(Instantiate(SweetsManager.Instance.GetSweetType().enemy5, sweetsPacketManager.spawnPoints[index].position, Quaternion.identity));
+
+                    break;
+            }
             spawnPoints.Add(sweetsPacketManager.spawnPoints[index]);
             sweetsPacketManager.spawnPoints.RemoveAt(index);
             sweetObjs[sweetObjs.Count - 1].GetComponent<SweetsHandler>().SweetCode = ownerCode;

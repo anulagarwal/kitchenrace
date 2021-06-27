@@ -43,11 +43,14 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             {
                 if (gameObject.TryGetComponent<EnemyMovementHandler>(out EnemyMovementHandler enemyMovementHandler_1))
                 {
-                    enemyMovementHandler_1.sweetCollectionCount -= 1;
-
-                    if (enemyMovementHandler_1.aIMovementType == AIMovementType.Stacking)
+                    if (enemyMovementHandler_1.enabled)
                     {
-                        enemyMovementHandler_1.ChangeDestination();
+                        enemyMovementHandler_1.sweetCollectionCount -= 1;
+
+                        if (enemyMovementHandler_1.aIMovementType == AIMovementType.Stacking)
+                        {
+                            enemyMovementHandler_1.ChangeDestination();
+                        }
                     }
                 }
             }
@@ -56,8 +59,6 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
         {
             if (characterSweetStackHandler.GetSweetStackSize > 0)
             {
-                print(other.gameObject.tag);
-
                 if (other.gameObject.TryGetComponent<StairHandler>(out StairHandler stairHandler))
                 {
                     if (stairHandler.OwnerCode != characterData.GetCharacterCode)

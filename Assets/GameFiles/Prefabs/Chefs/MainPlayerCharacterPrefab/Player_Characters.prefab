@@ -91,6 +91,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1520050460086347425}
     - target: {fileID: 3658793562133298802, guid: cf1939f2d1c9e4dbbae1988247b2d5a1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658793562133298802, guid: cf1939f2d1c9e4dbbae1988247b2d5a1, type: 3}
       propertyPath: jumpHeight
       value: 32
       objectReference: {fileID: 0}
@@ -220,6 +224,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1239105119290871005}
     - target: {fileID: 4197367022558708279, guid: 45cbff9104caa49cd8092d014ecb2421, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197367022558708279, guid: 45cbff9104caa49cd8092d014ecb2421, type: 3}
       propertyPath: jumpHeight
       value: 32
       objectReference: {fileID: 0}
@@ -324,6 +332,10 @@ PrefabInstance:
       propertyPath: label
       value: 
       objectReference: {fileID: 9032088455915348799}
+    - target: {fileID: 2456120418916985118, guid: 8836ef5c533f3436681f14f99806d328, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2456120418916985118, guid: 8836ef5c533f3436681f14f99806d328, type: 3}
       propertyPath: jumpHeight
       value: 32
