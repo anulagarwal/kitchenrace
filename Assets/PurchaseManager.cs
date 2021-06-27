@@ -14,6 +14,7 @@ public class PurchaseManager : MonoBehaviour
     public List<StoreItem> characterItems;
 
     public List<StoreItemButton> itemButtons;
+    public List<IconItemID> icons;
     public int currentCoins;
 
     [Header("UI Items")]
@@ -38,8 +39,8 @@ public class PurchaseManager : MonoBehaviour
     void Start()
     {
         currentCoins = PlayerPrefs.GetInt("coins", 0);
-        bool isLoaded = LoadData();
-      //  File.Delete(Application.persistentDataPath + "/gamesave.save");
+        //bool isLoaded = LoadData();
+        File.Delete(Application.persistentDataPath + "/gamesave.save");
         PopulateStore();
         RefreshStore();
 
@@ -173,7 +174,7 @@ public class PurchaseManager : MonoBehaviour
                 g.GetComponent<StoreItemButton>().costText.text = si.cost + "";
                 g.GetComponent<StoreItemButton>().cost = si.cost;
                 g.GetComponent<StoreItemButton>().name = si.itemName;
-
+                g.GetComponent<Image>().sprite = icons.Find(x => x.id == si.id).icon;
                 itemButtons.Add(g.GetComponent<StoreItemButton>());
 
                 if (si.isPurchased == false)
@@ -219,6 +220,8 @@ public class PurchaseManager : MonoBehaviour
                 g.GetComponent<StoreItemButton>().costText.text = si.cost + "";
                 g.GetComponent<StoreItemButton>().cost = si.cost;
                 g.GetComponent<StoreItemButton>().name = si.itemName;
+                g.GetComponent<Image>().sprite = icons.Find(x => x.id == si.id).icon;
+
                 itemButtons.Add(g.GetComponent<StoreItemButton>());
                 if (si.isPurchased == false)
                 {

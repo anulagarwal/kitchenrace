@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 [System.Serializable]
 public class StoreItem 
 {
@@ -12,5 +11,4 @@ public class StoreItem
     public int id;
     public bool isPurchased;
     public bool isSelected;
-
 }

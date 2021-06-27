@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d4631e3387840798f2d49025ea1950, type: 3}
+  m_Name: Sweet_4
+  m_EditorClassIdentifier: 
+  enemy1: {fileID: 5582974825837769551, guid: d1a5c48d221db43ecaccbdf186583f80, type: 3}
+  enemy2: {fileID: 2711987319085057276, guid: b332b6727d75a4e8398dfef12460b5d2, type: 3}
+  enemy3: {fileID: 7895221772697579786, guid: 1aa11b350fc8e4268a3539f894f194e3, type: 3}
+  enemy4: {fileID: 4768908728231120866, guid: f9995014f010f4428aaa1998669b4e7a, type: 3}
+  enemy5: {fileID: 1946277806372189901, guid: e632c7d40611d4662a98ddc6c3f47e17, type: 3}
+  player: {fileID: 9137466509646691375, guid: e93cc8405f61e425f9b861986bd2b548, type: 3}
