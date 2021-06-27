@@ -155,8 +155,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             if (playerMovementHandler && !playerMovementHandler.Building)
             {
                 if (enemyMovementHandler.characterSweetStackHandler.sweetStack.Count < characterSweetStackHandler.sweetStack.Count)
-                {
-                    //enemyMovementHandler.ApplyStumbleForce((transform.position - other.gameObject.transform.position).normalized);
+                {      
                     enemyMovementHandler.characterSweetStackHandler.EnablePhysics();
                     enemyMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
                     SoundManager.Instance.PlaySound(SoundType.Bump);

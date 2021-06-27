@@ -15406,6 +15406,9 @@ MonoBehaviour:
   sweetTypes:
   - {fileID: 11400000, guid: 07ce318d351814f93baea7d93ca0f15a, type: 2}
   - {fileID: 11400000, guid: 4e121890b90de49ecb9c42a2658dfa9d, type: 2}
+  - {fileID: 11400000, guid: 3f39e718d89d841b79bccd36b97fc6de, type: 2}
+  - {fileID: 11400000, guid: 7305fe55b78d5412d9d90e11ca707f90, type: 2}
+  - {fileID: 11400000, guid: e6f3647f9ebd941c9ae0cee1e4852b0a, type: 2}
   currentSweetType: 0
   sweetsPacketManagers:
   - {fileID: 435546863}

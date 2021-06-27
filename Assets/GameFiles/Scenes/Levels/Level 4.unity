@@ -3821,7 +3821,10 @@ MonoBehaviour:
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
+    ModeOverride: 0
     LensShift: {x: 0, y: 0}
+    GateFit: 0
+    m_SensorSize: {x: 0.5625, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -8072,7 +8075,10 @@ MonoBehaviour:
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
+    ModeOverride: 0
     LensShift: {x: 0, y: 0}
+    GateFit: 0
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10950,6 +10956,27 @@ PrefabInstance:
       objectReference: {fileID: 584003907}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+--- !u!114 &1078071645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6829396756546737472, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+  m_PrefabInstance: {fileID: 1078071644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &1078071646 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5806481034371512091, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+  m_PrefabInstance: {fileID: 1078071644}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1078071647 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6829396756546737471, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+  m_PrefabInstance: {fileID: 1078071644}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1101303089
 GameObject:
   m_ObjectHideFlags: 0
@@ -15200,6 +15227,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e40f03aff143eb42959e4fab6e3a9d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sweetTypes:
+  - {fileID: 11400000, guid: 07ce318d351814f93baea7d93ca0f15a, type: 2}
+  - {fileID: 11400000, guid: 4e121890b90de49ecb9c42a2658dfa9d, type: 2}
+  - {fileID: 11400000, guid: 3f39e718d89d841b79bccd36b97fc6de, type: 2}
+  - {fileID: 11400000, guid: 7305fe55b78d5412d9d90e11ca707f90, type: 2}
+  - {fileID: 11400000, guid: e6f3647f9ebd941c9ae0cee1e4852b0a, type: 2}
+  currentSweetType: 0
   sweetsPacketManagers:
   - {fileID: 435546863}
   - {fileID: 267102276}
@@ -15727,6 +15761,18 @@ PrefabInstance:
       propertyPath: enemies.Array.data[2]
       value: 
       objectReference: {fileID: 1115967147}
+    - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
+      propertyPath: cookieGrid
+      value: 
+      objectReference: {fileID: 1078071647}
+    - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
+      propertyPath: characterGrid
+      value: 
+      objectReference: {fileID: 1078071646}
+    - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
+      propertyPath: purchaseButton
+      value: 
+      objectReference: {fileID: 1078071645}
     - target: {fileID: 2536839777262078214, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
       propertyPath: stageHandlers.Array.data[0]
       value: 
@@ -19068,7 +19114,10 @@ MonoBehaviour:
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
+    ModeOverride: 0
     LensShift: {x: 0, y: 0}
+    GateFit: 0
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

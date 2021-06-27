@@ -4862,6 +4862,11 @@ Transform:
   m_Father: {fileID: 321222965}
   m_RootOrder: 108
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &395175483 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1209188899, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+  m_PrefabInstance: {fileID: 1078071644}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &399777095
 GameObject:
   m_ObjectHideFlags: 0
@@ -13561,6 +13566,17 @@ Transform:
   m_Father: {fileID: 2116454138}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1222935728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6829396756546737472, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+  m_PrefabInstance: {fileID: 1078071644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1225727235
 GameObject:
   m_ObjectHideFlags: 0
@@ -16519,6 +16535,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5169868194b8f945bed116525583f16, type: 3}
+--- !u!224 &1512636302 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5806481034371512091, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+  m_PrefabInstance: {fileID: 1078071644}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1514237014
 GameObject:
   m_ObjectHideFlags: 0
@@ -17332,6 +17353,9 @@ MonoBehaviour:
   sweetTypes:
   - {fileID: 11400000, guid: 07ce318d351814f93baea7d93ca0f15a, type: 2}
   - {fileID: 11400000, guid: 4e121890b90de49ecb9c42a2658dfa9d, type: 2}
+  - {fileID: 11400000, guid: 3f39e718d89d841b79bccd36b97fc6de, type: 2}
+  - {fileID: 11400000, guid: 7305fe55b78d5412d9d90e11ca707f90, type: 2}
+  - {fileID: 11400000, guid: e6f3647f9ebd941c9ae0cee1e4852b0a, type: 2}
   currentSweetType: 0
   sweetsPacketManagers:
   - {fileID: 435546863}
@@ -17950,6 +17974,18 @@ PrefabInstance:
       propertyPath: enemies.Array.data[2]
       value: 
       objectReference: {fileID: 1115967147}
+    - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
+      propertyPath: cookieGrid
+      value: 
+      objectReference: {fileID: 395175483}
+    - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
+      propertyPath: characterGrid
+      value: 
+      objectReference: {fileID: 1512636302}
+    - target: {fileID: 1607481109, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
+      propertyPath: purchaseButton
+      value: 
+      objectReference: {fileID: 1222935728}
     - target: {fileID: 2536839777262078214, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
       propertyPath: stageHandlers.Array.data[0]
       value: 
