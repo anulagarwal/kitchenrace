@@ -76,11 +76,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 919132149622301386, guid: cf1939f2d1c9e4dbbae1988247b2d5a1, type: 3}
       propertyPath: m_Size.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149622301386, guid: cf1939f2d1c9e4dbbae1988247b2d5a1, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3658793562133298703, guid: cf1939f2d1c9e4dbbae1988247b2d5a1, type: 3}
       propertyPath: tray
@@ -321,8 +321,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1239105117923049016}
     m_Modifications:
     - target: {fileID: 2456120418916985105, guid: 8836ef5c533f3436681f14f99806d328, type: 3}
+      propertyPath: m_Size.x
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456120418916985105, guid: 8836ef5c533f3436681f14f99806d328, type: 3}
+      propertyPath: m_Size.z
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456120418916985105, guid: 8836ef5c533f3436681f14f99806d328, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2456120418916985117, guid: 8836ef5c533f3436681f14f99806d328, type: 3}
       propertyPath: tray

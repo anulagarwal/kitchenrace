@@ -39,8 +39,8 @@ public class PurchaseManager : MonoBehaviour
     void Start()
     {
         currentCoins = PlayerPrefs.GetInt("coins", 0);
-        //bool isLoaded = LoadData();
-        File.Delete(Application.persistentDataPath + "/gamesave.save");
+        bool isLoaded = LoadData();
+        //File.Delete(Application.persistentDataPath + "/gamesave.save");
         PopulateStore();
         RefreshStore();
 
@@ -67,13 +67,17 @@ public class PurchaseManager : MonoBehaviour
                     if (si.id == id)
                     {
                         si.isSelected = true;
-                        SweetsManager.Instance.SetSweetType(sweetItems.FindIndex(x => x.id == id));
-                        itemButtons.Find(x=> x.id == id).GetComponent<Image>().color = Color.green;                     
+                        SweetsManager.Instance.SetSweetType(sweetItems.FindIndex(x => x.id == si.id));                    
+                        itemButtons.Find(x => x.id == si.id).selectedBorder.SetActive(true);
+                    //    itemButtons.Find(x => x.id == si.id).availableBorder.SetActive(false);
+                   //     itemButtons.Find(x => x.id == si.id).purchasedBorder.SetActive(false);
                     }
                     else
                     {
                         si.isSelected = false;
-                        itemButtons.Find(x => x.id == id).GetComponent<Image>().color = Color.white;
+                        itemButtons.Find(x => x.id == si.id).selectedBorder.SetActive(false);
+                   //     itemButtons.Find(x => x.id == si.id).availableBorder.SetActive(false);
+                   //     itemButtons.Find(x => x.id == si.id).purchasedBorder.SetActive(false);
 
                     }
                 }
@@ -90,14 +94,22 @@ public class PurchaseManager : MonoBehaviour
                     if (si.id == id)
                     {
                         si.isSelected = true;
-                        itemButtons.Find(x => x.id == id).GetComponent<Image>().color = Color.green;
+                        
+                        itemButtons.Find(x => x.id == si.id).selectedBorder.SetActive(true);
+                  //      itemButtons.Find(x => x.id == si.id).availableBorder.SetActive(false);
+                  //      itemButtons.Find(x => x.id == si.id).purchasedBorder.SetActive(false);
+
+
                         PlayerCharacterManager.Instance.EnablePlayerCharacter(characterItems.FindIndex(x=> x.id == id));
 
                     }
                     else
                     {
                         si.isSelected = false;
-                        itemButtons.Find(x => x.id == id).GetComponent<Image>().color = Color.white;
+                        itemButtons.Find(x => x.id == si.id).selectedBorder.SetActive(false);
+                //        itemButtons.Find(x => x.id == si.id).availableBorder.SetActive(false);
+                //        itemButtons.Find(x => x.id == si.id).purchasedBorder.SetActive(false);
+
                     }
                 }
                
@@ -183,12 +195,16 @@ public class PurchaseManager : MonoBehaviour
                     {
                         g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
                         g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
+                        g.GetComponent<StoreItemButton>().selectedBorder.SetActive(false);
+
                         g.GetComponent<Button>().interactable = true;
                     }
                     else
                     {
-                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
+                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(false);
                         g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
+                        g.GetComponent<StoreItemButton>().selectedBorder.SetActive(false);
+
                         g.GetComponent<Button>().interactable = false;
                     }
                 }
@@ -197,12 +213,16 @@ public class PurchaseManager : MonoBehaviour
                     g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(true);
                     g.GetComponent<Button>().interactable = true;
                     g.GetComponent<StoreItemButton>().isPurchased = true;
+                    g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(true);
+                    g.GetComponent<StoreItemButton>().availableBorder.SetActive(false);
+                    g.GetComponent<StoreItemButton>().selectedBorder.SetActive(false);
+
                     if (si.isSelected)
                     {
-                        g.GetComponent<Image>().color = Color.green;
-
+                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(false);
+                        g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
+                        g.GetComponent<StoreItemButton>().selectedBorder.SetActive(true);
                         SweetsManager.Instance.SetSweetType(sweetItems.FindIndex(x => x.id == si.id));
-
                     }
 
                 }
@@ -227,12 +247,16 @@ public class PurchaseManager : MonoBehaviour
                     {
                         g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
                         g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
+                        g.GetComponent<StoreItemButton>().selectedBorder.SetActive(false);
+
                         g.GetComponent<Button>().interactable = true;
                     }
                     else
                     {
-                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(true);
+                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(false);
                         g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
+                        g.GetComponent<StoreItemButton>().selectedBorder.SetActive(false);
+
                         g.GetComponent<Button>().interactable = false;
                     }
                 }
@@ -240,10 +264,16 @@ public class PurchaseManager : MonoBehaviour
                 {
                     g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(true);
                     g.GetComponent<StoreItemButton>().isPurchased = true;
+                    g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(true);
+                    g.GetComponent<StoreItemButton>().availableBorder.SetActive(false);
+                    g.GetComponent<StoreItemButton>().selectedBorder.SetActive(false);
+
                     g.GetComponent<Button>().interactable = true;
                     if (si.isSelected)
                     {
-                        g.GetComponent<Image>().color = Color.green;
+                        g.GetComponent<StoreItemButton>().availableBorder.SetActive(false);
+                        g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
+                        g.GetComponent<StoreItemButton>().selectedBorder.SetActive(true);
                         PlayerCharacterManager.Instance.EnablePlayerCharacter(characterItems.FindIndex(x => x.id == si.id));
                     }
                 }
@@ -261,10 +291,16 @@ public class PurchaseManager : MonoBehaviour
                 {
                     //sib.availableBorder.SetActive(true);
                     sib.GetComponent<Button>().interactable = true;
+                    sib.availableBorder.SetActive(true);
+                    sib.purchasedBorder.SetActive(false);
+                    sib.selectedBorder.SetActive(false);
                 }
                 else
                 {
                     sib.GetComponent<Button>().interactable = false;
+                    sib.availableBorder.SetActive(false);
+                    sib.purchasedBorder.SetActive(false);
+                    sib.selectedBorder.SetActive(false);
                 }
             }
         }

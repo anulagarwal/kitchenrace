@@ -6,6 +6,8 @@ public class StoreItemButton : MonoBehaviour,IPointerClickHandler
 {
     public GameObject availableBorder;
     public GameObject purchasedBorder;
+    public GameObject selectedBorder;
+
     public Text costText;
     public Text names;
 
