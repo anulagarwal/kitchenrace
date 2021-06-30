@@ -32,7 +32,8 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             {
                 if (SettingsManager.Instance.isVibrateOn)
                 {
-                    Vibration.Vibrate(30);
+                    //Vibration.Vibrate(30);
+                    GameManager.Instance.Vibrate();
                 }
 
                 SoundManager.Instance.PlaySound(SoundType.Collect);

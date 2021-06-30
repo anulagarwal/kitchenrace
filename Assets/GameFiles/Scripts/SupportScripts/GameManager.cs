@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using MoreMountains.NiceVibrations;
 
 public class GameManager : MonoBehaviour
 {
@@ -208,6 +208,12 @@ public class GameManager : MonoBehaviour
     private int GetSceneNumber(int number)
     {
         return (int)Mathf.Ceil(number / 3f);        
+    }
+
+    public void Vibrate()
+    {
+      //  MMVibrationManager.Vibrate();
+        MMVibrationManager.Haptic(HapticTypes.SoftImpact);
     }
 
     #endregion
