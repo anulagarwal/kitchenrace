@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Victory
   m_EditorClassIdentifier: 
   type: 3
-  clip: {fileID: 8300000, guid: 0f2e69bd15ae74b8aadc8e9611e21154, type: 3}
+  clip: {fileID: 8300000, guid: 47016009185a94322894518573b458ff, type: 3}

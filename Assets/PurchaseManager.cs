@@ -220,7 +220,7 @@ public class PurchaseManager : MonoBehaviour
                     if (si.isSelected)
                     {
                         g.GetComponent<StoreItemButton>().availableBorder.SetActive(false);
-                        g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
+                        g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(true);
                         g.GetComponent<StoreItemButton>().selectedBorder.SetActive(true);
                         SweetsManager.Instance.SetSweetType(sweetItems.FindIndex(x => x.id == si.id));
                     }
@@ -272,7 +272,7 @@ public class PurchaseManager : MonoBehaviour
                     if (si.isSelected)
                     {
                         g.GetComponent<StoreItemButton>().availableBorder.SetActive(false);
-                        g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(false);
+                        g.GetComponent<StoreItemButton>().purchasedBorder.SetActive(true);
                         g.GetComponent<StoreItemButton>().selectedBorder.SetActive(true);
                         PlayerCharacterManager.Instance.EnablePlayerCharacter(characterItems.FindIndex(x => x.id == si.id));
                     }
@@ -303,6 +303,7 @@ public class PurchaseManager : MonoBehaviour
                     sib.selectedBorder.SetActive(false);
                 }
             }
+         
         }
     }
 

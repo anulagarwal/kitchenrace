@@ -33,6 +33,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float eatSpeed;
     [SerializeField] private int pointsPerStack;
     [SerializeField] private float shiftSpeed;
+    [SerializeField] private float unlockCounterSpeed;
+
+    private float unlockStartTime;
+    private bool isUnlocking;
+    private int unlockCounter=0;
     private int finalMultiplier;
 
     int unlockable;
@@ -45,6 +50,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
+        AppCentral.TrackInstall();
     }
     #endregion
 
@@ -58,6 +64,28 @@ public class GameManager : MonoBehaviour
         unlockable = PlayerPrefs.GetInt("unlockable", 0);
     }
 
+    private void Update()
+    {
+        if(isUnlocking){
+            if (unlockStartTime + unlockCounterSpeed <= Time.time)
+            {
+                if (unlockCounter == 20)
+                {
+                    unlockable += unlockCounter;
+                    LevelUIManager.Instance.UpdateUnlockPercent(unlockable);
+                    PlayerPrefs.SetInt("unlockable", unlockable);
+                 
+                    isUnlocking = false;
+                }
+                else
+                {
+                    
+                    LevelUIManager.Instance.UpdateUnlockPercent(unlockable + unlockCounter);                 
+                    unlockCounter++;
+                }
+            }
+        }
+    }
     public void Win()
     {                
         isGameOn = false;       
@@ -66,7 +94,7 @@ public class GameManager : MonoBehaviour
         confetti.SetActive(true);
         LevelUIManager.Instance.UpdateTimerText(endTimer - startTimer);
         PlayerSingleton.Instance.ShiftStack(endStackPos, shiftSpeed);
-      
+        LevelUIManager.Instance.UpdateUnlockPercent(unlockable );
     }
 
     public void UnlockCharacter(int id)
@@ -86,9 +114,9 @@ public class GameManager : MonoBehaviour
    
     public void ShowWinUI()
     {
-        unlockable += 20;
-        PlayerPrefs.SetInt("unlockable", unlockable);
-        LevelUIManager.Instance.UpdateUnlockPercent(unlockable);
+        isUnlocking = true;
+        unlockStartTime = Time.time;
+        unlockCounter = 0;
         LevelUIManager.Instance.UpdateScoreText(currentScore);
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);
         confetti.SetActive(false);

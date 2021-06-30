@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Collect
   m_EditorClassIdentifier: 
   type: 0
-  clip: {fileID: 8300000, guid: ab361a24cb5bf408fb198d9369e15a53, type: 3}
+  clip: {fileID: 8300000, guid: 7dde7dd660018454581d8dc6f26d8d67, type: 3}
