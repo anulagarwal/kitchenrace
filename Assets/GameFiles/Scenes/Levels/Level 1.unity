@@ -5659,6 +5659,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 62.796
       objectReference: {fileID: 0}
+    - target: {fileID: 6683441717073820786, guid: 54186071d5dcd354487838c368807064, type: 3}
+      propertyPath: sweetsPacketManager
+      value: 
+      objectReference: {fileID: 267102276}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54186071d5dcd354487838c368807064, type: 3}
 --- !u!4 &569170570 stripped
@@ -7031,6 +7035,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 62.796
       objectReference: {fileID: 0}
+    - target: {fileID: 6683441717073820786, guid: 54186071d5dcd354487838c368807064, type: 3}
+      propertyPath: sweetsPacketManager
+      value: 
+      objectReference: {fileID: 267102276}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54186071d5dcd354487838c368807064, type: 3}
 --- !u!4 &742371727 stripped
@@ -12250,6 +12258,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 62.796
       objectReference: {fileID: 0}
+    - target: {fileID: 6683441717073820786, guid: 54186071d5dcd354487838c368807064, type: 3}
+      propertyPath: sweetsPacketManager
+      value: 
+      objectReference: {fileID: 267102276}
     - target: {fileID: 6860048122494497926, guid: 54186071d5dcd354487838c368807064, type: 3}
       propertyPath: m_Size.y
       value: 0.49540988
@@ -14146,6 +14158,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 62.796
       objectReference: {fileID: 0}
+    - target: {fileID: 6683441717073820786, guid: 54186071d5dcd354487838c368807064, type: 3}
+      propertyPath: sweetsPacketManager
+      value: 
+      objectReference: {fileID: 267102276}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54186071d5dcd354487838c368807064, type: 3}
 --- !u!4 &1517586184 stripped
@@ -15125,10 +15141,6 @@ PrefabInstance:
       propertyPath: endStackPos
       value: 
       objectReference: {fileID: 1702202284}
-    - target: {fileID: 584003907, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
-      propertyPath: unlockCounterSpeed
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 584003910, guid: b8d0b38f189dd4c42b5be254e3f8ebff, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 

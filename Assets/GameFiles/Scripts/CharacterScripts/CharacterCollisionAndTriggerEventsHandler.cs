@@ -138,7 +138,9 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             else if (gameObject.TryGetComponent<PlayerMovementHandler>(out PlayerMovementHandler playerMovementHandler))
             {
                 if (other.gameObject.GetComponent<BridgeTopHandler>().stageNumber > playerMovementHandler.stage)
+                {
                     playerMovementHandler.UpdateStage();
+                }
             }
         }
 

@@ -48,6 +48,7 @@ public class SettingsManager : MonoBehaviour
     public void EnableSound()
     {
         isSoundOn = true;
+        SoundManager.Instance.PlaySound(SoundType.UI);
         PlayerPrefs.SetInt("sound", 1);
     }
 

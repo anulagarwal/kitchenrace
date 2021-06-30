@@ -80,7 +80,7 @@ public class EnemyMovementHandler : MonoBehaviour
 
                 if (sweetCollectionCount <= 0 || characterSweetStackHandler.C_SweetsPacketHandler.sweetObjs.Count <= 0)
                 {
-                    targetLocationTransform = LevelManager.Instance.GetTargetBridge(stage);
+                    targetLocationTransform = LevelManager.Instance.GetTargetBridge(stage, characterCode);
                     aIMovementType = AIMovementType.Building;
                 }
             }
@@ -197,6 +197,7 @@ public class EnemyMovementHandler : MonoBehaviour
             Win();
             return;
         }
+        print(stage);
         foreach (SweetsPacketHandler sh in sweetsPacketManager.sweetsPacketHandlers)
         {
             if (sh.GetCharacterCode == characterCode)

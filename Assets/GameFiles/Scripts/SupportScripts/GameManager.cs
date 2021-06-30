@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel()
     {
+        SoundManager.Instance.PlaySound(SoundType.UI);
         isGameOn = true;
         startTimer = Time.time;
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.InGame);

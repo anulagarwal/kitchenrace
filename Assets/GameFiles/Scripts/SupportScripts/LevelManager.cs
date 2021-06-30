@@ -23,10 +23,31 @@ public class LevelManager : MonoBehaviour
     #endregion
 
     #region Public Core Functions
-    public Transform GetTargetBridge(int index)
+    public Transform GetTargetBridge(int index, CharacterCode cc)
     {
+        int c = 0;
         //return stageHandlers[index].bridgeTransforms[Random.Range(0, stageHandlers[index].bridgeTransforms.Count)];
-         return stageHandlers[index].bridgeTransforms[Random.Range(0, stageHandlers[index].bridgeTransforms.Count)];
+        switch (cc)
+        {
+            case CharacterCode.Enemy_1:
+                c = 0;
+                break;
+            case CharacterCode.Enemy_2:
+                c = 1;
+                break;
+            case CharacterCode.Enemy_3:
+                c = 2;
+                break;
+            case CharacterCode.Enemy_4:
+                c = 3;
+                break;
+
+        }
+        if(c >= stageHandlers[index].bridgeTransforms.Count)
+        {
+            c = Random.Range(0, stageHandlers[index].bridgeTransforms.Count);
+        }
+         return stageHandlers[index].bridgeTransforms[c];
 
         //for testing
        // return stageHandlers[index].bridgeTransforms[0];
