@@ -16,6 +16,8 @@ public class LevelUIManager : MonoBehaviour
     [SerializeField] private GameObject gameWinUIObj = null;
     [SerializeField] private GameObject gameLoseUIObj = null;
     [SerializeField] private GameObject storeUIObj = null;
+    [SerializeField] private GameObject paywallObj = null;
+
 
     [Header("Store UI Panel Setup")]
     [SerializeField] private Button LeftBtn = null;
@@ -124,6 +126,11 @@ public class LevelUIManager : MonoBehaviour
     public int GetMultiplierValue()
     {
         return GetComponent<MultiplierWheel>().GetCurrentMultiplier();
+    }
+
+    public void ShowPaywall()
+    {
+        paywallObj.SetActive(true);
     }
     public void UpdateState(State state)
     {
