@@ -15,6 +15,7 @@ public class PlayerMovementHandler : MonoBehaviour
     [SerializeField] private Animator playerAnimator = null;
     [SerializeField] private CharacterController characterController = null;
     [SerializeField] internal CharacterSweetStackHandler characterSweetStackHandler = null;
+    [SerializeField] internal GameObject ragdollEnablerObj = null;
 
     [Header("Gravity Setup")]
     [SerializeField] private float groundDistance = 0f;

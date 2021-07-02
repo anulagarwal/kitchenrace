@@ -161,8 +161,8 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 {      
                     enemyMovementHandler.characterSweetStackHandler.EnablePhysics();
                     enemyMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
+                    enemyMovementHandler.ragdollEnablerObj.SetActive(true);
                     SoundManager.Instance.PlaySound(SoundType.Bump);
-
                 }
                 else
                 {
@@ -170,6 +170,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                     characterSweetStackHandler.EnablePhysics();
                     if (playerMovementHandler)
                     {
+                        playerMovementHandler.ragdollEnablerObj.SetActive(true);
                         playerMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
                     }
                 }

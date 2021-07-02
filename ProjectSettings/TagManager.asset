@@ -15,6 +15,7 @@ TagManager:
   - ElevatorPlot
   - NextStage
   - BridgeStart
+  - Edge
   layers:
   - Default
   - TransparentFX

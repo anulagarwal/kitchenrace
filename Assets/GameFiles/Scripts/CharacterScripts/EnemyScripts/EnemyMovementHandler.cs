@@ -19,6 +19,7 @@ public class EnemyMovementHandler : MonoBehaviour
     [SerializeField] private CharacterController characterController = null;
     [SerializeField] internal CharacterAnimationHandler characterAnimationHandler = null;
     [SerializeField] internal CharacterSweetStackHandler characterSweetStackHandler = null;
+    [SerializeField] internal GameObject ragdollEnablerObj = null;
 
     [Header("Gravity Setup")]
     [SerializeField] private float groundDistance = 0f;
@@ -229,6 +230,7 @@ public class EnemyMovementHandler : MonoBehaviour
     {
         rb.isKinematic = false;
         capsuleCollider.isTrigger = false;
+        rb.useGravity = true;
         rb.AddForce(direction * stumbleforce, ForceMode.Impulse);
 
         Invoke("DisablePhysics", 2f);
@@ -263,6 +265,8 @@ public class EnemyMovementHandler : MonoBehaviour
     {
         capsuleCollider.isTrigger = true;
         rb.isKinematic = true;
+        rb.useGravity = false;
+        CancelInvoke();
     }
     #endregion
 }
