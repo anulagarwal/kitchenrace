@@ -132,6 +132,11 @@ public class LevelUIManager : MonoBehaviour
     {
         paywallObj.SetActive(true);
     }
+
+    public void HidePaywall()
+    {
+        paywallObj.SetActive(false);
+    }
     public void UpdateState(State state)
     {
         switch (state)

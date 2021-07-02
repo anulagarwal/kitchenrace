@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using MoreMountains.NiceVibrations;
+//using MoreMountains.NiceVibrations;
 
 public class GameManager : MonoBehaviour
 {
@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
     public void Vibrate()
     {
       //  MMVibrationManager.Vibrate();
-        MMVibrationManager.Haptic(HapticTypes.SoftImpact);
+      //  MMVibrationManager.Haptic(HapticTypes.SoftImpact);
     }
 
     #endregion
