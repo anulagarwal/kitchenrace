@@ -10,6 +10,7 @@ public class CharacterSweetStackHandler : MonoBehaviour
 
     [Header("Components Reference")]
     [SerializeField] private Transform stackStartTransform = null;
+    [SerializeField] private Transform cameraFollowTransform = null;
 
     internal List<Transform> sweetStack = new List<Transform>();
     private Vector3 stackingPosition = Vector3.zero;
@@ -26,6 +27,8 @@ public class CharacterSweetStackHandler : MonoBehaviour
     public int GetSweetStackSize { get => sweetStack.Count; }
 
     public SweetsPacketHandler C_SweetsPacketHandler { get; set; }
+
+    public Transform GetCameraFollowTransform { get => cameraFollowTransform; }
     #endregion
 
     #region Public Core Functions
@@ -35,6 +38,12 @@ public class CharacterSweetStackHandler : MonoBehaviour
         sweetTransform.GetComponent<SweetsHandler>().StackSweet(stackStartTransform, stackingPosition);
         stackingPosition = new Vector3(0, stackingPosition.y + sweetSizeYOffset, 0);
         sweetTransform.localRotation = Quaternion.identity;
+
+        //Only for player
+        if (cameraFollowTransform)
+        {
+            cameraFollowTransform.localPosition = new Vector3(0, cameraFollowTransform.position.y + 0.1f, 0);
+        }
 
         if (C_SweetsPacketHandler)
         {

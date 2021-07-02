@@ -33,7 +33,9 @@ public class PlayerCharacterManager : MonoBehaviour
         {
             obj.SetActive(false);
         }
-        cmvcb.Follow = playerCharacters[index].transform;
+        //cmvcb.Follow = playerCharacters[index].transform;
+        cmvcb.Follow = playerCharacters[index].transform.GetComponent<PlayerMovementHandler>().characterSweetStackHandler.GetCameraFollowTransform;
+        cmvcb.LookAt = playerCharacters[index].transform.GetComponent<PlayerMovementHandler>().characterSweetStackHandler.GetCameraFollowTransform;
         playerCharacters[index].SetActive(true);
         currentEnabledCharacter = index;
     }
