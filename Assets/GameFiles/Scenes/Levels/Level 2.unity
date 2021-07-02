@@ -3806,6 +3806,18 @@ PrefabInstance:
       propertyPath: cmvcb
       value: 
       objectReference: {fileID: 349840537}
+    - target: {fileID: 2590848338356410174, guid: b776752ed865441ba97f6e36f38e0dfc, type: 3}
+      propertyPath: rotSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130604942039927615, guid: b776752ed865441ba97f6e36f38e0dfc, type: 3}
+      propertyPath: rotSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686138056819679698, guid: b776752ed865441ba97f6e36f38e0dfc, type: 3}
+      propertyPath: rotSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b776752ed865441ba97f6e36f38e0dfc, type: 3}
 --- !u!1 &339994232

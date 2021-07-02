@@ -11,6 +11,7 @@ public class EnemyMovementHandler : MonoBehaviour
     [SerializeField] private CharacterCode characterCode = CharacterCode.None;
     [SerializeField] private float moveSpeed = 0f;
     [SerializeField] private float stumbleforce = 0f;
+    [SerializeField] private float rotSpeed = 0f;
 
     [Header("Components Reference")]
     [SerializeField] private Rigidbody rb = null;
@@ -71,7 +72,10 @@ public class EnemyMovementHandler : MonoBehaviour
                 {
                     movementDirection = (targetLocationTransform.position - transform.position).normalized;
                     characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
-                    transform.rotation = Quaternion.LookRotation(movementDirection);
+
+                    Quaternion newRot = Quaternion.LookRotation(movementDirection);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotSpeed * Time.deltaTime);
+                    //transform.rotation = Quaternion.LookRotation(movementDirection);
 
                     if (!characterAnimator.GetBool("b_Run"))
                     {

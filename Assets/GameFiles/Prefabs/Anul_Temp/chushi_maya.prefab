@@ -929,6 +929,7 @@ Transform:
   - {fileID: 4197367022596691378}
   - {fileID: 4197367022596691372}
   - {fileID: 4197367023200642958}
+  - {fileID: 3446327494692002104}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -982,6 +983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  rotSpeed: 0
   characterData: {fileID: 11400000, guid: 4ac626f68c9ca9240820a12c9d132e16, type: 2}
   playerAnimator: {fileID: 4197367022587640796}
   characterController: {fileID: 4197367022558708272}
@@ -3996,7 +3998,6 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.50000006, z: 0.5}
   m_Children:
   - {fileID: 543450652177736688}
-  - {fileID: 3446327494692002104}
   m_Father: {fileID: 4197367022596690988}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4039,11 +4040,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5853112652008351439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2.0850694, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
-  m_Father: {fileID: 4197367024128214698}
-  m_RootOrder: 1
+  m_Father: {fileID: 4197367022596690998}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1522484251
 PrefabInstance:
