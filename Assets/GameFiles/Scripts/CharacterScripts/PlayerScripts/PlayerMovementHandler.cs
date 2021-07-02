@@ -65,9 +65,9 @@ public class PlayerMovementHandler : MonoBehaviour
             movementDirection = new Vector3(movementJS.Horizontal, 0, movementJS.Vertical).normalized;
             if (movementDirection != Vector3.zero && playerMovementType == PlayerMovementType.Running)
             {
-                //Quaternion newRot = Quaternion.LookRotation(movementDirection);
-                //transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotSpeed * Time.deltaTime);
-                transform.rotation = Quaternion.LookRotation(movementDirection);
+                Quaternion newRot = Quaternion.LookRotation(movementDirection);
+                transform.rotation = Quaternion.Lerp(transform.rotation, newRot, rotSpeed * Time.deltaTime);
+                //transform.rotation = Quaternion.LookRotation(movementDirection);
                 characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
 
                 if (!playerAnimator.GetBool("b_Run"))

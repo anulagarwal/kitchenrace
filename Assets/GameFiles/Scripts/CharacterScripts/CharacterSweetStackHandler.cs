@@ -42,7 +42,9 @@ public class CharacterSweetStackHandler : MonoBehaviour
         //Only for player
         if (cameraFollowTransform)
         {
-            cameraFollowTransform.localPosition = new Vector3(0, cameraFollowTransform.position.y + 0.1f, 0);
+            
+            cameraFollowTransform.localPosition = new Vector3(0, cameraFollowTransform.localPosition.y + 0.1f, 0);
+            print("aaa");
         }
 
         if (C_SweetsPacketHandler)
@@ -63,6 +65,10 @@ public class CharacterSweetStackHandler : MonoBehaviour
             sweetStack[sweetStack.Count - 1].GetComponent<BoxCollider>().enabled = true;
             sweetStack.RemoveAt(sweetStack.Count - 1);
             stackingPosition.y -= sweetSizeYOffset;
+            if (cameraFollowTransform)
+            {
+                cameraFollowTransform.localPosition = new Vector3(0, cameraFollowTransform.localPosition.y - 0.1f, 0);
+            }
         }
     }
 
