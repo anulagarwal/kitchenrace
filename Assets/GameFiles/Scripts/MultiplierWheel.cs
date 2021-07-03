@@ -28,20 +28,16 @@ public class MultiplierWheel : MonoBehaviour
             float lerp = 0.5F * (1.0F + Mathf.Sin(Mathf.PI * Time.realtimeSinceStartup * this.m_frequency));
             arrow.transform.localRotation = Quaternion.Lerp(from, to, lerp);
 
-            if(WrapAngle(arrow.transform.localEulerAngles.z) >= 71 && WrapAngle(arrow.transform.localEulerAngles.z)<= 93)
+            if(WrapAngle(arrow.transform.localEulerAngles.z) >= -20 && WrapAngle(arrow.transform.localEulerAngles.z)<= 22f)
             {
                 currentMultiplier = 5;
             }
-            if (WrapAngle(arrow.transform.localEulerAngles.z) <= 71.1 && WrapAngle(arrow.transform.localEulerAngles.z) >= 0.1f)
+            if ((WrapAngle(arrow.transform.localEulerAngles.z) <= 90f && WrapAngle(arrow.transform.localEulerAngles.z) >= 60f) || (WrapAngle(arrow.transform.localEulerAngles.z) >= -90f && WrapAngle(arrow.transform.localEulerAngles.z) <= -60f))
             {
                 currentMultiplier = 2;
             }
 
-            if (WrapAngle(arrow.transform.localEulerAngles.z) <= 0.1f && WrapAngle(arrow.transform.localEulerAngles.z) >= -53f)
-            {
-                currentMultiplier = 4;
-            }
-            if (WrapAngle(arrow.transform.localEulerAngles.z) <= -53f && WrapAngle(arrow.transform.localEulerAngles.z) >= -90f)
+            if ((WrapAngle(arrow.transform.localEulerAngles.z) >= -60f && WrapAngle(arrow.transform.localEulerAngles.z) <= -22f) || (WrapAngle(arrow.transform.localEulerAngles.z) <= 60f && WrapAngle(arrow.transform.localEulerAngles.z) >= 22f))
             {
                 currentMultiplier = 3;
             }

@@ -11,4 +11,6 @@ public class StoreItem
     public int id;
     public bool isPurchased;
     public bool isSelected;
+    public bool isOffered;
 }
+

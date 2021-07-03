@@ -35,6 +35,8 @@ public class LevelUIManager : MonoBehaviour
     [SerializeField] private Text coinText;
     [SerializeField] private Text doubleCoinText;
     [SerializeField] private Text normalCoinText;
+    [SerializeField] private Text unlockableText;
+
 
 
     [Header("Settings")]
@@ -91,6 +93,7 @@ public class LevelUIManager : MonoBehaviour
 
     #region Public Functions
 
+    #region Text updates
     public void UpdateLevelText(int level)
     {
         foreach(Text t in levelTexts)
@@ -123,6 +126,11 @@ public class LevelUIManager : MonoBehaviour
         doubleCoinText.text = "$" + (value);
     }
 
+    public void UpdateUnlockableText(string s)
+    {
+        unlockableText.text = s;
+    }
+    #endregion
     public int GetMultiplierValue()
     {
         return GetComponent<MultiplierWheel>().GetCurrentMultiplier();
@@ -187,25 +195,18 @@ public class LevelUIManager : MonoBehaviour
 
     public void UpdateUnlockPercent(float value)
     {
-        print(value);
         if (value >= 100)
         {
             unlockPercent.text = "UNLOCKED!";
             unlockClaimButton.GetComponent<Button>().interactable = true;
-
             unlockSprite.fillAmount = 1;
-
-
         }
         else
         {
             unlockPercent.text = "" + value+"%";
             unlockSprite.fillAmount =  value / 100;
             unlockClaimButton.GetComponent<Button>().interactable =false;
-
         }
-
-
     }
 
     #endregion

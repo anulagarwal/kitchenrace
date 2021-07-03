@@ -73,8 +73,7 @@ public class GameManager : MonoBehaviour
                 {
                     unlockable += unlockCounter;
                     LevelUIManager.Instance.UpdateUnlockPercent(unlockable);
-                    PlayerPrefs.SetInt("unlockable", unlockable);
-                 
+                    PlayerPrefs.SetInt("unlockable", unlockable);                  
                     isUnlocking = false;
                 }
                 else
@@ -97,10 +96,14 @@ public class GameManager : MonoBehaviour
         LevelUIManager.Instance.UpdateUnlockPercent(unlockable );
     }
 
-    public void UnlockCharacter(int id)
+    public void UnlockCharacter()
     {
         unlockable = 0;
         PlayerPrefs.SetInt("unlockable", 0);
+        if(PurchaseManager.Instance.characterItems.Find(x => x.isOffered == false && x.isPurchased == false)!= null)
+        {
+            PurchaseManager.Instance.PurchaseItem(PurchaseManager.Instance.characterItems.Find(x => x.isOffered == false && x.isPurchased == false).id);
+        }
     }
     public void EatRemainingStack()
     {       
@@ -113,15 +116,18 @@ public class GameManager : MonoBehaviour
     }
    
     public void ShowWinUI()
-    {
-        isUnlocking = true;
-        unlockStartTime = Time.time;
-        unlockCounter = 0;
+    {       
         LevelUIManager.Instance.UpdateScoreText(currentScore);
         LevelUIManager.Instance.UpdateState(LevelUIManager.State.Win);
         confetti.SetActive(false);
         confetti.SetActive(true);
         chef.Play("Victory");
+    }
+    public void ShowUnlockable()
+    {
+        isUnlocking = true;
+        unlockStartTime = Time.time;
+        unlockCounter = 0;
     }
     public void SwitchCam()
     {

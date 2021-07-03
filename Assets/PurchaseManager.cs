@@ -39,10 +39,20 @@ public class PurchaseManager : MonoBehaviour
     void Start()
     {
         currentCoins = PlayerPrefs.GetInt("coins", 0);
+        bool firstOpen = !File.Exists(Application.persistentDataPath + "/gamesave.save");
+       
         bool isLoaded = LoadData();
-        //File.Delete(Application.persistentDataPath + "/gamesave.save");
+       // File.Delete(Application.persistentDataPath + "/gamesave.save");
+        
         PopulateStore();
         RefreshStore();
+        //Trigger on first open game only
+
+        if (firstOpen)
+        {
+            PurchaseItem(characterItems[0].id);
+            PurchaseItem(sweetItems[0].id);
+        }
 
     }
 
