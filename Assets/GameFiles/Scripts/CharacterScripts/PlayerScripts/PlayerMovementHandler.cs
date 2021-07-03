@@ -108,7 +108,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     #region Public Core Functions
 
-    public void UpdateStage()
+    public void UpdateStage(SweetsPacketManager spm)
     {
         stage++;
         //Modified
@@ -124,8 +124,15 @@ public class PlayerMovementHandler : MonoBehaviour
             return;
         }
 
-        characterSweetStackHandler.C_SweetsPacketHandler.EnableSweetsMeshRenderer();
-        SelectSweetsPacketHandler();       
+        foreach (SweetsPacketHandler sh in spm.sweetsPacketHandlers)
+        {
+            if (sh.GetCharacterCode == characterData.GetCharacterCode)
+            {
+                characterSweetStackHandler.C_SweetsPacketHandler = sh;
+                characterSweetStackHandler.C_SweetsPacketHandler.EnableSweetsMeshRenderer();
+                return;
+            }
+        }
     }
 
   

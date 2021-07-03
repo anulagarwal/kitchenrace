@@ -140,7 +140,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<BridgeTopHandler>().stageNumber > playerMovementHandler.stage)
                 {
-                    playerMovementHandler.UpdateStage();
+                    playerMovementHandler.UpdateStage(other.gameObject.GetComponent<BridgeTopHandler>().GetSweetsPacketManager);
                 }
             }
         }
