@@ -261,10 +261,11 @@ public class EnemyMovementHandler : MonoBehaviour
     //    Invoke("DisablePhysics", 2f);
     //}
 
-    public void ApplyStumbleForce()
+    public void ApplyStumbleForce(Vector3 direction)
     {
         isStumbling = true;
         velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityInfluence);
+        characterController.Move(direction * Time.deltaTime * moveSpeed);
     }
 
     //Added

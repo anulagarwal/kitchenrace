@@ -11954,6 +11954,10 @@ PrefabInstance:
       propertyPath: characterCode
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6831517366447140774, guid: 5fdeb71c1a43d479390406a17971025c, type: 3}
+      propertyPath: groundDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6831517366447140775, guid: 5fdeb71c1a43d479390406a17971025c, type: 3}
       propertyPath: enemyMovementHandler
       value: 
@@ -20826,6 +20830,10 @@ PrefabInstance:
       propertyPath: characterCode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6831517366447140774, guid: 5fdeb71c1a43d479390406a17971025c, type: 3}
+      propertyPath: groundDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6831517366447140775, guid: 5fdeb71c1a43d479390406a17971025c, type: 3}
       propertyPath: enemyMovementHandler
       value: 
@@ -25669,6 +25677,10 @@ PrefabInstance:
     - target: {fileID: 6831517366446748946, guid: 5fdeb71c1a43d479390406a17971025c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831517366447140774, guid: 5fdeb71c1a43d479390406a17971025c, type: 3}
+      propertyPath: groundDistance
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6831517366447237426, guid: 5fdeb71c1a43d479390406a17971025c, type: 3}
       propertyPath: m_Name

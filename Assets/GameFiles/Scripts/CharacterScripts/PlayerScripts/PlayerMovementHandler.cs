@@ -173,15 +173,16 @@ public class PlayerMovementHandler : MonoBehaviour
     {
         if (value)
         {
-            velocity.y = Mathf.Sqrt(jumpValue * -2 * gravityInfluence);
+            velocity.y = Mathf.Sqrt(jumpValue * -2 * gravityInfluence);     
             //groundCheckTrans.local
         }
     }
 
-    public void ApplyStumbleForce()
+    public void ApplyStumbleForce(Vector3 direction)
     {
         isStumbling = true;
         velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityInfluence);
+        characterController.Move(direction * Time.deltaTime * moveSpeed);
     }
     #endregion
 }

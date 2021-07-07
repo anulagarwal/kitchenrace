@@ -160,7 +160,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 if (enemyMovementHandler.characterSweetStackHandler.sweetStack.Count < characterSweetStackHandler.sweetStack.Count)
                 {      
                     enemyMovementHandler.characterSweetStackHandler.EnablePhysics();
-                    enemyMovementHandler.ApplyStumbleForce();
+                    enemyMovementHandler.ApplyStumbleForce((transform.position - other.gameObject.transform.position).normalized);
                     //enemyMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
                     //enemyMovementHandler.ragdollEnablerObj.SetActive(true);
                     SoundManager.Instance.PlaySound(SoundType.Bump);
@@ -170,7 +170,7 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                     characterSweetStackHandler.EnablePhysics();
                     if (playerMovementHandler)
                     {
-                        playerMovementHandler.ApplyStumbleForce();
+                        playerMovementHandler.ApplyStumbleForce((transform.position - other.gameObject.transform.position).normalized);
                         //playerMovementHandler.ragdollEnablerObj.SetActive(true);
                         //playerMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
                     }
