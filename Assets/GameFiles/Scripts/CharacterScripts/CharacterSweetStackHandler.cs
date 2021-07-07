@@ -76,13 +76,14 @@ public class CharacterSweetStackHandler : MonoBehaviour
     {
         foreach (Transform t in sweetStack)
         {
-            t.GetComponent<Rigidbody>().isKinematic = false;            
+            t.parent = null;
+            t.gameObject.layer = 6;
+            t.GetComponent<Rigidbody>().isKinematic = false;
             t.GetComponent<BoxCollider>().isTrigger = false;
             t.GetComponent<BoxCollider>().enabled = true;
-            t.parent = null;
             stackingPosition.y -= sweetSizeYOffset;
             t.GetComponent<SweetsHandler>().SweetCode = CharacterCode.None;
-            t.GetComponent<SweetsHandler>().GetCookieMeshRenderer.material.color = new Color(.7f, .7f, .7f, 1); 
+            t.GetComponent<SweetsHandler>().GetCookieMeshRenderer.material.color = new Color(.7f, .7f, .7f, 1);
         }
         sweetStack.Clear();
     }

@@ -19,6 +19,7 @@ public class SweetsHandler : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
+            gameObject.layer = 0;
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             gameObject.GetComponent<BoxCollider>().isTrigger = true;
         }
