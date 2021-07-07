@@ -2076,7 +2076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a37b024fc445d848879525b31818219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sweetSpawnAmount: 44
+  sweetSpawnAmount: 35
   sweetsPacketHandlers:
   - {fileID: 968601617}
   - {fileID: 2039235989}
@@ -3975,7 +3975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a37b024fc445d848879525b31818219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sweetSpawnAmount: 44
+  sweetSpawnAmount: 35
   sweetsPacketHandlers:
   - {fileID: 1886661920}
   - {fileID: 931329779}
@@ -9811,6 +9811,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 584003909}
+    - target: {fileID: 2110547364, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+      propertyPath: productId
+      value: com.appcentral.chefbridges.paywall
+      objectReference: {fileID: 0}
     - target: {fileID: 70817046257181752, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -9895,6 +9899,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 584003909}
+    - target: {fileID: 6628253237369739264, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6829396756546737472, guid: 7a1f6e49867fc04459ebc5aeb5afe64b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
