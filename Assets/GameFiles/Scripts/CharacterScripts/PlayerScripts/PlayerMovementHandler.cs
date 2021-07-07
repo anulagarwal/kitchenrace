@@ -36,6 +36,8 @@ public class PlayerMovementHandler : MonoBehaviour
     internal PlayerMovementType playerMovementType = PlayerMovementType.Running;
     internal bool ForceStop = false;
     internal bool Building = false;
+    internal bool isStumbling = false;
+    private float stumbleTimer = 1f;
     #endregion
 
     #region MonoBehaviour Functions
@@ -59,6 +61,23 @@ public class PlayerMovementHandler : MonoBehaviour
     private void Update()
     {
         GravityMechanism();
+
+        if (isStumbling)
+        {
+            if (isGrounded && stumbleTimer <= 0)
+            {
+                isStumbling = false;
+                characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
+            }
+            else
+            {
+                stumbleTimer -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            stumbleTimer = 1;
+        }
 
         if (!ForceStop)
         {
@@ -157,6 +176,12 @@ public class PlayerMovementHandler : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpValue * -2 * gravityInfluence);
             //groundCheckTrans.local
         }
+    }
+
+    public void ApplyStumbleForce()
+    {
+        isStumbling = true;
+        velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityInfluence);
     }
     #endregion
 }

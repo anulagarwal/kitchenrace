@@ -12,6 +12,7 @@ public class EnemyMovementHandler : MonoBehaviour
     [SerializeField] private float moveSpeed = 0f;
     [SerializeField] private float stumbleforce = 0f;
     [SerializeField] private float rotSpeed = 0f;
+    [SerializeField] private float jumpHeight = 0f;
 
     [Header("Components Reference")]
     [SerializeField] private Rigidbody rb = null;
@@ -36,12 +37,15 @@ public class EnemyMovementHandler : MonoBehaviour
     internal int stage = 0;
     internal int sweetCollectionCount = 0;
     internal AIMovementType aIMovementType = AIMovementType.Stacking;
+    internal bool isStumbling = false;
+    private float stumbleTimer = 1f;
     #endregion
 
     #region MonoBehaviour Functions
     private void Start()
     {
         sweetCollectionCount = Random.Range(5, 7);
+        isStumbling = false;
 
         foreach (SweetsPacketHandler sh in SweetsManager.Instance.sweetsPacketManagers[stage].sweetsPacketHandlers)
         {
@@ -66,9 +70,26 @@ public class EnemyMovementHandler : MonoBehaviour
                 NewLocation();
             }
 
+            if (isStumbling)
+            {
+                if (isGrounded && stumbleTimer <= 0)
+                {
+                    isStumbling = false;
+                    characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
+                }
+                else
+                {
+                    stumbleTimer -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                stumbleTimer = 1;
+            }
+
             if (targetLocationTransform && aIMovementType == AIMovementType.Stacking)
             {
-                if (Vector3.Distance(transform.position, targetLocationTransform.position) >= 0.2f)
+                if (Vector3.Distance(transform.position, targetLocationTransform.position) >= 0.2f && !isStumbling)
                 {
                     movementDirection = (targetLocationTransform.position - transform.position).normalized;
                     characterController.Move(movementDirection * Time.deltaTime * moveSpeed);
@@ -202,7 +223,7 @@ public class EnemyMovementHandler : MonoBehaviour
             Win();
             return;
         }
-        print(stage);
+
         foreach (SweetsPacketHandler sh in sweetsPacketManager.sweetsPacketHandlers)
         {
             if (sh.GetCharacterCode == characterCode)
@@ -230,14 +251,20 @@ public class EnemyMovementHandler : MonoBehaviour
         }
     }
 
-    public void ApplyStumbleForce(Vector3 direction)
-    {
-        rb.isKinematic = false;
-        capsuleCollider.isTrigger = false;
-        rb.useGravity = true;
-        rb.AddForce(direction * stumbleforce, ForceMode.Impulse);
+    //public void ApplyStumbleForce(Vector3 direction)
+    //{
+    //    rb.isKinematic = false;
+    //    capsuleCollider.isTrigger = false;
+    //    rb.useGravity = true;
+    //    rb.AddForce(direction * stumbleforce, ForceMode.Impulse);
 
-        Invoke("DisablePhysics", 2f);
+    //    Invoke("DisablePhysics", 2f);
+    //}
+
+    public void ApplyStumbleForce()
+    {
+        isStumbling = true;
+        velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityInfluence);
     }
 
     //Added

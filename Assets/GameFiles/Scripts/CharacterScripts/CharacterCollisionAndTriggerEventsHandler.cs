@@ -160,18 +160,19 @@ public class CharacterCollisionAndTriggerEventsHandler : MonoBehaviour
                 if (enemyMovementHandler.characterSweetStackHandler.sweetStack.Count < characterSweetStackHandler.sweetStack.Count)
                 {      
                     enemyMovementHandler.characterSweetStackHandler.EnablePhysics();
-                    enemyMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
-                    enemyMovementHandler.ragdollEnablerObj.SetActive(true);
+                    enemyMovementHandler.ApplyStumbleForce();
+                    //enemyMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
+                    //enemyMovementHandler.ragdollEnablerObj.SetActive(true);
                     SoundManager.Instance.PlaySound(SoundType.Bump);
                 }
                 else
                 {
-
                     characterSweetStackHandler.EnablePhysics();
                     if (playerMovementHandler)
                     {
-                        playerMovementHandler.ragdollEnablerObj.SetActive(true);
-                        playerMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
+                        playerMovementHandler.ApplyStumbleForce();
+                        //playerMovementHandler.ragdollEnablerObj.SetActive(true);
+                        //playerMovementHandler.characterAnimationHandler.SwitchCharacterAnimation(CharacterAnimationState.Stumble);
                     }
                 }
             }
